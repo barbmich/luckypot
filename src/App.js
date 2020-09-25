@@ -16,9 +16,7 @@ export default function App(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     // console.log("this works");
-    fetch(
-      `https://api.spoonacular.com/recipes/654959/information?apiKey=${API_KEY}`
-    )
+    fetch(`/api/greeting?name=${encodeURIComponent(state.name)}`)
       .then((response) => {
         console.log(response);
         return response.json();

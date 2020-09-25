@@ -17,7 +17,8 @@
     "eject": "react-scripts eject",
     "server": "node-env-run server --exec nodemon | pino-colada",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "dev": "run-p server start"
   },
   "eslintConfig": {
     "extends": "react-app"

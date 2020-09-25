@@ -1553,7 +1553,7 @@ const sampleData = {
         "https://spoonacular.com/pasta-with-chicken-and-broccoli-654901",
     },
   ],
-  RecipeSearches: [
+  recipeSearches: [
     {
       results: [
         {
