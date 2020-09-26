@@ -1,15 +1,15 @@
-import React, { Component, useState } from "react";
-import logo from "./logo.svg";
+import React, { useState } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 
-export default function App(props) {
+export default function App() {
   const [state, setState] = useState({
     name: "",
     greetings: "",
   });
 
   const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
+
   const handleChange = (event) => {
     setState({ name: event.target.value });
   };
@@ -28,7 +28,5 @@ export default function App(props) {
       });
   };
 
-  return (
-    <NavBar />
-  );
+  return <NavBar />;
 }

@@ -1,8 +1,18 @@
+require("dotenv").config();
+
+const PORT = process.env.PORT || 3003;
+const ENV = process.env.ENV || "development";
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const pino = require("express-pino-logger")();
-
 const app = express();
+
+const { Pool } = require("pg");
+const dbParams = require("./lib/db.js");
+const db = new Pool(dbParams);
+db.connect();
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(pino);
 
@@ -18,6 +28,6 @@ app.get("/api/testing", (req, res) => {
   res.send(JSON.stringify({ greeting: `WTF ${name}!` }));
 });
 
-app.listen(3001, () =>
-  console.log("Express server is running on localhost:3001")
+app.listen(PORT, () =>
+  console.log(`Express server is running on port ${PORT}`)
 );
