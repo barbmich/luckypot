@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
+import SignupForm from "./components/Sign-up/SignupForm";
 
 export default function App() {
   const [state, setState] = useState({
@@ -28,5 +29,12 @@ export default function App() {
       });
   };
 
-  return <NavBar />;
+  return (
+    <main>
+      <NavBar />
+      <section>
+        <SignupForm />
+      </section>
+    </main>
+  );
 }
