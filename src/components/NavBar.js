@@ -1,30 +1,44 @@
-import React from "react"
-import "./NavBar.scss"
+import React from "react";
+import "./NavBar.scss";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Form from "react-bootstrap/Form";
+import FormControl from "react-bootstrap/FormControl";
+import Button from "react-bootstrap/Button";
 
 export default function NavBar(props) {
   return (
-    <nav class="navbar navbar-default navbar-custom">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">LuckyPot</a>
-        </div>
-            <ul class="nav navbar-nav">
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/"> <span class="glyphicon glyphicon-heart"></span>     My Recipes</a></li>
-                  <li><a href="/"> <span class="glyphicon glyphicon-tag"></span>     My Potlicks </a></li>
-                  <li><a href="/"><span class="glyphicon glyphicon-envelope"></span>     My History</a></li>
-                </ul>
-              </li>
-              <li><a href="/create"><button type="button" id="postBtn" class="btn btn-warning">Create Potluck</button></a></li>
-            </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="/"><span class="glyphicon glyphicon-log-in"></span>     Login</a></li>
-            <li><a href="/"><span class="glyphicon glyphicon-user"></span>     Sign Up</a></li>
-            <li><a href="/"><span class="glyphicon glyphicon-log-out"></span>     Logout</a></li>
-        </ul>
-      </div>
-    </nav>
+    <div>
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#link">Link</Nav.Link>
+            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+                Another action
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">
+                Separated link
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+          <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="outline-success">Search</Button>
+          </Form>
+        </Navbar.Collapse>
+      </Navbar>
+      <img
+        class="homeImg"
+        src="https://images.unsplash.com/photo-1549590143-d5855148a9d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1900&q=80"
+      />
+    </div>
   );
 }
