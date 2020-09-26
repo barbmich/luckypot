@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import SignupForm from "./components/Sign-up/SignupForm";
+import CreateRecipe from "./components/Create-recipe/CreateRecipe";
+import CreatePotluck from "./components/Create-potluck/CreatePotluck";
 
 export default function App() {
   const [state, setState] = useState({
@@ -36,7 +38,7 @@ export default function App() {
     <main>
       <NavBar />
       <section>
-        <SignupForm />
+        <CreateRecipe />
       </section>
     </main>
   );
