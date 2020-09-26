@@ -12,9 +12,9 @@ export default function App() {
   });
 
   const db_key = process.env.DB_HOST;
-  console.log(db_key)
+  console.log(db_key);
   const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
-  console.log(API_KEY)
+  console.log(API_KEY);
 
   const handleChange = (event) => {
     setState({ name: event.target.value });

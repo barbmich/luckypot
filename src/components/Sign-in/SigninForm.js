@@ -16,7 +16,7 @@ export default function SignInForm(props) {
       <Button
         variant="primary"
         type="submit"
-        onClick={() => console.log("clicked Submit")}
+        onClick={() => console.log("click!")}
       >
         Submit
       </Button>
