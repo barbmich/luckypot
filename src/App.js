@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
-// import SignupForm from "./components/Sign-up/SignupForm";
-import SignupContainer from "./components/Sign-up/SignupContainer";
+import SignupForm from "./components/Sign-up/SignupForm";
+import CreateRecipe from "./components/Create-recipe/CreateRecipe";
+import CreatePotluck from "./components/Create-potluck/CreatePotluck";
 
 export default function App() {
   const [state, setState] = useState({
@@ -11,9 +12,9 @@ export default function App() {
   });
 
   const db_key = process.env.DB_HOST;
-  console.log(db_key)
+  console.log(db_key);
   const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
-  console.log(API_KEY)
+  console.log(API_KEY);
 
   const handleChange = (event) => {
     setState({ name: event.target.value });
@@ -37,7 +38,7 @@ export default function App() {
     <main>
       <NavBar />
       <section>
-        <SignupContainer />
+        <CreateRecipe />
       </section>
     </main>
   );
