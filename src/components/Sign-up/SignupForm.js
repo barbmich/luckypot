@@ -1,10 +1,11 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import "./SignupForm.scss";
 
 export default function SignupForm(props) {
   return (
-    <Form>
+    <Form className="form">
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" />
@@ -33,7 +34,7 @@ export default function SignupForm(props) {
       <Button
         variant="primary"
         type="submit"
-        onClick={() => console.log("click")}
+        onClick={() => console.log("click!")}
       >
         Submit
       </Button>

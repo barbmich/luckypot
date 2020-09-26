@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
-import SignupForm from "./components/Sign-up/SignupForm";
+// import SignupForm from "./components/Sign-up/SignupForm";
+import SignupContainer from "./components/Sign-up/SignupContainer";
 
 export default function App() {
   const [state, setState] = useState({
@@ -33,7 +34,7 @@ export default function App() {
     <main>
       <NavBar />
       <section>
-        <SignupForm />
+        <SignupContainer />
       </section>
     </main>
   );
