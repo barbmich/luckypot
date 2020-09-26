@@ -6,6 +6,8 @@ DROP TABLE IF EXISTS guest_details CASCADE;
 DROP TABLE IF EXISTS guest_items CASCADE;
 DROP TABLE IF EXISTS event_messages CASCADE;
 DROP TABLE IF EXISTS event_comments CASCADE;
+DROP TABLE IF EXISTS custom_recipes CASCADE;
+DROP TABLE IF EXISTS favorites CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -26,29 +28,29 @@ CREATE TABLE events (
   province VARCHAR(60) NOT NULL
 );
 
-CREATE TABLE items (
-  id SERIAL PRIMARY KEY NOT NULL,
-  event_id INTEGER REFERENCES events(id) ON DELETE CASCADE,
-  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
-  name VARCHAR(255) NOT NULL,
-  recipe_id INTEGER NOT NULL 
-);
-
 CREATE TABLE categories (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL 
 );
 
+CREATE TABLE items (
+  id SERIAL PRIMARY KEY NOT NULL,
+  event_id INTEGER REFERENCES events(id) ON DELETE CASCADE,
+  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+  name VARCHAR(255) NOT NULL,
+  recipe_id INTEGER 
+);
+
 CREATE TABLE guest_details (
   id SERIAL PRIMARY KEY NOT NULL,
   event_id INTEGER REFERENCES events(id) ON DELETE CASCADE,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE guest_items (
   id SERIAL PRIMARY KEY NOT NULL,
   item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
-  guest_id INTEGER REFERENCES guest_details(user_id) ON DELETE CASCADE
+  guest_id INTEGER REFERENCES guest_details(id) ON DELETE CASCADE
 );
 
 CREATE TABLE event_messages (
@@ -66,6 +68,26 @@ CREATE TABLE event_comments (
   message TEXT NOT NULL,
   date TIMESTAMP NOT NULL DEFAULT NOW()
 );
+
+CREATE TABLE custom_recipes (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+  name VARCHAR(60) NOT NULL,
+  ingredients TEXT NOT NULL,
+  instructions TEXT NOT NULL,
+  picture_url TEXT 
+);
+
+CREATE TABLE favorites (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  recipe_id INTEGER REFERENCES custom_recipes(id)
+);
+
+
+
+
 
 
 
