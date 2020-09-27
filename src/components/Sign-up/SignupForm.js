@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import "./SignupForm.scss";
 
 export default function SignupForm(props) {
+  const [img, setImg] = useState(props.img || "");
+
   return (
     <div class="authForm">
       <h1 class="pageTitle">Register</h1>
@@ -20,7 +22,16 @@ export default function SignupForm(props) {
         </Form.Group>
         <Form controlId="formBasicLastName">
           <Form.Label>Profile Picture</Form.Label>
-          <Form.File id="custom-file" label="Custom file input" custom />
+          <Form.File
+            id="custom-file"
+            type="file"
+            label={img}
+            onChange={(event) => {
+              setImg(event.target.value);
+            }}
+            value={img}
+            custom
+          />
         </Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
