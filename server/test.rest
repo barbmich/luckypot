@@ -4,11 +4,15 @@ POST http://localhost:3003/login
 Content-Type: application/json
 
 {
-  "email": "daniel@email.com",
+  "email": "georgina@email.com",
   "password": "1"
 }
 
 ###
+SIGN UP
+POST http://localhost:3003/signup
+Content-Type: application/json
+
 
 #SIGN UP
 POST http://localhost:3003/signup
