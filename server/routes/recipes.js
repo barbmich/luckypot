@@ -16,5 +16,30 @@ module.exports = (db) => {
     });
   });
 
+  router.post("/recipes/add_recipe", (req, res) => {
+    const values = [];
+    console.log("BODY", req.body)
+    for (key in req.body) {
+      values.push(req.body[key])
+      console.log("KEY", key);
+    };
+    console.log(values);
+    db.query(
+    ` 
+    INSERT INTO custom_recipes (user_id, category_id, name, ingredients, instructions, picture_url)
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;
+    `, values)
+      .then(data => {
+        const customRecipe = data.rows[0];
+        res.json({ customRecipe });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+        });
+  });
+
+
   return router;
 };
