@@ -7,7 +7,7 @@ import "./SearchRecipe.scss";
 export default function SearchRecipe(props) {
   return (
     <div className="searchForm">
-      <h1 className="searchTitle">Delicious Recipes Live Here</h1>
+      <h1 className="pageTitle">Delicious Recipes Live Here</h1>
       <Form inline>
         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
         <Button variant="outline-success">Search</Button>

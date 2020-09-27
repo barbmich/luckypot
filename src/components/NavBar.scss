@@ -1,27 +1,29 @@
-.navbar-custom {
-  background-color: #252525d4;
-  height: 80px;
-  padding-top: 10px;
-  margin-bottom: 0px;
-
-}
-.navbar-default .navbar-brand {
-  font-family: 'Lobster Two', cursive;
+// .homeImg {
+//   width: 100%;
+// }
+.mainTitle {
+  display: flex;
+  align-items: center;
+  font-family: "Lobster Two", cursive;
   font-size: 30px;
   color: black;
 }
 
-
-li.navbar-brand.welcome {
-font-size: 22px;
-
+.bg-dark {
+  background-color: #42505f !important;
 }
 
-a.create{
-  border: solid 2px;
-  border-radius: 10px;
+.custom-button {
+  color: white;
+  background-color: green;
+  border-radius: 8px;
 }
 
-.homeImg {
+.rightButtons {
   width: 100%;
+  display: flex;
+}
+
+.nav-link {
+  color: #c8ac59;
 }

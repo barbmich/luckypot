@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import SignupForm from "./components/Sign-up/SignupForm";
+import SigninForm from "./components/Sign-in/SigninForm";
 import CreateRecipe from "./components/Create-recipe/CreateRecipe";
 import CreatePotluck from "./components/Create-potluck/CreatePotluck";
 import SearchRecipe from "./components/Search-recipe/SearchRecipe";
@@ -41,7 +42,7 @@ export default function App() {
     <main>
       <NavBar />
       <section>
-        <MyPotlucks />
+        <SignupForm />
       </section>
     </main>
   );

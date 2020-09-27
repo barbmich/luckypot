@@ -7,7 +7,7 @@ export default function CreateRecipe(props) {
   return (
     <div className="container">
       <div className="createRecipe">
-        <h1>Create a Recipe!</h1>
+        <h1 class="pageTitle">Create a Recipe!</h1>
         <div className="createRecipe">
           <Form>
             <Form.Group controlId="formBasicFirstName">

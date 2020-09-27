@@ -7,7 +7,7 @@ export default function CreatePotluck(props) {
   return (
     <div className="container">
       <div className="createPotluck">
-        <h1>Create a Potluck!</h1>
+        <h1 class="pageTitle">Create a Potluck!</h1>
         <Form>
           <Form.Group controlId="formBasicFirstName">
             <Form.Label>Potluck Name</Form.Label>
