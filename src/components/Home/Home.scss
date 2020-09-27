@@ -29,7 +29,7 @@
   margin-top: 30px;
 }
 
-.btn {
+.btnHome {
   background: #222;
   height: 50px;
   min-width: 350px;
@@ -49,7 +49,7 @@
   margin-top: 100px;
 }
 
-.btn .circle {
+.btnHome .circle {
   width: 5px;
   height: 5px;
   background: transparent;
@@ -70,12 +70,12 @@
   user-select: none;
 }
 
-.btn:hover {
+.btnHome:hover {
   // background: transparent;
   background-color: #42505f;
 }
 
-.btn:hover #circle {
+.btnHome:hover #circle {
   height: 50px;
   width: 150px;
   left: 0;
