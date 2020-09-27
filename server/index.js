@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const PORT = process.env.PORT || 4005;
+const PORT = process.env.PORT || 3003;
 const ENV = process.env.ENV || "development";
 
 const express = require("express");
@@ -13,6 +13,7 @@ const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
 
 const usersRoutes = require("./routes/users");
+const recipesRoutes = require("./routes/recipes");
 
 db.connect();
 
@@ -27,6 +28,7 @@ app.use(pino);
 // });
 
 app.use("", usersRoutes(db));
+app.use("", recipesRoutes(db));
 
 app.listen(PORT, () =>
   console.log(`Express server is running on port ${PORT}`)
