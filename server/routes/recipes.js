@@ -16,6 +16,7 @@ module.exports = (db) => {
     });
   });
 
+  // add a new custom recipe to the DB
   router.post("/recipes/add_recipe", (req, res) => {
     const values = [];
     console.log("BODY", req.body)
