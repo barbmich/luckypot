@@ -8,6 +8,7 @@ import CreatePotluck from "./components/Create-potluck/CreatePotluck";
 import SearchRecipe from "./components/Search-recipe/SearchRecipe";
 import MyFavorites from "./components/My-favorites/MyFavorites";
 import MyPotlucks from "./components/My-potlucks/MyPotlucks";
+import useVisualMode from "./hooks/useVisualMode";
 
 export default function App() {
   const [state, setState] = useState({
@@ -15,28 +16,26 @@ export default function App() {
     greetings: "",
   });
 
-  const db_key = process.env.DB_HOST;
-  console.log(db_key);
-  const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
-  console.log(API_KEY);
+  const LOGIN = "LOGIN";
+  const LOGOUT = "LOGOUT";
+  const SHOW = "SHOW";
+  const EMPTY = "EMPTY";
 
-  const handleChange = (event) => {
-    setState({ name: event.target.value });
-  };
+  const { mode, transition, back } = useVisualMode(true ? SHOW : EMPTY);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // console.log("this works");
-    fetch(`/api/greeting?name=${encodeURIComponent(state.name)}`)
-      .then((response) => {
-        console.log(response);
-        return response.json();
-      })
-      .then((state) => {
-        console.log(state);
-        return setState(state);
-      });
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   // console.log("this works");
+  //   fetch(`/api/greeting?name=${encodeURIComponent(state.name)}`)
+  //     .then((response) => {
+  //       console.log(response);
+  //       return response.json();
+  //     })
+  //     .then((state) => {
+  //       console.log(state);
+  //       return setState(state);
+  //     });
+  // };
 
   return (
     <main>
