@@ -15,11 +15,9 @@ Promise.all([
                             WHERE user_id = $1;`
                             , [userId]))
 ])
-.then(all => {
-  
-  user["events"] = all[0].rows[0];
-  user["favorites"] = all[1].rows[0];
-  user["custom_recipes"] = all[2].rows[0];
-  console.log(user);
-  res.send(user);
-})
+  .then(all => {
+    user["events"] = all[0].rows[0];
+    user["favorites"] = all[1].rows[0];
+    user["custom_recipes"] = all[2].rows[0];
+    console.log(user);
+  })
