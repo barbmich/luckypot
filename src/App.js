@@ -8,43 +8,26 @@ import CreatePotluck from "./components/Create-potluck/CreatePotluck";
 import SearchRecipe from "./components/Search-recipe/SearchRecipe";
 import MyFavorites from "./components/My-favorites/MyFavorites";
 import MyPotlucks from "./components/My-potlucks/MyPotlucks";
+import useVisualMode from "./hooks/useVisualMode";
 import Home from "./components/Home/Home";
 
 export default function App() {
-  const [state, setState] = useState({
-    name: "",
-    greetings: "",
-  });
+  const SIGNUP = "SIGNUP";
+  const SIGNIN = "SIGNIN";
+  const LOGOUT = "LOGOUT";
+  const SHOW = "SHOW";
+  const EMPTY = "EMPTY";
+  const HOME = "HOME";
 
-  const db_key = process.env.DB_HOST;
-  console.log(db_key);
-  const API_KEY = process.env.REACT_APP_SPOONACULAR_API_KEY;
-  console.log(API_KEY);
-
-  const handleChange = (event) => {
-    setState({ name: event.target.value });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // console.log("this works");
-    fetch(`/api/greeting?name=${encodeURIComponent(state.name)}`)
-      .then((response) => {
-        console.log(response);
-        return response.json();
-      })
-      .then((state) => {
-        console.log(state);
-        return setState(state);
-      });
-  };
+  const { mode, transition, back } = useVisualMode(HOME);
 
   return (
     <main>
-      <NavBar />
+      <NavBar transition={transition} />
       <section>
-        <Home />
-        {/* <MyPotlucks /> */}
+        {mode === HOME && <Home />}
+        {mode === SIGNUP && <SignupForm />}
+        {mode === SIGNIN && <SigninForm />}
       </section>
     </main>
   );

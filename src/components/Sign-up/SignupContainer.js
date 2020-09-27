@@ -8,6 +8,7 @@ import "./SignupContainer.scss";
 export default function SignupContainer(prop) {
   return (
     <Container className="container">
+      <h1>Sign-up!</h1>
       <SignupForm />
     </Container>
   );
