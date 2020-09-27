@@ -8,10 +8,10 @@ INSERT INTO users (first_name, last_name, password, email, avatar_url) VALUES
 ('June', 'Hong', '1', 'june@email.com', 'https://uifaces.co/our-content/donated/uPzg0frZ.jpg');
 
 
-INSERT INTO events (owner_id, date, address, post_code, city, province) VALUES
-(1, '2020-12-20 10:30:01', '30 Some Road', 'M3F6D4', 'Toronto', 'Ontario'),
-(2, '2020-11-25 06:30:01', '15 Any Court', 'F3Z7D5', 'Ottawa', 'Ontario'),
-(3, '2020-11-25 06:30:01', '15 Any Court', 'F3Z7D5', 'Ottawa', 'Ontario');
+INSERT INTO events (owner_id, name, date, address, post_code, city, province) VALUES
+(1, 'My FIRST Potluck','2020-12-20 10:30:01', '30 Some Road', 'M3F6D4', 'Toronto', 'Ontario'),
+(2, 'My SECOND Potluck','2020-11-25 06:30:01', '15 Any Court', 'F3Z7D5', 'Ottawa', 'Ontario'),
+(3, 'My THIRD Potluck','2020-11-25 06:30:01', '15 Any Court', 'F3Z7D5', 'Ottawa', 'Ontario');
 
 INSERT INTO categories (name) VALUES
 ('Appetizer'),
