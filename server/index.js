@@ -14,7 +14,7 @@ const db = new Pool(dbParams);
 
 const usersRoutes = require("./routes/users");
 const recipesRoutes = require("./routes/recipes");
-
+const favorites = require("./routes/favorites")
 db.connect();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,6 +29,7 @@ app.use(pino);
 
 app.use("", usersRoutes(db));
 app.use("", recipesRoutes(db));
+app.use("", favorites(db));
 
 app.listen(PORT, () =>
   console.log(`Express server is running on port ${PORT}`)
