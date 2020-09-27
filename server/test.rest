@@ -1,6 +1,6 @@
 
-# LOGIN
-POST http://localhost:4005/login
+#LOGIN
+POST http://localhost:3003/login
 Content-Type: application/json
 
 {
@@ -10,11 +10,26 @@ Content-Type: application/json
 
 ###
 SIGN UP
-POST http://localhost:4005/signup
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+
+#SIGN UP
+POST http://localhost:3003/signup
 Content-Type: application/json
 
 { "first_name": "Test",
   "last_name": "Testing",
   "email": "test@email.com",
   "password": "1"
+}
+
+###
+
+#SEARCH RECIPE
+GET http://localhost:3003/recipes/search/
+Content-Type: application/json
+
+{
+  "searchField": "pasta"
 }
