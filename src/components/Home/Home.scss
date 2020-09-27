@@ -1,0 +1,85 @@
+.home {
+  width: 100%;
+  height: 1000px;
+  margin-top: 0px;
+  background-image: url("https://images.unsplash.com/photo-1549590143-d5855148a9d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80");
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+  color: white;
+}
+
+.homeTitle {
+  font-family: "Lobster Two", cursive;
+  text-align: center;
+  margin-bottom: 15px;
+  padding-top: 90px;
+  color: white;
+  font-size: xxx-large;
+}
+
+.homeContent {
+  font-family: "Lobster Two", cursive;
+  // text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.btn {
+  background: #222;
+  height: 50px;
+  min-width: 350px;
+  border: none;
+  border-radius: 10px;
+  color: #eee;
+  font-size: 40px;
+  font-family: "Cookie", cursive;
+  position: relative;
+  transition: 1s;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding-top: 5px;
+  width: 50px;
+  margin-top: 100px;
+}
+
+.btn .circle {
+  width: 5px;
+  height: 5px;
+  background: transparent;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  overflow: hidden;
+  transition: 500ms;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.btn:hover {
+  // background: transparent;
+  background-color: #42505f;
+}
+
+.btn:hover #circle {
+  height: 50px;
+  width: 150px;
+  left: 0;
+  border-radius: 0;
+  border-bottom: 2px solid #eee;
+}
