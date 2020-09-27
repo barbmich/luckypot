@@ -4,16 +4,17 @@ POST http://localhost:4005/login
 Content-Type: application/json
 
 {
-  "email": "daniel@email.com",
+  "email": "georgina@email.com",
   "password": "1"
 }
 
-# SIGN UP
-# POST http://localhost:4005/signup
-# Content-Type: application/json
+###
+SIGN UP
+POST http://localhost:4005/signup
+Content-Type: application/json
 
-# { "first_name": "Test",
-#   "last_name": "Testing",
-#   "email": "test@email.com",
-#   "password": "1"
-# }
+{ "first_name": "Test",
+  "last_name": "Testing",
+  "email": "test@email.com",
+  "password": "1"
+}

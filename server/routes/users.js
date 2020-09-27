@@ -8,18 +8,14 @@ module.exports = (db) => {
     for (key in req.body) {
       values.push(req.body[key])
     };
-    db.query(`SELECT * FROM users
-    WHERE email = $1 AND password = $2;`, values)
+    // Promise.all([])
+    db.query(`SELECT id, first_name, last_name, email, avatar_url 
+              FROM users
+              WHERE email = $1 AND password = $2;
+              `, values)
       .then(data => {
-        const userId = data.rows[0].id;
-        db.query(`
-        SELECT * FROM events
-        WHERE owner_id = $1
-        `, [userId])
-        .then(data => {
-          events = data.rows;
-          res.json(events)
-        })
+        user = data.rows[0];
+        res.send(user);
       })
       .catch(err => {
         res
