@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./SignupForm.scss";
@@ -8,13 +8,6 @@ export default function SignupForm(props) {
     <div class="authForm">
       <h1 class="pageTitle">Register</h1>
       <Form className="form">
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
         <Form.Group controlId="formBasicFirstName">
           <Form.Label>First Name</Form.Label>
           <Form.Control type="text" placeholder="Enter first name" />
@@ -24,6 +17,17 @@ export default function SignupForm(props) {
           <Form.Label>Last Name</Form.Label>
           <Form.Control type="text" placeholder="Enter last name" />
           <Form.Text className="text-muted"></Form.Text>
+        </Form.Group>
+        <Form controlId="formBasicLastName">
+          <Form.Label>Profile Picture</Form.Label>
+          <Form.File id="custom-file" label="Custom file input" custom />
+        </Form>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
