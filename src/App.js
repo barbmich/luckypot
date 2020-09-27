@@ -12,38 +12,22 @@ import useVisualMode from "./hooks/useVisualMode";
 import Home from "./components/Home/Home";
 
 export default function App() {
-  const [state, setState] = useState({
-    name: "",
-    greetings: "",
-  });
-
-  const LOGIN = "LOGIN";
+  const SIGNUP = "SIGNUP";
+  const SIGNIN = "SIGNIN";
   const LOGOUT = "LOGOUT";
   const SHOW = "SHOW";
   const EMPTY = "EMPTY";
+  const HOME = "HOME";
 
-  const { mode, transition, back } = useVisualMode(true ? SHOW : EMPTY);
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   // console.log("this works");
-  //   fetch(`/api/greeting?name=${encodeURIComponent(state.name)}`)
-  //     .then((response) => {
-  //       console.log(response);
-  //       return response.json();
-  //     })
-  //     .then((state) => {
-  //       console.log(state);
-  //       return setState(state);
-  //     });
-  // };
+  const { mode, transition, back } = useVisualMode(HOME);
 
   return (
     <main>
-      <NavBar />
+      <NavBar transition={transition} />
       <section>
-        <Home />
-        {/* <MyPotlucks /> */}
+        {mode === HOME && <Home />}
+        {mode === SIGNUP && <SignupForm />}
+        {mode === SIGNIN && <SigninForm />}
       </section>
     </main>
   );
