@@ -8,6 +8,7 @@ import CreatePotluck from "./components/Create-potluck/CreatePotluck";
 import SearchRecipe from "./components/Search-recipe/SearchRecipe";
 import MyFavorites from "./components/My-favorites/MyFavorites";
 import MyPotlucks from "./components/My-potlucks/MyPotlucks";
+import Home from "./components/Home/Home";
 
 export default function App() {
   const [state, setState] = useState({
@@ -42,7 +43,8 @@ export default function App() {
     <main>
       <NavBar />
       <section>
-        <SignupForm />
+        <Home />
+        {/* <MyPotlucks /> */}
       </section>
     </main>
   );
