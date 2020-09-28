@@ -15,18 +15,27 @@ export default function SignInForm(props) {
       console.log("NO EMAIL OR PASSWORD",error)
       return;
     } 
+    if (!password) {
+      setError("Password cannot be blank");
+      console.log(error);
+    }
+     const user = {
+       email,
+       password
+      }
      setError("NOT BLANK");
-     axios.post('http://localhost:3003/login', {"email": email, "password": password})
-     .then(() => {
-       console.log("Passed");
+     axios.post('http://localhost:3003/login', user)
+     .then((result) => {
+       if(result.data.user) {
+          console.log( result.data.user)                   
+       } else {
+         console.log("Wrong!!!");
+       };
      })
-     .catch(err => console.log(err));
- 
-
+     .catch(err => console.log("THIS IS ERROR", err));
   }
 
-
-
+  
   return (
     <div className="authForm">
       <h1 className="pageTitle">Login</h1>
