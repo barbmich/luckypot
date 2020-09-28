@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3003;
 const ENV = process.env.ENV || "development";
 
 const express = require("express");
-const cors = require('cors');
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const pino = require("express-pino-logger")();
 const app = express();
@@ -15,19 +15,13 @@ const db = new Pool(dbParams);
 
 const usersRoutes = require("./routes/users");
 const recipesRoutes = require("./routes/recipes");
-const favorites = require("./routes/favorites")
+const favorites = require("./routes/favorites");
 db.connect();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(pino);
-
-// app.get("/api/greeting", (req, res) => {
-//   const name = req.query.name || "World";
-//   res.setHeader("Content-Type", "application/json");
-//   res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
-// });
 
 app.use("", usersRoutes(db));
 app.use("", recipesRoutes(db));

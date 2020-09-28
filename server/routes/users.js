@@ -25,29 +25,41 @@ module.exports = (db) => {
   });
 
   router.post("/signup", (req, res) => {
-    // const values = [];
-    // for (key in req.body) {
-    //   values.push(req.body[key])
-    // };
-    console.log(values);
+    const values = [];
+    for (key in req.body) {
+      values.push(req.body[key]);
+    }
+    const validationByEmail = [req.body.email];
     db.query(
-      `INSERT INTO users (first_name, last_name, email, password)
-              VALUES ($1, $2, $3, $4) 
-              RETURNING *;
-              `,
-      values
+      `
+    SELECT * FROM users WHERE email=$1;
+    `,
+      validationByEmail
     )
       .then((data) => {
-        const user = data.rows[0];
-        res.json({ user });
+        if (data.rows.length > 0) {
+          res.send("a user with this email already exists");
+        } else {
+          db.query(
+            `INSERT INTO users (first_name, last_name, email, password)
+                  VALUES ($1, $2, $3, $4)
+                  RETURNING *;
+                  `,
+            values
+          )
+            .then((data) => {
+              const user = data.rows[0];
+              res.json({ user });
+            })
+            .catch((err) => {
+              res.status(500).send("insert not working");
+            });
+        }
       })
       .catch((err) => {
         res.status(500).send("not working");
-        // .json({ error: err.message });
       });
   });
-
-  // router.get)("/")
 
   return router;
 };

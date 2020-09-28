@@ -39,12 +39,15 @@ export default function SignupForm() {
       return;
     }
     setError("");
-    console.log("execute onSave");
-
-    const user = [firstName, lastName, email, password];
+    const user = {
+      firstName,
+      lastName,
+      email,
+      password,
+    };
 
     axios
-      .post("localhost:3003/signup", user)
+      .post("http://localhost:3003/signup", user)
       .then((data) => {
         console.log(data);
       })
