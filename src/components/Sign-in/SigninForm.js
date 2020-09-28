@@ -1,24 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from 'axios';
 
 export default function SignInForm(props) {
+  const [email, setEmail] = useState(props.email || "");
+  const [password, setPassword] = useState(props.password || "");
+  const [error, setError] = useState("");
+
+
+  const validate = () => {
+    if (!email || !password) {
+      setError("Email cannot be blank");
+      console.log("NO EMAIL OR PASSWORD",error)
+      return;
+    } 
+     setError("NOT BLANK");
+     axios.post('http://localhost:3003/login', {"email": email, "password": password})
+     .then(() => {
+       console.log("Passed");
+     })
+     .catch(err => console.log(err));
+ 
+
+  }
+
+
+
   return (
     <div className="authForm">
-      <h1 class="pageTitle">Login</h1>
+      <h1 className="pageTitle">Login</h1>
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Control onChange={(event) => setEmail(event.target.value)} value={email} type="email" placeholder="Enter email" />
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control onChange={(event) => setPassword(event.target.value)} type="password" placeholder="Password" />
         </Form.Group>
         <Button
           variant="primary"
-          type="submit"
-          onClick={() => console.log("click!")}
+          onClick={() => validate()}
         >
           Submit
         </Button>

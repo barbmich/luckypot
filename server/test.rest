@@ -37,11 +37,11 @@ POST http://localhost:3003/recipes/add_recipe
 Content-Type: application/json
 
 {
-  "user_id": 1, 
+  "user_id": 4, 
   "category_id": 2,
-  "name": "Testing pasta",
-  "ingredients": "Tomato sauce, pasta, salt",
-  "instructions": "Add tomato, add pasta, add salt, eat",
+  "name": "Testing Lasagna",
+  "ingredients": "Tomato sauce, pasta, salt, pepper, etc",
+  "instructions": "Add tomato, add pasta, add salt, eat, be happy",
   "picture_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR022Bpb5JjwBLLlm1QEmeY5B78w2dhgcePlg&usqp=CAU"
 }
 
