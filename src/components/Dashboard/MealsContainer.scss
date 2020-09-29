@@ -1,0 +1,14 @@
+.mealsContainer {
+  width: 59rem;
+  height: 25rem;
+  text-align: center;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 8px;
+}
+
+.mealsContainerTitle {
+  text-align: center;
+}

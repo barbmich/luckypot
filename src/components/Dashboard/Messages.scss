@@ -1,0 +1,36 @@
+.msgContainer {
+  width: 30rem;
+  height: 39rem;
+  text-align: center;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  margin: 8px;
+}
+
+.mealsContainerTitle {
+  text-align: center;
+}
+
+.msgInput {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+}
+
+.list-unstyled {
+  width: 100%;
+}
+
+.msgBody {
+  padding-top: 25px
+}
+
+.msgTitleContainer {
+  background-color: #84bdfb;
+  border: solid grey 0.2em;
+  border-radius: 20%;
+
+}
+
+
