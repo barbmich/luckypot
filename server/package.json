@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "server": "resetdb.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "pg": "^8.3.3"
+  },
+  "devDependencies": {
+    "express": "^4.17.1",
+    "express-pino-logger": "^5.0.0",
+    "node-env-run": "^4.0.1",
+    "nodemon": "^2.0.4",
+    "pino-colada": "^2.1.0",
+    "body-parser": "^1.19.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js --exec pino-colada",
+  },
+  "author": "",
+  "license": "ISC"
+}
