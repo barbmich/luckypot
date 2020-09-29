@@ -16,10 +16,19 @@
 
 .button-add:hover {
   background-color: #a6b8ca;
+  // background-color: transparent;
+  // border-color: transparent;
 }
 
 .button-add:focus {
   outline: none;
+  // background-color: transparent;
+  // border-color: transparent;
+}
+
+.btn-primary {
+  // background-color: transparent;
+  // border-color: transparent;
 }
 
 // .button--danger {
@@ -47,8 +56,6 @@
 // .button:last-of-type {
 //   margin-right: 0;
 // }
-
-
 
 // .button:disabled {
 //   border-style: solid;
