@@ -24,7 +24,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js --exec pino-colada",
+    "start": "nodemon index.js | pino-colada",
+    "server": "node-env-run server --exec nodemon | pino-colada"
   },
   "author": "",
   "license": "ISC"
