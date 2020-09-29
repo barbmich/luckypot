@@ -19,6 +19,13 @@
   background-color: #d8e0e9;
 }
 
-// .guestRow::selection {
-//   background-color:#2b333b;
-// }
+.guestTitleContainer {
+  background-color: #317dce;
+  border: solid grey 0.2em;
+  border-radius: 20%;
+}
+.guestContainerTitle {
+  text-align: center;
+  font-size: 20px;
+  margin: 0px;
+}

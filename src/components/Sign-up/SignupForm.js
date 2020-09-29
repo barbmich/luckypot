@@ -4,7 +4,8 @@ import Button from "react-bootstrap/Button";
 import "./SignupForm.scss";
 import axios from "axios";
 
-export default function SignupForm() {
+export default function SignupForm(props) {
+  const {authenticateUser} = props;
   const [error, setError] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -48,8 +49,18 @@ export default function SignupForm() {
 
     axios
       .post("http://localhost:3003/signup", user)
-      .then((data) => {
-        console.log(data);
+      .then((result) => {
+        if (
+          result.data ===
+          ("A user with this email already exists." ||
+            "An error occurred server-side.")
+        ) {
+          console.log("test0");
+          setError(result.data);
+        } else {
+          console.log('we got here')
+          authenticateUser(result.data);
+        }
       })
       .catch((err) => console.log(err));
   }

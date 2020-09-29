@@ -8,7 +8,6 @@ export default function OthersContainer(props) {
   return (
     <Card className="mealsContainer" >
       <Card.Body>
-        <Card.Title className="mealsContainerTitle">Others</Card.Title>
         <MealChosenNoRecipe />
         <MealItem />
         <MealItem />

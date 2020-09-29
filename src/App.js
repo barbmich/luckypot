@@ -11,6 +11,7 @@ import MyFavorites from "./components/My-favorites/MyFavorites";
 import MyPotlucks from "./components/My-potlucks/MyPotlucks";
 import useVisualMode from "./hooks/useVisualMode";
 import Home from "./components/Home/Home";
+import Dashboard from "./components/Dashboard/Dashboard"
 
 export default function App() {
   const SIGNUP = "SIGNUP";
@@ -21,13 +22,22 @@ export default function App() {
   const HOME = "HOME";
 
   const { mode, transition, back } = useVisualMode(HOME);
+  const [auth, setAuth] = useState(false);
+
+  function authenticateUser(user) {
+    if (typeof user === "object") {
+      console.log("got here");
+      const newAuth = !auth;
+      setAuth(newAuth);
+    }
+  }
 
   return (
     <main>
       <NavBar transition={transition} />
       <section>
         {mode === HOME && <Home />}
-        {mode === SIGNUP && <SignupForm />}
+        {mode === SIGNUP && <SignupForm authenticateUser={authenticateUser} />}
         {mode === SIGNIN && <SigninForm />}
       </section>
     </main>

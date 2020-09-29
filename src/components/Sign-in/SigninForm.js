@@ -10,27 +10,29 @@ export default function SignInForm(props) {
 
 
   const validate = () => {
-    if (!email || !password) {
-      setError("Email cannot be blank");
-      console.log("NO EMAIL OR PASSWORD",error)
+    if (!email) {
+      setError("Email cannot be blank.");
       return;
-    } 
+    }
     if (!password) {
-      setError("Password cannot be blank");
-      console.log(error);
+      setError("Password cannot be blank.");
+      return;
     }
      const user = {
        email,
        password
       }
-     setError("NOT BLANK");
+    //  setError("NOT BLANK");
      axios.post('http://localhost:3003/login', user)
      .then((result) => {
-       if(result.data.user) {
-          console.log( result.data.user)                   
-       } else {
-         console.log("Wrong!!!");
-       };
+      if (
+        result.data === ("Incorrect credentials" || "Incorrect password.")
+      ) {
+        console.log(result);
+        setError(result.data);
+      } else {
+        console.log("signed in!");
+      }
      })
      .catch(err => console.log("THIS IS ERROR", err));
   }

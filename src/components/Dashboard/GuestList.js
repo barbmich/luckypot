@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Media } from "react-bootstrap";
+import { Media, Card } from "react-bootstrap";
 import ProfilePic from './ProfilePicture/ProfilePic';
 import "./GuestList.scss";
 // import useVisualMode from "../../hooks/useVisualMode";
@@ -18,6 +18,9 @@ export default function GuestList() {
 
   return(
   <div className="guestList">
+    <Card.Header className="guestTitleContainer">
+      <Card.Title className="guestContainerTitle">Guests</Card.Title>
+    </Card.Header>
       <Media className="guestRow">
         <ProfilePic />
       </Media>
