@@ -6,7 +6,7 @@ import "./SignupForm.scss";
 import axios from "axios";
 
 export default function SignupForm(props) {
-  const { setAuth, saveLoggedUserInfo } = props;
+  const { setAuth, setLoggedUser } = props;
   const [error, setError] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -18,9 +18,7 @@ export default function SignupForm(props) {
 
   const authenticateUser = (user) => {
     if (typeof user === "object") {
-      console.log("got here");
       setAuth((prev) => !prev);
-      console.log("history after:", history);
       history.push("/MyPotlucks");
     }
   };
@@ -67,12 +65,9 @@ export default function SignupForm(props) {
           ("A user with this email already exists." ||
             "An error occurred server-side.")
         ) {
-          console.log("test0");
           setError(result.data);
         } else {
-          console.log("we got here");
-          console.log("result.data.user: ", result.data.user);
-          saveLoggedUserInfo(result.data.user);
+          setLoggedUser(result.data.user);
           authenticateUser(result.data);
         }
       })

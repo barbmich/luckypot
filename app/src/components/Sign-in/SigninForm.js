@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -8,14 +8,12 @@ export default function SignInForm(props) {
   const [email, setEmail] = useState(props.email || "");
   const [password, setPassword] = useState(props.password || "");
   const [error, setError] = useState("");
-  const { setAuth, saveLoggedUserInfo, loggedUser } = props;
+  const { setAuth, loggedUser, setLoggedUser } = props;
   let history = useHistory();
 
   const authenticateUser = (user) => {
     if (typeof user === "object") {
-      console.log("got here");
       setAuth((prev) => !prev);
-      console.log("history after:", history);
       history.push("/MyPotlucks");
     }
   };
@@ -42,11 +40,8 @@ export default function SignInForm(props) {
           console.log(result);
           setError(result.data);
         } else {
-          console.log("signed in!");
-          console.log("Result of login: ", result.data.user);
-          saveLoggedUserInfo(result.data.user);
+          setLoggedUser(result.data.user);
           authenticateUser(result.data);
-          console.log("HHHHHHH", loggedUser.first_name);
         }
       })
       .catch((err) => console.log("THIS IS ERROR", err));
