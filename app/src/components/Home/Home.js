@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.scss";
+import { Link } from "react-router-dom";
 
 export default function Home(props) {
   return (
@@ -8,7 +9,9 @@ export default function Home(props) {
       <div className="homeContent">
         <h2>Your home for Potluck planning</h2>
         <div className="btnHome">
-          <span className="noselect">Register Here</span>
+          <Link className="link" to="/SigninForm">
+            <span className="noselect">Register Here</span>
+          </Link>
           <div className="circle"></div>
         </div>
       </div>

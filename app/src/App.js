@@ -18,18 +18,6 @@ import Dashboard from "./components/Dashboard/Dashboard";
 export default function App() {
   const [auth, setAuth] = useState(false);
   const [login, setLogin] = useState("");
-  // let history = useHistory();
-
-  // const authenticateUser = (user) => {
-  //   if (typeof user === "object") {
-  //     console.log("got here");
-  //     const newAuth = !auth;
-  //     setAuth(newAuth);
-  //     console.log("this is the auth state:", auth);
-  //     console.log("history after:", history);
-  //     history.push("/");
-  //   }
-  // };
 
   function saveLoggedUserInfo(user) {
     setLogin(user);
@@ -37,14 +25,11 @@ export default function App() {
 
   return (
     <main>
-      <NavBar setAuth={setAuth} saveLoggedUserInfo={saveLoggedUserInfo} />
-      {/* <section>
-          {mode === HOME && <Home />}
-          {mode === SIGNUP && (
-            <SignupForm authenticateUser={authenticateUser} />
-          )}
-          {mode === SIGNIN && <SigninForm />}
-        </section> */}
+      <NavBar
+        auth={auth}
+        setAuth={setAuth}
+        saveLoggedUserInfo={saveLoggedUserInfo}
+      />
     </main>
   );
 }

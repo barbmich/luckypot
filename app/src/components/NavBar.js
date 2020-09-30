@@ -1,6 +1,12 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  useHistory,
+  Link,
+  Route,
+  Switch,
+} from "react-router-dom";
 import MyFavorites from "./My-favorites/MyFavorites";
 import MyRecipes from "./My-recipes/MyRecipes";
 import Home from "./Home/Home";
@@ -10,9 +16,14 @@ import SigninForm from "./Sign-in/SigninForm";
 import "./NavBar.scss";
 
 export default function NavBar(props) {
-  const cookie = false;
+  const { auth, setAuth, saveLoggedUserInfo } = props;
+  let history = useHistory();
 
-  const { setAuth, saveLoggedUserInfo } = props;
+  const clearLogin = (user) => {
+    setAuth((prev) => !prev);
+    console.log("history after:", history);
+    history.push("/Home");
+  };
 
   return (
     <Router>
@@ -25,15 +36,17 @@ export default function NavBar(props) {
           <Navbar.Collapse id="basic-navbar-nav">
             <div className="rightButtons">
               <Nav className="mr-auto"></Nav>
-              {!cookie && <Link to="/SignupForm">Register</Link>}
-              {!cookie && <Link to="/SigninForm">Login</Link>}
-              {cookie && (
-                <Nav.Link
-                  onClick={() => console.log("cookie deleted, goodbye!")}
-                >
-                  Logout
-                </Nav.Link>
+              {!auth && (
+                <Link className="link" to="/SignupForm">
+                  Register
+                </Link>
               )}
+              {!auth && (
+                <Link className="link" to="/SigninForm">
+                  Login
+                </Link>
+              )}
+              {auth && <Nav.Link onClick={() => clearLogin()}>Logout</Nav.Link>}
               <NavDropdown title="My Features" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">
                   <Link to="/MyPotlucks">My Potlucks</Link>
