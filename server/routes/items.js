@@ -31,7 +31,7 @@ module.exports = (db) => {
     `,
       values
     )
-      .then((data) => res.send(data))
+      .then((data) => res.send(data.rows[0]))
       .catch((err) => console.log(err));
   });
 
