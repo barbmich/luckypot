@@ -16,12 +16,12 @@ import SigninForm from "./Sign-in/SigninForm";
 import "./NavBar.scss";
 
 export default function NavBar(props) {
-  const { auth, setAuth, saveLoggedUserInfo, loggedUser } = props;
+  const { auth, setAuth, loggedUser, setLoggedUser } = props;
   let history = useHistory();
 
   const clearLogin = (user) => {
     setAuth((prev) => !prev);
-    console.log("history after:", history);
+    setLoggedUser("");
     history.push("/Home");
   };
 
@@ -79,16 +79,13 @@ export default function NavBar(props) {
             <Home />
           </Route>
           <Route exact path="/SignupForm">
-            <SignupForm
-              setAuth={setAuth}
-              saveLoggedUserInfo={saveLoggedUserInfo}
-            />
+            <SignupForm setAuth={setAuth} setLoggedUser={setLoggedUser} />
           </Route>
           <Route exact path="/SigninForm">
             <SigninForm
+              setLoggedUser={setLoggedUser}
               loggedUser={loggedUser}
               setAuth={setAuth}
-              saveLoggedUserInfo={saveLoggedUserInfo}
             />
           </Route>
           <Route exact path="/MyPotlucks">
