@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MealItem.scss";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
 export default function MealItem(props) {
-  const { name } = props;
+  const { name, userAvatar } = props;
+  // const [userAssigned, setUserAssigned] = useState(assigned || null);
+
+  // function reset() {
+  //   setUserAssigned(null);
+  // }
+
   return (
     <Card className="meal-unchosen">
+      <Card.Title>{name}</Card.Title>
       <Card.Body>
-        <Card.Title>{name}</Card.Title>
-        <Card.Link href="#">
+        <Button>
           Click Here to bring <strong>{name}</strong>
-        </Card.Link>
+        </Button>
+        <img src={userAvatar} />
       </Card.Body>
     </Card>
   );

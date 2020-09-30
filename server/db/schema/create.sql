@@ -39,13 +39,15 @@ CREATE TABLE items (
   event_id INTEGER REFERENCES events(id) ON DELETE CASCADE,
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
   name VARCHAR(255) NOT NULL,
-  recipe_id INTEGER 
+  recipe_id INTEGER,
+  assigned INTEGER DEFAULT NULL
 );
 
 CREATE TABLE guest_details (
   id SERIAL PRIMARY KEY NOT NULL,
   event_id INTEGER REFERENCES events(id) ON DELETE CASCADE,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  present INTEGER NOT NULL DEFAULT 1
 );
 
 CREATE TABLE guest_items (

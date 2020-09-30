@@ -31,11 +31,12 @@ export default function App() {
 
   return (
     <main>
-      <NavBar
+      <Dashboard />
+      {/* <NavBar
         auth={auth}
         setAuth={setAuth}
         saveLoggedUserInfo={saveLoggedUserInfo}
-      />
+      /> */}
     </main>
   );
 }

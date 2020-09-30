@@ -6,6 +6,12 @@ import MealForm from "./MealForm";
 // const classNames = require("classnames");
 
 export default function AddButton(props) {
+  const { items } = props;
+
+  function addMeal() {
+    return;
+  }
+
   return (
     <Accordion defaultActiveKey="0">
       <Card>

@@ -1,45 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./MealForm.scss";
 import { Form, Button } from "react-bootstrap";
 
 export default function MealForm(props) {
+  const [meal, setMeal] = useState("");
+
   return (
     <div className="mealForm">
       <Form>
-        <Form.Control type="text" placeholder="Enter Meal Name" />
-
-        <Form>
-          {["checkbox"].map((type) => (
-            <div key={`inline-${type}`} className="mb-3">
-              <Form.Check
-                inline
-                label="Main"
-                type={type}
-                id={`inline-${type}-1`}
-              />
-              <Form.Check
-                inline
-                label="Appetizer"
-                type={type}
-                id={`inline-${type}-2`}
-              />
-              <Form.Check
-                inline
-                label="Dessert"
-                type={type}
-                id={`inline-${type}-2`}
-              />
-              <Form.Check
-                inline
-                label="Other"
-                type={type}
-                id={`inline-${type}-2`}
-              />
-            </div>
-          ))}
-        </Form>
-
-        <Button className="formBtn" variant="primary" type="submit">
+        <Form.Control
+          type="text"
+          value={meal}
+          onChange={(event) => setMeal(event.target.value)}
+          placeholder="Enter Meal Name"
+        />
+        <Button className="formBtn" variant="primary" onClick={() => {}}>
           Confirm
         </Button>
       </Form>
