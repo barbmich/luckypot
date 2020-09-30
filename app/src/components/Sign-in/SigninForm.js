@@ -8,7 +8,7 @@ export default function SignInForm(props) {
   const [email, setEmail] = useState(props.email || "");
   const [password, setPassword] = useState(props.password || "");
   const [error, setError] = useState("");
-  const { setAuth, saveLoggedUserInfo } = props;
+  const { setAuth, saveLoggedUserInfo, loggedUser } = props;
   let history = useHistory();
 
   const authenticateUser = (user) => {
@@ -46,6 +46,7 @@ export default function SignInForm(props) {
           console.log("Result of login: ", result.data.user);
           saveLoggedUserInfo(result.data.user);
           authenticateUser(result.data);
+          console.log("HHHHHHH", loggedUser.first_name);
         }
       })
       .catch((err) => console.log("THIS IS ERROR", err));

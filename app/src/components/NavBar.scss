@@ -3,11 +3,20 @@
   align-items: center;
   font-family: "Lobster Two", cursive;
   font-size: 30px;
-  color: black;
+  color: #c8ac59;
+}
+
+.navbar-light .navbar-brand {
+  color: #c8ac59;
+}
+
+.navbar-light .navbar-brand:hover {
+  color: #f0ce66;
 }
 
 .bg-dark {
-  background-color: #42505f !important;
+  // background-color: #5a6d82 !important;
+  background-color: #1e252c !important;
 }
 
 .custom-button {
@@ -19,6 +28,7 @@
 .rightButtons {
   width: 100%;
   display: flex;
+  align-items: center;
 }
 
 .nav-link {
@@ -35,10 +45,34 @@
 
 .link:hover {
   text-decoration: none;
-  color: white;
+  // color: #c8ac59;
+  color: #f0ce66;
 }
 
-.link {
+.link-nav {
   text-decoration: none;
-  color: white;
+  color: #c8ac59;
+  padding-right: 1em;
+}
+
+.link-nav:hover {
+  text-decoration: none;
+  // color: #c8ac59;
+  color: #f0ce66;
+}
+
+.link-nav:focus {
+  text-decoration: none;
+  color: #c8ac59;
+}
+
+.link-nav-dropdown:active:hover {
+  color: pink;
+}
+
+.welcomeMsg {
+  font-size: 2em;
+  padding-right: 20px;
+  font-family: "Lobster Two", cursive;
+  color: #c8ac59;
 }
