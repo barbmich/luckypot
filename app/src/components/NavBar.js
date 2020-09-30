@@ -8,7 +8,7 @@ export default function NavBar(props) {
   const SIGNIN = "SIGNIN";
   const cookie = false;
 
-  const { transition } = props;
+  const { auth, setAuth, loggedUser, setLoggedUser, transition } = props;
   return (
     <div className="completeNav">
       <Navbar bg="dark" expand="lg">

@@ -11,29 +11,37 @@ import MealsContainer from "./MealsContainer";
 import MealWithRecipe from "./MealWithRecipe";
 import Messages from "./Messages";
 import OthersContainer from "./OthersContainer";
+const db = require("../../db/db.js");
 
-export default function Dashboard(props) {
+const messages = db.event_messages;
+const items = db.items;
+const users = db.users;
+const event = db.event;
+
+console.log(users);
+console.log(event);
+
+export default function Dashboard() {
   return (
     <div className="mainDashboard">
-    
-    <Container fluid>
-      <Col lg={{span: 2, offset: 0}} sm={6}>
-        <Row>
-          <GuestList />
-        </Row>
-      </Col >
-      <Col lg={{span: 5, offset: 0}} sm={6}>
-        <Row>
-        <MealsContainer />
-         <OthersContainer />
-        </Row>
-        </Col >
-      <Col lg={{span: 4, offset: 1}} sm={6}>
-        <Row>
-          <EventInfo />
-          <Messages />
-        </Row>
-      </Col>
+      <Container fluid>
+        <Col lg={{ span: 2, offset: 1 }} sm={6}>
+          <Row>
+            <GuestList users={users} />
+          </Row>
+        </Col>
+        <Col lg={{ span: 4, offset: 1 }} sm={6}>
+          <Row>
+            <MealsContainer items={items} />
+            <OthersContainer />
+          </Row>
+        </Col>
+        <Col lg={{ span: 3, offset: 1 }} sm={6}>
+          <Row>
+            <EventInfo event={event} users={users} />
+            <Messages messages={messages} users={users} />
+          </Row>
+        </Col>
       </Container>
     </div>
   );

@@ -11,7 +11,7 @@ import MyFavorites from "./components/My-favorites/MyFavorites";
 import MyPotlucks from "./components/My-potlucks/MyPotlucks";
 import useVisualMode from "./hooks/useVisualMode";
 import Home from "./components/Home/Home";
-import Dashboard from "./components/Dashboard/Dashboard"
+import Dashboard from "./components/Dashboard/Dashboard";
 
 export default function App() {
   const SIGNUP = "SIGNUP";
@@ -23,6 +23,12 @@ export default function App() {
 
   const { mode, transition, back } = useVisualMode(HOME);
   const [auth, setAuth] = useState(false);
+  const [event, setEvent] = useState({});
+  const [loggedUser, setLoggedUser] = useState({});
+  const [users, setUsers] = useState([]);
+  const [items, setItems] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [comments, setComments] = useState([]);
 
   function authenticateUser(user) {
     if (typeof user === "object") {
@@ -34,11 +40,9 @@ export default function App() {
 
   return (
     <main>
-      <NavBar transition={transition} />
+      <NavBar />
       <section>
-        {mode === HOME && <Home />}
-        {mode === SIGNUP && <SignupForm authenticateUser={authenticateUser} />}
-        {mode === SIGNIN && <SigninForm />}
+        <CreatePotluck />
       </section>
     </main>
   );

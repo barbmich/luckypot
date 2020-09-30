@@ -53,9 +53,11 @@ INSERT INTO guest_items (item_id, guest_id) VALUES
 (9, 7);
 
 INSERT INTO event_messages (event_id, user_id, message) VALUES
-(1, 1, 'This is a MESSAGE for EVENT 1 !'),
-(2, 2, 'This is a MESSAGE for EVENT 2 !'),
-(3, 3, 'This is a MESSAGE for EVENT 3 !');
+(1, 1, 'This is MESSAGE 1 for EVENT 1 !'),
+(1, 3, 'This is MESSAGE 2 for EVENT 1 !'),
+(1, 2, 'This is MESSAGE 3 for EVENT 1 !'),
+(2, 2, 'This is MESSAGE 1 for EVENT 2 !'),
+(3, 3, 'This is MESSAGE 1 for EVENT 3 !');
 
 INSERT INTO event_comments (event_id, user_id, message) VALUES
 (1, 1, 'This is a COMMENT for EVENT 1 !'),

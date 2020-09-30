@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./CreatePotluck.scss";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function CreatePotluck(props) {
+  const [startDate, setStartDate] = useState(new Date());
+
+  console.log(startDate);
+
+  function DateSelection() {
+    return (
+      <DatePicker
+        className={"form-control"}
+        selected={startDate}
+        onChange={(date) => setStartDate(date)}
+        showTimeSelect
+        timeFormat="HH:mm"
+        timeIntervals={15}
+        timeCaption="time"
+        dateFormat="MMMM d, yyyy h:mm aa"
+      />
+    );
+  }
+
   return (
     <div className="container">
       <div className="createPotluck">
@@ -14,11 +35,11 @@ export default function CreatePotluck(props) {
             <Form.Control type="text" placeholder="Enter Potluck name" />
             <Form.Text className="text-muted"></Form.Text>
           </Form.Group>
-          <Form.Group controlId="formBasicFirstName">
+          {/* <Form.Group controlId="formBasicFirstName">
             <Form.Label>Date</Form.Label>
             <Form.Control type="text" placeholder="Enter Date" />
             <Form.Text className="text-muted"></Form.Text>
-          </Form.Group>{" "}
+          </Form.Group>{" "} */}
           <Form.Group controlId="formBasicFirstName">
             <Form.Label>Address</Form.Label>
             <Form.Control type="text" placeholder="Enter Address" />
@@ -39,10 +60,21 @@ export default function CreatePotluck(props) {
             <Form.Control type="text" placeholder="Province" />
             <Form.Text className="text-muted"></Form.Text>
           </Form.Group>
+          {/* <Form.Group> */}
+          {/* <Form.Label>Date & Time</Form.Label> */}
+          <Form>
+            <Form.Label>Date & time</Form.Label>
+            <br />
+            <DateSelection />
+          </Form>
+          {/* </Form.Group> */}
+          <br />
           <Button
             variant="primary"
-            type="submit"
-            onClick={() => console.log("click")}
+            onClick={(e) => {
+              e.preventDefault();
+              console.log("click");
+            }}
           >
             Submit
           </Button>
