@@ -18,7 +18,7 @@ module.exports = (db) => {
       .then((data) => {
         user = data.rows[0];
         console.log(user);
-         res.json({ user });
+        res.json({ user });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -50,6 +50,7 @@ module.exports = (db) => {
           )
             .then((data) => {
               const user = data.rows[0];
+              delete user.password;
               res.json({ user });
             })
             .catch((err) => {

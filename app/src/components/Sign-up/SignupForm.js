@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./SignupForm.scss";
 import axios from "axios";
 
 export default function SignupForm(props) {
-  const {authenticateUser} = props;
+  const { setAuth, saveLoggedUserInfo } = props;
   const [error, setError] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -13,8 +14,21 @@ export default function SignupForm(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
+  let history = useHistory();
 
-  function validate() {
+  const authenticateUser = (user) => {
+    if (typeof user === "object") {
+      console.log("got here");
+      // const newAuth = !auth;
+      setAuth((prev) => !prev);
+      // console.log("this is the auth state:", auth);
+      console.log("history after:", history);
+      history.push("/");
+    }
+  };
+
+  function validate(event) {
+    event.preventDefault();
     if (!firstName) {
       setError("First name is required.");
       return;
@@ -47,7 +61,7 @@ export default function SignupForm(props) {
       password,
     };
 
-    axios
+    return axios
       .post("http://localhost:3003/signup", user)
       .then((result) => {
         if (
@@ -58,8 +72,10 @@ export default function SignupForm(props) {
           console.log("test0");
           setError(result.data);
         } else {
-          console.log('we got here')
-          authenticateUser(result.data);
+          console.log("we got here");
+          console.log("result.data.user: ", result.data.user);
+          saveLoggedUserInfo(result.data.user);
+          return authenticateUser(result.data);
         }
       })
       .catch((err) => console.log(err));
@@ -133,7 +149,7 @@ export default function SignupForm(props) {
             onChange={(event) => setRetypePassword(event.target.value)}
           />
         </Form.Group>
-        <Button variant="primary" onClick={() => validate()}>
+        <Button variant="primary" onClick={validate}>
           Submit
         </Button>
       </Form>
