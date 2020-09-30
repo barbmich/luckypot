@@ -16,7 +16,7 @@ import SigninForm from "./Sign-in/SigninForm";
 import "./NavBar.scss";
 
 export default function NavBar(props) {
-  const { auth, setAuth, saveLoggedUserInfo } = props;
+  const { auth, setAuth, saveLoggedUserInfo, loggedUser } = props;
   let history = useHistory();
 
   const clearLogin = (user) => {
@@ -36,32 +36,41 @@ export default function NavBar(props) {
           <Navbar.Collapse id="basic-navbar-nav">
             <div className="rightButtons">
               <Nav className="mr-auto"></Nav>
+              <div className="welcomeMsg">
+                {auth && `Welcome ${loggedUser.first_name}`}
+              </div>
               {!auth && (
-                <Link className="link" to="/SignupForm">
+                <Link className="link-nav" to="/SignupForm">
                   Register
                 </Link>
               )}
               {!auth && (
-                <Link className="link" to="/SigninForm">
+                <Link className="link-nav" to="/SigninForm">
                   Login
                 </Link>
               )}
-              {auth && <Nav.Link onClick={() => clearLogin()}>Logout</Nav.Link>}
-              <NavDropdown title="My Features" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">
-                  <Link to="/MyPotlucks">My Potlucks</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  <Link to="/MyRecipes">My Recipes</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  <Link to="/MyFavorites">My Favorites</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
+              {auth && (
+                <Nav.Link className="link-nav" onClick={() => clearLogin()}>
+                  Logout
+                </Nav.Link>
+              )}
+              <div className="link-nav-dropdown">
+                <NavDropdown title="My Features" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#action/3.1">
+                    <Link to="/MyPotlucks">My Potlucks</Link>
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">
+                    <Link to="/MyRecipes">My Recipes</Link>
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">
+                    <Link to="/MyFavorites">My Favorites</Link>
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#action/3.4">
+                    Separated link
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </div>
             </div>
           </Navbar.Collapse>
         </Navbar>
@@ -77,6 +86,7 @@ export default function NavBar(props) {
           </Route>
           <Route exact path="/SigninForm">
             <SigninForm
+              loggedUser={loggedUser}
               setAuth={setAuth}
               saveLoggedUserInfo={saveLoggedUserInfo}
             />
