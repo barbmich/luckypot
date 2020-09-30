@@ -23,6 +23,7 @@ export default function App() {
   const [items, setItems] = useState([]);
   const [messages, setMessages] = useState([]);
   const [comments, setComments] = useState([]);
+  const [login, setLogin] = useState("");
 
   function saveLoggedUserInfo(user) {
     setLogin(user);
@@ -30,10 +31,11 @@ export default function App() {
 
   return (
     <main>
-      <NavBar />
-      <section>
-        <CreatePotluck />
-      </section>
+      <NavBar
+        auth={auth}
+        setAuth={setAuth}
+        saveLoggedUserInfo={saveLoggedUserInfo}
+      />
     </main>
   );
 }

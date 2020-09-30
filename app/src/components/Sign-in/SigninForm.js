@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
@@ -7,7 +8,17 @@ export default function SignInForm(props) {
   const [email, setEmail] = useState(props.email || "");
   const [password, setPassword] = useState(props.password || "");
   const [error, setError] = useState("");
-  const { authenticateUser, saveLoggedUserInfo } = props;
+  const { setAuth, saveLoggedUserInfo } = props;
+  let history = useHistory();
+
+  const authenticateUser = (user) => {
+    if (typeof user === "object") {
+      console.log("got here");
+      setAuth((prev) => !prev);
+      console.log("history after:", history);
+      history.push("/MyPotlucks");
+    }
+  };
 
   const validate = () => {
     if (!email) {
@@ -22,7 +33,6 @@ export default function SignInForm(props) {
       email,
       password,
     };
-    //  setError("NOT BLANK");
     axios
       .post("http://localhost:3003/login", user)
       .then((result) => {

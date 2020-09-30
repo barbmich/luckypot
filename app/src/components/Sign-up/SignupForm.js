@@ -19,11 +19,9 @@ export default function SignupForm(props) {
   const authenticateUser = (user) => {
     if (typeof user === "object") {
       console.log("got here");
-      // const newAuth = !auth;
       setAuth((prev) => !prev);
-      // console.log("this is the auth state:", auth);
       console.log("history after:", history);
-      history.push("/");
+      history.push("/MyPotlucks");
     }
   };
 
@@ -61,7 +59,7 @@ export default function SignupForm(props) {
       password,
     };
 
-    return axios
+    axios
       .post("http://localhost:3003/signup", user)
       .then((result) => {
         if (
@@ -75,7 +73,7 @@ export default function SignupForm(props) {
           console.log("we got here");
           console.log("result.data.user: ", result.data.user);
           saveLoggedUserInfo(result.data.user);
-          return authenticateUser(result.data);
+          authenticateUser(result.data);
         }
       })
       .catch((err) => console.log(err));
