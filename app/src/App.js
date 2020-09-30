@@ -18,24 +18,26 @@ import Dashboard from "./components/Dashboard/Dashboard";
 export default function App() {
   const [auth, setAuth] = useState(false);
   const [event, setEvent] = useState({});
-  const [loggedUser, setLoggedUser] = useState({});
+  // const [loggedUser, setLoggedUser] = useState({});
   const [users, setUsers] = useState([]);
   const [items, setItems] = useState([]);
   const [messages, setMessages] = useState([]);
   const [comments, setComments] = useState([]);
-  const [login, setLogin] = useState("");
+  const [loggedUser, setLoggedUser] = useState("");
 
   function saveLoggedUserInfo(user) {
-    setLogin(user);
+    setLoggedUser(user);
   }
 
   return (
     <main>
       <NavBar
+        loggedUser={loggedUser}
         auth={auth}
         setAuth={setAuth}
         saveLoggedUserInfo={saveLoggedUserInfo}
       />
+      <Dashboard />
     </main>
   );
 }
