@@ -12,28 +12,33 @@ import "./Messages.scss";
 import ProfilePic from "./ProfilePicture/ProfilePic";
 
 export default function Messages(props) {
+  const { messages, users } = props;
+
+  const eventMessages = messages
+    // .sort((a, b) => a.timestamp < b.timestamp)
+    .map((msg) => {
+      const user = users.find((user) => user.id === msg.user_id);
+
+      return (
+        <Media as="li">
+          <ProfilePic
+            first_name={user.first_name}
+            last_name={user.last_name}
+            avatar_url={user.avatar_url}
+          />
+          <Media.Body>
+            <p className="msgBody">{msg.message}</p>
+          </Media.Body>
+        </Media>
+      );
+    });
   return (
     <Card bg="dark" text="light" className="msgContainer">
       <Card.Body>
         <Card.Header className="msgTitleContainer">
           <Card.Title className="mealsContainerTitle">Messages</Card.Title>
         </Card.Header>
-        <ul className="list-unstyled">
-          <Media as="li">
-            <ProfilePic controlId="msgPic" />
-            <Media.Body>
-              <p className="msgBody">Hey guys! Cant wait for this weekend!</p>
-            </Media.Body>
-          </Media>
-          <Media as="li">
-            <ProfilePic controlId="msgPic" />
-            <Media.Body>
-              <p className="msgBody">
-                Hey Neymar, should be fun! Can I bring my dog?
-              </p>
-            </Media.Body>
-          </Media>
-        </ul>
+        <ul className="list-unstyled">{eventMessages}</ul>
         <div className="msgInput">
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label>Enter Message</Form.Label>

@@ -1,12 +1,12 @@
 .guestList {
-  width: 18rem;
+  width: 100%;
   margin: top 1px bottom 1px;
-  padding-top: 34px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 1%;
 }
 
-
 .guestRow {
-  background-color:#edf2f8;
+  background-color: #edf2f8;
   margin-top: 0px;
   border: solid #ffffff 5px;
   border-radius: 2%;
@@ -14,15 +14,15 @@
   display: list-item;
 }
 
-
 .guestRow:hover {
   background-color: #d8e0e9;
 }
 
 .guestTitleContainer {
   background-color: #317dce;
-  border: solid grey 0.2em;
-  border-radius: 20%;
+  border: solid grey 1px;
+  border-radius: 80%;
+  width: 100%;
 }
 .guestContainerTitle {
   text-align: center;

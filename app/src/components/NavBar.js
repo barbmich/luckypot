@@ -12,8 +12,7 @@ import "./NavBar.scss";
 export default function NavBar(props) {
   const cookie = false;
 
-  const { setAuth, saveLoggedUserInfo } = props;
-
+  const { auth, setAuth, loggedUser, setLoggedUser, transition } = props;
   return (
     <Router>
       <div className="completeNav">
