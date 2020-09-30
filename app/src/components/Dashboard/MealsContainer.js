@@ -6,17 +6,22 @@ import MealWithRecipe from "./MealWithRecipe";
 import "./MealsContainer.scss";
 
 export default function MealsContainer(props) {
-  const { items, users } = props;
-  // const [meals, setMeals] = useState(items);
+  const { items, users, currentUser } = props;
+
+  console.log(props);
   const itemsArray = items.map((item) => {
-    const user = users.find((user) => item.assigned_id === user.id);
-    return <MealItem name={item.name} userAvatar={user.avatar_url} />;
+    const user = users.find((user) => {
+      return item.assigned_id === user.id;
+    });
+    return (
+      <MealItem
+        itemID={item.id}
+        name={item.name}
+        user={user}
+        currentUser={currentUser}
+      />
+    );
   });
 
-  return (
-    <Card>
-      {itemsArray}
-      <AddButton />
-    </Card>
-  );
+  return <Card className="mealsContainer">{itemsArray}</Card>;
 }

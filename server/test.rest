@@ -49,7 +49,7 @@ Content-Type: application/json
 
 #ADD RECIPE TO FAVORITE
 
-POST http://localhost:3003/favorite/add
+POST http://localhost:3003/favorites/add
 Content-Type: application/json
 
 {
@@ -58,4 +58,26 @@ Content-Type: application/json
 }
 
 ###
+
+#GET USER POTLUCKS
+
 GET http://localhost:3003/mypotlucks/2
+
+###
+
+PUT http://localhost:3003/items/update
+Content-Type: application/json
+
+{"item": 3, "assigned": 1}
+
+###
+
+POST http://localhost:3003/items/add
+Content-Type: application/json
+
+{
+  "event_id": 1,
+  "category_id": 1,
+  "name": "Something",
+  "assigned": 1
+}

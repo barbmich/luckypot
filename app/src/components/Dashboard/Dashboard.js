@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Dashboard.scss";
+import AddButton from "./AddButton";
 import ProfilePic from "./ProfilePicture/ProfilePic.js";
 import EventInfo from "./EventInfo";
 import GuestList from "./GuestList";
@@ -14,6 +15,13 @@ const messages = db.event_messages;
 const items = db.items;
 const users = db.users;
 const event = db.event;
+const currentUser = {
+  id: 1,
+  first_name: "Daniel",
+  last_name: "Nascimento",
+  email: "daniel@email.com",
+  avatar_url: "https://uifaces.co/our-content/donated/XdLjsJX_.jpg",
+};
 
 export default function Dashboard() {
   return (
@@ -26,8 +34,14 @@ export default function Dashboard() {
         </Col>
         <Col lg={{ span: 4, offset: 1 }} sm={6}>
           <Row>
-            <MealsContainer items={items} users={users} />
+            <MealsContainer
+              items={items}
+              users={users}
+              currentUser={currentUser}
+            />
+            <AddButton items={items} />
             <OthersContainer />
+            <AddButton items={items} />
           </Row>
         </Col>
         <Col lg={{ span: 3, offset: 1 }} sm={6}>

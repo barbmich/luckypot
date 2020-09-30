@@ -16,6 +16,8 @@ const authRoutes = require("./routes/auth");
 const recipesRoutes = require("./routes/recipes");
 const favoritesRoutes = require("./routes/favorites");
 const potluckRoutes = require("./routes/potlucks");
+const itemsRoutes = require("./routes/items");
+
 db.connect();
 
 app.use(cors());
@@ -27,6 +29,7 @@ app.use("", potluckRoutes(db));
 app.use("", authRoutes(db));
 app.use("", recipesRoutes(db));
 app.use("", favoritesRoutes(db));
+app.use("", itemsRoutes(db));
 
 app.listen(PORT, () =>
   console.log(`Express server is running on port ${PORT}`)

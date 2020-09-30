@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "bin": {
-    "server": "resetdb.js"
-  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -26,7 +23,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js | pino-colada",
-    "server": "node-env-run server --exec nodemon | pino-colada"
+    "server": "node ./bin/resetdb.js"
   },
   "author": "",
   "license": "ISC"

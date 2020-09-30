@@ -13,7 +13,9 @@ export default function ProfilePic(props) {
         src={avatar_url}
         className="rounded-circle"
       />
-      <Figure.Caption>{`${first_name} ${last_name}`}</Figure.Caption>
+      <Figure.Caption>
+        {!first_name ? "" : `${first_name} ${last_name}`}
+      </Figure.Caption>
     </Figure>
   );
 }
