@@ -16,7 +16,7 @@ Content-Type: application/json
 
 { "first_name": "Test",
   "last_name": "Testing",
-  "email": "test@email.com",
+  "email": "test2@email.com",
   "password": "1"
 }
 
@@ -56,3 +56,6 @@ Content-Type: application/json
   "user_id": 1,
   "recipe_id": 2
 }
+
+###
+GET http://localhost:3003/mypotlucks/2
