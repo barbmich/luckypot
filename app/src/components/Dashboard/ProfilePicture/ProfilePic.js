@@ -7,9 +7,9 @@ export default function ProfilePic(props) {
   const { avatar_url, first_name, last_name } = props;
 
   const picClass = classNames('pic',
-    { 'pic':1,
-      'pic--no': 0,
-      'pic--yes': 2 
+    { '':1,
+      '--no': 0,
+      '--yes': 2 
     }
   );
 
