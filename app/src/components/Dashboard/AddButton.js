@@ -27,21 +27,3 @@ export default function AddButton(props) {
     </Accordion>
   );
 }
-
-// export default function AddButton(props) {
-//   // const buttonClass = classNames('button',
-//   // {
-//   //   'button--confirm': props.confirm,
-//   //   'button--danger': props.danger,
-//   // });
-
-// return (
-//   <button className='button-add'
-
-//     onClick={props.onClick}
-
-//   > +
-//     {props.children}
-//   </button>
-// );
-// }
