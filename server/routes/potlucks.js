@@ -8,7 +8,21 @@ module.exports = (db) => {
     console.log(values);
     db.query(
       `
-      SELECT * FROM events JOIN users ON events.owner_id = users.id WHERE users.id = $1;
+      SELECT DISTINCT events.id AS id,
+      events.owner_id AS owner_id,
+      events.name AS event_name, 
+      events.date AS date, 
+      events.address AS address,
+      events.post_code AS post_code,
+      events.city AS city,
+      events.province AS province
+      FROM guest_details
+      JOIN events ON events.id = guest_details.event_id
+      JOIN items ON events.id = items.event_id
+      JOIN users ON users.id = guest_details.user_id
+      WHERE events.id IN(SELECT event_id
+      FROM guest_details
+      WHERE user_id = $1);
       `,
       values
     )
