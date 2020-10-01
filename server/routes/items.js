@@ -26,8 +26,8 @@ module.exports = (db) => {
     console.log(values);
     db.query(
       `
-      INSERT INTO items (event_id, category_id, name, assigned) VALUES
-      ($1, $2, $3, $4) RETURNING *;
+      INSERT INTO items (event_id, category_id, name) VALUES
+      ($1, $2, $3) RETURNING *;
     `,
       values
     )

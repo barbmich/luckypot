@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 import "./MealForm.scss";
 import { Form, Button } from "react-bootstrap";
 
 export default function MealForm(props) {
-  const { items } = props;
+  const { items, addMeal } = props;
   const [meal, setMeal] = useState("");
   const [category, setCategory] = useState(null);
 
-  function addMeal(item, category) {
-    const input = {
-      event_id: 3,
-      category_id: 1,
-      name: item,
-      assigned: null,
-     };
-    axios.post('http://localhost:3003/items/add', input) 
-    .then(() => {
-      console.log(items);
-      setMeal("");
-      console.log(meal);
-    });
-  }
+  // function addMeal(item, category) {
+  //   const input = {
+  //     event_id: 3,
+  //     category_id: 1,
+  //     name: item,
+  //     assigned: null,
+  //   };
+  //   axios.post("http://localhost:3003/items/add", input).then(() => {
+  //     console.log(items);
+  //     setMeal("");
+  //     console.log(meal);
+  //   });
+  // }
 
   return (
     <div className="mealForm">
@@ -36,7 +35,9 @@ export default function MealForm(props) {
         <Button
           className="formBtn"
           variant="primary"
-          onClick={(event) => {addMeal(meal)}}
+          onClick={() => {
+            addMeal(meal);
+          }}
         >
           Confirm
         </Button>
