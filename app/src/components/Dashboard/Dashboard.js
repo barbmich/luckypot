@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Dashboard.scss";
 import AddButton from "./AddButton";
@@ -23,7 +23,20 @@ const currentUser = {
   avatar_url: "https://uifaces.co/our-content/donated/XdLjsJX_.jpg",
 };
 
+
+
 export default function Dashboard(props) {
+  const { loggedUser } = props;
+
+  // loggeedUser.id
+
+  const [message, setMessages] = useState([]);
+  const[items, setItems] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [event, setEvent] = useState({});
+
+
+
 
 
   return (

@@ -17,6 +17,7 @@ const recipesRoutes = require("./routes/recipes");
 const favoritesRoutes = require("./routes/favorites");
 const potluckRoutes = require("./routes/potlucks");
 const itemsRoutes = require("./routes/items");
+const dashboardRoutes = require("./routes/dashboard");
 
 db.connect();
 
@@ -30,6 +31,7 @@ app.use("", authRoutes(db));
 app.use("", recipesRoutes(db));
 app.use("", favoritesRoutes(db));
 app.use("", itemsRoutes(db));
+app.use("", dashboardRoutes(db));
 
 app.listen(PORT, () =>
   console.log(`Express server is running on port ${PORT}`)

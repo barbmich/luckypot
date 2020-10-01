@@ -81,3 +81,8 @@ Content-Type: application/json
   "name": "Something",
   "assigned": 1
 }
+
+###
+
+GET http://localhost:3003/dashboard/2/
+Content-Type: application/json
