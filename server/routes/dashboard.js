@@ -37,10 +37,11 @@ module.exports = (db) => {
     const values = [parseInt(req.params.userId, 10)];
     db.query(
       `
-      SELECT events.id AS event_id,
+      SELECT DISTINCT events.id AS event_id,
        users.id AS id,
        users.first_name AS first_name, 
-       users.last_name AS first_name,events.date, 
+       users.last_name AS last_name,
+       events.date AS timestamp,
        users.email AS email, 
        users.avatar_url AS avatar_url
        FROM guest_details
