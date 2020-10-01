@@ -23,7 +23,9 @@ const currentUser = {
   avatar_url: "https://uifaces.co/our-content/donated/XdLjsJX_.jpg",
 };
 
-export default function Dashboard() {
+export default function Dashboard(props) {
+
+
   return (
     <div className="mainDashboard">
       <Container fluid>
@@ -39,9 +41,7 @@ export default function Dashboard() {
               users={users}
               currentUser={currentUser}
             />
-            <AddButton items={items} />
             <OthersContainer />
-            <AddButton items={items} />
           </Row>
         </Col>
         <Col lg={{ span: 3, offset: 1 }} sm={6}>

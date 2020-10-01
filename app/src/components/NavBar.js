@@ -92,10 +92,10 @@ export default function NavBar(props) {
             <MyPotlucks />
           </Route>
           <Route path="/MyRecipes">
-            <MyRecipes />
+            <MyRecipes loggedUser={loggedUser}/>
           </Route>
           <Route path="/MyFavorites">
-            <MyFavorites />
+            <MyFavorites loggedUser={loggedUser}/>
           </Route>
         </Switch>
       </div>

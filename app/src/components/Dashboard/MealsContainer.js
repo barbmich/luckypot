@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
+import axios from 'axios'
 import AddButton from "./AddButton";
 import MealItem from "./MealItem";
 import MealWithRecipe from "./MealWithRecipe";
@@ -23,5 +24,7 @@ export default function MealsContainer(props) {
     );
   });
 
-  return <Card className="mealsContainer">{itemsArray}</Card>;
+  return <Card className="mealsContainer">{itemsArray}
+            <AddButton items={items}/>
+         </Card>;
 }
