@@ -8,3 +8,11 @@
 .pic {
   object-fit: cover;
 }
+
+.pic--no {
+  opacity: 1.0;
+}
+
+.pic--yes {
+  filter: grayscale(70%);
+}

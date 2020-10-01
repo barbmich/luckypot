@@ -16,6 +16,7 @@ const db = {
       last_name: "Nascimento",
       email: "daniel@email.com",
       avatar_url: "https://uifaces.co/our-content/donated/XdLjsJX_.jpg",
+      present: 1
     },
     {
       id: 2,
@@ -24,6 +25,7 @@ const db = {
       email: "devin@email.com",
       avatar_url:
         "https://images-na.ssl-images-amazon.com/images/M/MV5BMjA5MjI0MzY2MF5BMl5BanBnXkFtZTcwMzM3ODM3OA@@._V1_UX172_CR0,0,172,256_AL_.jpg",
+      present: 0
     },
     {
       id: 3,
@@ -32,6 +34,7 @@ const db = {
       email: "michele@email.com",
       avatar_url:
         "https://images-na.ssl-images-amazon.com/images/M/MV5BMTM0ODU5Nzk2OV5BMl5BanBnXkFtZTcwMzI2ODgyNQ@@._V1_UY256_CR4,0,172,256_AL_.jpg",
+      present: 2
     },
   ],
   items: [
