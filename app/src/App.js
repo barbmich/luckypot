@@ -26,13 +26,13 @@ export default function App() {
 
   return (
     <main>
-      <NavBar
+      {/* <NavBar
         loggedUser={loggedUser}
         auth={auth}
         setLoggedUser={setLoggedUser}
         setAuth={setAuth}
-      />
-      {/* <Dashboard loggedUser={loggedUser} /> */}
+      /> */}
+      <Dashboard loggedUser={loggedUser} />
     </main>
   );
 }
