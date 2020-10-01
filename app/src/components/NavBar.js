@@ -89,7 +89,7 @@ export default function NavBar(props) {
             />
           </Route>
           <Route exact path="/MyPotlucks">
-            <MyPotlucks />
+            <MyPotlucks loggedUser={loggedUser}/>
           </Route>
           <Route path="/MyRecipes">
             <MyRecipes loggedUser={loggedUser} />
