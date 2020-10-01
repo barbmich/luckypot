@@ -35,10 +35,38 @@ const db = {
     },
   ],
   items: [
-    { id: 1, name: "Lamb", category_id: 1, assigned_id: 2 },
-    { id: 2, name: "Ice cream", category_id: 2, assigned_id: null },
-    { id: 3, name: "Chips", category_id: 0, assigned_id: 1 },
-    { id: 4, name: "Pizza", category_id: 1, assigned_id: 3 },
+    {
+      id: 1,
+      name: "Lamb",
+      category_id: 1,
+      event_id: 1,
+      assigned: 2,
+      recipe_id: null,
+    },
+    {
+      id: 2,
+      name: "Ice cream",
+      category_id: 2,
+      event_id: 1,
+      assigned: null,
+      recipe_id: null,
+    },
+    {
+      id: 3,
+      name: "Chips",
+      category_id: 0,
+      event_id: 1,
+      assigned: 1,
+      recipe_id: null,
+    },
+    {
+      id: 4,
+      name: "Pizza",
+      category_id: 1,
+      event_id: 1,
+      assigned: 3,
+      recipe_id: null,
+    },
   ],
   event_messages: [
     {

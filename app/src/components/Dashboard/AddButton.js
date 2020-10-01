@@ -6,7 +6,7 @@ import MealForm from "./MealForm";
 // const classNames = require("classnames");
 
 export default function AddButton(props) {
-  const { items } = props;
+  const { items, addMeal } = props;
 
   return (
     <Accordion defaultActiveKey="0">
@@ -20,7 +20,7 @@ export default function AddButton(props) {
         </Card.Header>
         <Accordion.Collapse eventKey="1">
           <Card.Body>
-            <MealForm items={items} />
+            <MealForm items={items} addMeal={addMeal} />
           </Card.Body>
         </Accordion.Collapse>
       </Card>
