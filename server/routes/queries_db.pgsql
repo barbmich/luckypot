@@ -24,19 +24,15 @@
 -- -- event_messages
 -- SELECT *
 -- FROM event_messages
--- WHERE event_id = 1
--- ORDER BY id;
+--- ORDER BY id;
 
 
--- events
-SELECT DISTINCT events.id AS id,
-       events.owner_id AS owner_id,
-       events.name AS event_name, 
-       events.date AS date, 
-       events.address AS address,
-       events.post_code AS post_code,
-       events.city AS city,
-       events.province AS province
+SELECT events.id AS event_id,
+       users.id AS id,
+       users.first_name AS first_name, 
+       users.last_name AS first_name,events.date, 
+       users.email AS email, 
+       users.avatar_url AS avatar_url
 FROM guest_details
 JOIN events ON events.id = guest_details.event_id
 JOIN items ON events.id = items.event_id

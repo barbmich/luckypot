@@ -4,8 +4,8 @@ const router = express.Router();
 module.exports = (db) => {
   router.get("/dashboard/events/:userId/", (req, res) => {
     const values = [parseInt(req.params.userId, 10)];
-    
-      db.query(`
+      db.query(
+      `
       SELECT DISTINCT events.id AS id,
       events.owner_id AS owner_id,
       events.name AS event_name, 
@@ -35,8 +35,9 @@ module.exports = (db) => {
 
   router.get("/dashboard/users/:userId/", (req, res) => {
     const values = [parseInt(req.params.userId, 10)];
-    db.query(`
-    SELECT events.id AS event_id,
+    db.query(
+      `
+      SELECT events.id AS event_id,
        users.id AS id,
        users.first_name AS first_name, 
        users.last_name AS first_name,events.date, 
@@ -62,22 +63,43 @@ module.exports = (db) => {
   })
 
   router.get("/dashboard/items/", (req, res) => {
-    db.query(`
+    db.query(
+      `
       SELECT ITEMS.*
       FROM ITEMS
       JOIN CATEGORIES ON ITEMS.category_id = CATEGORIES.id
       JOIN GUEST_ITEMS ON ITEMS.id = GUEST_ITEMS.item_id
       JOIN USERS ON USERS.id = GUEST_ITEMS.guest_id;
-      `).
-      then((data) => {
+      `)
+      .then((data) => {
         const items = data.rows
         console.log(data.rows);
         res.json(items);
       })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+  
   })
+
+    router.get("/dashboard/messages/", (req, res) => {
+      db.query(
+          `
+          SELECT id, event_id, user_id, message, date AS timestamp 
+          FROM event_messages;
+          `)
+          .then((data) => {
+            const messages = data.rows
+            console.log(data.rows);
+            res.json(messages);
+          })
+          .catch((err) => {
+            console.log(err);
+            res.send(err);
+          });
+      })
     
-
-
   return router;
 };
 

@@ -34,7 +34,12 @@
 -- FROM guest_details
 -- WHERE user_id = 1);
 
+-- -- messages
+-- SELECT id, event_id, user_id, message, date AS timestamp 
+-- FROM event_messages;
 
+
+-- OTHER RANDOM QUERIES
 
 -- -- -- SELECT WHO IS ATTENDING AN EVENT
 -- SELECT GUEST_DETAILS.* , USERS.first_name, USERS.last_name
@@ -48,11 +53,11 @@
 -- WHERE event_id = 2;
 
 -- -- -- SELECT ITEMS FOR AN EVENT, THEIR NAMES, CATEGORIES AND WHO IS BRINGING THEN
-SELECT ITEMS.*
-FROM ITEMS
-JOIN CATEGORIES ON ITEMS.category_id = CATEGORIES.id
-JOIN GUEST_ITEMS ON ITEMS.id = GUEST_ITEMS.item_id
-JOIN USERS ON USERS.id = GUEST_ITEMS.guest_id;
+-- SELECT ITEMS.*
+-- FROM ITEMS
+-- JOIN CATEGORIES ON ITEMS.category_id = CATEGORIES.id
+-- JOIN GUEST_ITEMS ON ITEMS.id = GUEST_ITEMS.item_id
+-- JOIN USERS ON USERS.id = GUEST_ITEMS.guest_id;
 
 -- -- -- SELECT FAVORITES
 -- -- SELECT recipe_id
