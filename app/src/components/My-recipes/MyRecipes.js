@@ -4,24 +4,31 @@ import "./MyRecipes.scss";
 import { Card } from "react-bootstrap";
 
 export default function MyRecipes(props) {
-  const [isLoading, setLoading] = useState(true);
-  const [recipeList, setRecipeList] = useState(null);
-  const [tastedList, setTastedList] = useState(null);
   const { loggedUser } = props;
 
-  useEffect(async () => {
-    const result = await axios.get(
-      `http://localhost:3003/myrecipes/${loggedUser.id}`
-    );
-    setRecipeList(result.data);
-    const resultB = await axios.get(
-      `http://localhost:3003/tastedrecipes/${loggedUser.id}`
-    );
-    setTastedList(resultB.data);
-    setLoading(false);
+  const [isLoading, setLoading] = useState(true);
+  const [recipeList, setRecipeList] = useState([]);
+  const [tastedList, setTastedList] = useState([]);
+
+  useEffect(() => {
+    Promise.all([
+      Promise.resolve(
+        axios.get(`http://localhost:3003/myrecipes/${loggedUser.id}`)
+      ),
+      Promise.resolve(
+        axios.get(`http://localhost:3003/tastedrecipes/${loggedUser.id}`)
+      ),
+    ]).then((all) => {
+      const [myRecipes, tastedRecipes] = all;
+      console.log(myRecipes);
+      console.log(tastedRecipes);
+      setRecipeList(myRecipes.data);
+      setTastedList(tastedRecipes.data);
+      setLoading(false);
+    });
   }, []);
 
-  if (isLoading) {
+  while (isLoading) {
     return <p>Loading...</p>;
   }
 

@@ -22,83 +22,53 @@ export default function NavBar(props) {
   const clearLogin = (user) => {
     setAuth((prev) => !prev);
     setLoggedUser("");
-    history.push("/Home");
+    history.push("/home");
   };
 
   return (
-    <Router>
-      <div className="completeNav">
-        <Navbar bg="dark" expand="lg">
-          <Link to="/Home">
-            <Navbar.Brand className="mainTitle"> LuckyPot </Navbar.Brand>
-          </Link>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <div className="rightButtons">
-              <Nav className="mr-auto"></Nav>
-              <div className="welcomeMsg">
-                {auth && `Welcome ${loggedUser.first_name}`}
-              </div>
-              {!auth && (
-                <Link className="link-nav" to="/SignupForm">
-                  Register
-                </Link>
-              )}
-              {!auth && (
-                <Link className="link-nav" to="/SigninForm">
-                  Login
-                </Link>
-              )}
-              {auth && (
-                <Nav.Link className="link-nav" onClick={() => clearLogin()}>
-                  Logout
-                </Nav.Link>
-              )}
-              <div className="link-nav-dropdown">
-                <NavDropdown title="My Features" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">
-                    <Link to="/MyPotlucks">My Potlucks</Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    <Link to="/MyRecipes">My Recipes</Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    <Link to="/MyFavorites">My Favorites</Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </div>
+    <div className="completeNav">
+      <Navbar bg="dark" expand="lg">
+        <Link to="/home">
+          <Navbar.Brand className="mainTitle"> LuckyPot </Navbar.Brand>
+        </Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <div className="rightButtons">
+            <Nav className="mr-auto"></Nav>
+            <div className="welcomeMsg">
+              {auth && `Welcome ${loggedUser.first_name}`}
             </div>
-          </Navbar.Collapse>
-        </Navbar>
-        <Switch>
-          <Route exact path="/Home">
-            <Home />
-          </Route>
-          <Route exact path="/SignupForm">
-            <SignupForm setAuth={setAuth} setLoggedUser={setLoggedUser} />
-          </Route>
-          <Route exact path="/SigninForm">
-            <SigninForm
-              setLoggedUser={setLoggedUser}
-              loggedUser={loggedUser}
-              setAuth={setAuth}
-            />
-          </Route>
-          <Route exact path="/MyPotlucks">
-            <MyPotlucks loggedUser={loggedUser}/>
-          </Route>
-          <Route path="/MyRecipes">
-            <MyRecipes loggedUser={loggedUser} />
-          </Route>
-          <Route path="/MyFavorites">
-            <MyFavorites loggedUser={loggedUser} />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+            {!auth && (
+              <Link className="link-nav" to="/signup">
+                Register
+              </Link>
+            )}
+            {!auth && (
+              <Link className="link-nav" to="/signin">
+                Login
+              </Link>
+            )}
+            {auth && (
+              <Nav.Link className="link-nav" onClick={() => clearLogin()}>
+                Logout
+              </Nav.Link>
+            )}
+            <div className="link-nav-dropdown">
+              <NavDropdown title="My Features" id="basic-nav-dropdown">
+                <NavDropdown.Item>
+                  <Link to="/mypotlucks">My Potlucks</Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link to="/myrecipes">My Recipes</Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link to="/myfavorites">My Favorites</Link>
+                </NavDropdown.Item>
+              </NavDropdown>
+            </div>
+          </div>
+        </Navbar.Collapse>
+      </Navbar>
+    </div>
   );
 }

@@ -67,6 +67,7 @@ export default function SignupForm(props) {
         ) {
           setError(result.data);
         } else {
+          console.log(result.data);
           setLoggedUser(result.data.user);
           authenticateUser(result.data);
         }

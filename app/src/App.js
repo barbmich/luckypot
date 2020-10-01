@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Link,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
@@ -25,14 +31,63 @@ export default function App() {
   const [loggedUser, setLoggedUser] = useState("");
 
   return (
-    <main>
-      {/* <NavBar
-        loggedUser={loggedUser}
-        auth={auth}
-        setLoggedUser={setLoggedUser}
-        setAuth={setAuth}
-      /> */}
-      <Dashboard loggedUser={loggedUser} />
-    </main>
+    <Router>
+      <main>
+        <NavBar
+          loggedUser={loggedUser}
+          auth={auth}
+          loggedUser={loggedUser}
+          setLoggedUser={setLoggedUser}
+          setAuth={setAuth}
+        />
+        <section>
+          <Route exact="/">
+            <Redirect to="/home" />
+          </Route>
+          <Route path="/home" component={Home} />
+          <Route
+            path="/mypotlucks"
+            component={() =>
+              auth ? (
+                <MyPotlucks loggedUser={loggedUser} />
+              ) : (
+                <Redirect to="/signin" />
+              )
+            }
+          />
+          <Route
+            path="/dashboard/:id"
+            component={() =>
+              auth ? <Dashboard loggedUser={loggedUser} /> : <Redirect to="/" />
+            }
+          />
+          <Route
+            path="/signup"
+            component={() => (
+              <SignupForm setLoggedUser={setLoggedUser} setAuth={setAuth} />
+            )}
+          />
+          <Route
+            path="/signin"
+            component={() => (
+              <SigninForm setLoggedUser={setLoggedUser} setAuth={setAuth} />
+            )}
+          />
+          <Route
+            path="/myrecipes"
+            component={() =>
+              auth ? (
+                <MyRecipes loggedUser={loggedUser} />
+              ) : (
+                <Redirect to="/signin" />
+              )
+            }
+          />
+          <Route path="/myfavorites">
+            <MyFavorites loggedUser={loggedUser} />
+          </Route>
+        </section>
+      </main>
+    </Router>
   );
 }
