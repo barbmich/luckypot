@@ -51,16 +51,29 @@ module.exports = (db) => {
        WHERE user_id = $1);
     `, values)
     .then((data) => {
+      const users = data.rows;
       console.log(data.rows);
-      let users = data.rows;
       res.json(users);
     })
     .catch((err) => {
       console.log(err);
       res.send(err);
     });
+  })
 
-
+  router.get("/dashboard/items/", (req, res) => {
+    db.query(`
+      SELECT ITEMS.*
+      FROM ITEMS
+      JOIN CATEGORIES ON ITEMS.category_id = CATEGORIES.id
+      JOIN GUEST_ITEMS ON ITEMS.id = GUEST_ITEMS.item_id
+      JOIN USERS ON USERS.id = GUEST_ITEMS.guest_id;
+      `).
+      then((data) => {
+        const items = data.rows
+        console.log(data.rows);
+        res.json(items);
+      })
   })
     
 

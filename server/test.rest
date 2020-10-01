@@ -91,3 +91,8 @@ Content-Type: application/json
 
 GET http://localhost:3003/dashboard/users/2/
 Content-Type: application/json
+
+
+###
+
+GET http://localhost:3003/dashboard/items/
