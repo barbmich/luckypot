@@ -39,7 +39,7 @@ CREATE TABLE items (
   event_id INTEGER REFERENCES events(id) ON DELETE CASCADE,
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
   name VARCHAR(255) NOT NULL,
-  recipe_id INTEGER,
+  recipe_id INTEGER DEFAULT NULL,
   assigned INTEGER DEFAULT NULL
 );
 
