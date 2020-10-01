@@ -32,8 +32,7 @@ export default function App() {
         setLoggedUser={setLoggedUser}
         setAuth={setAuth}
       />
-      <Dashboard loggedUser={loggedUser} />
-      {/* <Dashboard /> */}
+      {/* <Dashboard loggedUser={loggedUser} /> */}
     </main>
   );
 }

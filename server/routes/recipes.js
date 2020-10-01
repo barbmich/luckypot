@@ -44,7 +44,7 @@ module.exports = (db) => {
   router.get("/myrecipes/:userId", (req, res) => {
     const values = [req.params.userId];
     db.query(
-      `SELECT events.id AS event_id, events.name, events.date, CONCAT(USERS.first_name, ' ', USERS.last_name) AS guest, items.name
+      `SELECT events.id AS event_id, events.name AS potluck_name, events.date, CONCAT(USERS.first_name, ' ', USERS.last_name) AS guest, items.name
      FROM (SELECT *
      FROM guest_details
      WHERE user_id = $1) AS test
@@ -55,7 +55,30 @@ module.exports = (db) => {
       values
     )
       .then((data) => {
-        console.log("DATA.ROWS FROM SERVER", data.rows);
+        res.json(data.rows);
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  });
+
+  router.get("/tastedrecipes/:userId", (req, res) => {
+    const values = [req.params.userId];
+    db.query(
+      `
+      SELECT events.id AS event_id, events.name AS potluck_name, events.date, CONCAT(USERS.first_name, ' ', USERS.last_name) AS guest, items.name
+      FROM guest_details
+      JOIN events ON events.id = guest_details.event_id
+      JOIN items ON events.id = items.event_id
+      JOIN users ON users.id = guest_details.user_id
+      WHERE events.id IN(SELECT event_id
+      FROM guest_details
+      WHERE user_id = $1);
+     `,
+      values
+    )
+      .then((data) => {
+        console.log("DATA.ROWS FOR TASTED RECIPES:", data.rows);
         res.json(data.rows);
       })
       .catch((err) => {
