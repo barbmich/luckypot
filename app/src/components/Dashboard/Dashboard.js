@@ -51,7 +51,7 @@ export default function Dashboard(props) {
          setMessages(all[3].data);
         })
     } 
-  },)
+  },[])
 // END OF NEW CODE
 
 
