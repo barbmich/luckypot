@@ -84,5 +84,10 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3003/dashboard/2/
+GET http://localhost:3003/dashboard/events/2/
+Content-Type: application/json
+
+###
+
+GET http://localhost:3003/dashboard/users/2/
 Content-Type: application/json
