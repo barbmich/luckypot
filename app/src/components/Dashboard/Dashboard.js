@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from 'axios';
 import { Container, Row, Col } from "react-bootstrap";
 import "./Dashboard.scss";
 import AddButton from "./AddButton";
@@ -24,19 +25,34 @@ const currentUser = {
 };
 
 
-
 export default function Dashboard(props) {
   const { loggedUser } = props;
 
   // loggeedUser.id
+  
+  // ROUTES WORKING, BUT STATES NOT FUNCTIONAL AND COMPONENTS STILL USING MOCK DATA
+  const [Event, setEvent] = useState([]);
+  const [User, setUsers] = useState([]);
+  const [Items, setItems] = useState([]);
+  const [Message, setMessages] = useState([]);
 
-  const [message, setMessages] = useState([]);
-  const[items, setItems] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [event, setEvent] = useState({});
-
-
-
+  useEffect(() => {
+    if(loggedUser.id) {
+      Promise.all([
+          Promise.resolve(axios.get(`http://localhost:3003/dashboard/events/${loggedUser.id}/`)),
+          Promise.resolve(axios.get(`http://localhost:3003/dashboard/users/${loggedUser.id}/`)),
+          Promise.resolve(axios.get(`http://localhost:3003/dashboard/items/`)),
+          Promise.resolve(axios.get(`http://localhost:3003/dashboard/messages/`))
+      ])
+        .then((all) => {
+         setEvent(all[0].data);
+         setUsers(all[1].data);
+         setItems(all[2].data);
+         setMessages(all[3].data);
+        })
+    } 
+  },)
+// END OF NEW CODE
 
 
   return (
