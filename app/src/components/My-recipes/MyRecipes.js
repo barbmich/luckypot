@@ -1,39 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./MyRecipes.scss";
+import { Card } from "react-bootstrap";
 
 export default function MyRecipes(props) {
+  const [isLoading, setLoading] = useState(true);
+  const [recipeList, setRecipeList] = useState(null);
+  const [tastedList, setTastedList] = useState(null);
   const { loggedUser } = props;
-  console.log("LOGGED USER FROM RECIPES:: ", loggedUser);
-  // const user_id = loggedUser.id;
-  // const getMyRecipes = () => {
-  //   axios
-  //     .get(`http://localhost:3003/myrecipes/${user_id}`)
-  //     .then((result) => {
-  //       console.log("Result from front end", result);
-  //     })
-  //     .catch((err) => console.log("Error 123", err));
-  // };
+
+  useEffect(async () => {
+    const result = await axios.get(
+      `http://localhost:3003/myrecipes/${loggedUser.id}`
+    );
+    setRecipeList(result.data);
+    const resultB = await axios.get(
+      `http://localhost:3003/tastedrecipes/${loggedUser.id}`
+    );
+    setTastedList(resultB.data);
+    setLoading(false);
+  }, []);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  const recipeListCards = recipeList.map((recipe) => {
+    return (
+      <ul>
+        <Card className="meal-unchosen">
+          <Card.Title>{recipe.name}</Card.Title>
+          <Card.Body>{recipe.potluck_name}</Card.Body>
+        </Card>
+      </ul>
+    );
+  });
+
+  const tastedListCards = tastedList.map((recipe) => {
+    return (
+      <ul>
+        <Card className="meal-unchosen">
+          <Card.Title>{recipe.name}</Card.Title>
+          <Card.Body>{recipe.potluck_name}</Card.Body>
+          <Card.Body>Provided by: {recipe.guest}</Card.Body>
+        </Card>
+      </ul>
+    );
+  });
 
   return (
     <div>
       <h1 className="pageTitle">My Recipes</h1>
+      <div className="recipeList">
+        <div>
+          <h3 className="listTitle">You've Brought</h3>
+          {recipeListCards}
+        </div>
+        <div>
+          <h3 className="listTitle">You've Tasted</h3>
+          {tastedListCards}
+        </div>
+      </div>
     </div>
   );
 }
-
-// SELECT events.id AS event_id, events.name, events.date, CONCAT(USERS.first_name, ' ', USERS.last_name) AS guest, items.name
-// FROM (SELECT *
-// FROM guest_details
-// WHERE user_id = 2) AS test
-// JOIN events ON events.id = test.event_id
-// JOIN items ON events.id = items.event_id
-// JOIN users ON users.id = test.user_id;
-
-// SELECT events.id AS event_id, events.name, events.date, CONCAT(USERS.first_name, ' ', USERS.last_name) AS guest, items.name
-// FROM guest_details
-// JOIN events ON events.id = guest_details.event_id
-// JOIN items ON events.id = items.event_id
-// JOIN users ON users.id = guest_details.user_id
-// WHERE events.id IN(SELECT event_id
-// FROM guest_details
-// WHERE user_id = 2);
