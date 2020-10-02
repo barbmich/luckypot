@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./MealsContainer.scss";
 import {
   Card,
@@ -14,7 +14,8 @@ import ProfilePic from "./ProfilePicture/ProfilePic";
 export default function Messages(props) {
   const { messages, users } = props;
 
-  const eventMessages = messages
+  const xmessages = [];
+  const eventMessages = xmessages
     // .sort((a, b) => a.timestamp < b.timestamp)
     .map((msg) => {
       const user = users.find((user) => user.id === msg.user_id);
@@ -32,6 +33,18 @@ export default function Messages(props) {
         </Media>
       );
     });
+
+  useEffect(() => {
+    const socket = new WebSocket("ws://localhost:3003");
+    socket.onopen = () => {
+      console.log("WebSocket is open");
+      socket.send("THIS IS ME");
+    };
+    socket.onmessage = (event) => {
+      console.log("message from server:", event.data);
+    };
+  }, []);
+
   return (
     <Card bg="dark" text="light" className="msgContainer">
       <Card.Body>
