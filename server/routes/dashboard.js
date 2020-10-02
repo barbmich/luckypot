@@ -72,7 +72,7 @@ module.exports = (db) => {
       WHERE ITEMS.event_id = $1;
       `, values)
       .then((data) => {
-        const items = data.rows
+        const items = data.rows;
         console.log(data.rows);
         res.json(items);
       })
@@ -80,8 +80,7 @@ module.exports = (db) => {
         console.log(err);
         res.send(err);
       });
-  
-  })
+  });
 
     router.get("/dashboard/messages/:event_id", (req, res) => {
       const values = [parseInt(req.params.event_id, 10)]
@@ -106,8 +105,11 @@ module.exports = (db) => {
             res.send(err);
           });
       })
-    
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+  });
+
   return router;
 };
-
-  

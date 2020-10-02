@@ -1,20 +1,22 @@
 import React from "react";
 import "./ProfilePic.scss";
 import { Figure } from "react-bootstrap";
-const classNames = require('classnames');
+// const classNames = require('classnames');
+import classnames from "classnames";
 
 export default function ProfilePic(props) {
-  const { avatar_url, first_name, last_name } = props;
-
-  const picClass = classNames('pic',
-    { '':1,
-      '--no': 0,
-      '--yes': 2 
-    }
-  );
+  const {
+    loggedUser,
+    userPresent,
+    avatar_url,
+    first_name,
+    last_name,
+    user_id,
+    customStyle,
+  } = props;
 
   return (
-    <Figure className={picClass}>
+    <Figure className={customStyle}>
       <Figure.Image
         width={171}
         height={180}
