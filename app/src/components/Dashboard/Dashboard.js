@@ -57,19 +57,12 @@ export default function Dashboard(props) {
   }
 
   useEffect(() => {
+    // if (loggedUser.id) {
     Promise.all([
-      Promise.resolve(
-        axios.get(`http://localhost:3003//dashboard/events/${id}`)
-      ),
-      Promise.resolve(
-        axios.get(`http://localhost:3003//dashboard/guests/${id}`)
-      ),
-      Promise.resolve(
-        axios.get(`http://localhost:3003//dashboard/items/${id}`)
-      ),
-      Promise.resolve(
-        axios.get(`http://localhost:3003/dashboard/messages/${id}`)
-      ),
+      axios.get(`http://localhost:3003//dashboard/events/${id}`),
+      axios.get(`http://localhost:3003//dashboard/guests/${id}`),
+      axios.get(`http://localhost:3003//dashboard/items/${id}`),
+      axios.get(`http://localhost:3003/dashboard/messages/${id}`),
     ]).then((all) => {
       setEvent(all[0].data[0]);
       setUsers(all[1].data);
@@ -81,7 +74,8 @@ export default function Dashboard(props) {
       console.log(items);
       console.log(messages);
     });
-  }, []);
+    //   }
+  }, [userPresent]);
 
   if (isLoading) {
     return <p>Loading...</p>;

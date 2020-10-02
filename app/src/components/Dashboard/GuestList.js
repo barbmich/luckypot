@@ -10,6 +10,8 @@ export default function GuestList(props) {
   const { users, userPresent, loggedUser } = props;
   console.log("USERS: ", users);
   // Sets class based on whether user is going or not, default is maybe
+
+  // useEffect(() => {
   const usersArray = users.map((user) => {
     const presentStateClass = classnames("present-state", {
       "present-state-going": user.present === 2,
@@ -31,6 +33,7 @@ export default function GuestList(props) {
       </Media>
     );
   });
+  // }, [userPresent]);
 
   // const usersArray = users.map((user) => {
   //   const presentStateClass = classnames("present-state", {
@@ -53,7 +56,6 @@ export default function GuestList(props) {
   //     </Media>
   //   );
   // });
-
 
   return (
     <div className="guestList">
