@@ -5,7 +5,7 @@ import { Card, Button } from "react-bootstrap";
 import axios from "axios";
 
 export default function MealItem(props) {
-  const { itemID, name, user, currentUser } = props;
+  const { itemID, name, user, loggedUser } = props;
 
   const [userAssigned, setUserAssigned] = useState(user || null);
 
@@ -24,10 +24,10 @@ export default function MealItem(props) {
     axios
       .put(`http://localhost:3003/items/update`, {
         item: itemID,
-        assigned: currentUser.id,
+        assigned: loggedUser.id,
       })
       .then(() => {
-        setUserAssigned(currentUser);
+        setUserAssigned(loggedUser);
       });
   }
 
@@ -38,12 +38,12 @@ export default function MealItem(props) {
         {userAssigned ? (
           <>
             <ProfilePic avatar_url={userAssigned.avatar_url} />
-            {userAssigned.id === currentUser.id ? (
+            {userAssigned.id === loggedUser.id ? (
               <Button onClick={() => removeYourself()}>X</Button>
             ) : null}
           </>
         ) : (
-          <Button onClick={() => setAssigned(currentUser)}>
+          <Button onClick={() => setAssigned(loggedUser)}>
             Click Here to bring <strong>{name}</strong>
           </Button>
         )}

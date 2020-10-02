@@ -18,13 +18,13 @@ const db = require("../../db/db.js");
 // const items = db.items;
 // const users = db.users;
 // const event = db.event;
-const currentUser = {
-  id: 1,
-  first_name: "Daniel",
-  last_name: "Nascimento",
-  email: "daniel@email.com",
-  avatar_url: "https://uifaces.co/our-content/donated/XdLjsJX_.jpg",
-};
+// const currentUser = {
+//   id: 1,
+//   first_name: "Daniel",
+//   last_name: "Nascimento",
+//   email: "daniel@email.com",
+//   avatar_url: "https://uifaces.co/our-content/donated/XdLjsJX_.jpg",
+// };
 
 export default function Dashboard(props) {
   const { loggedUser } = props;
@@ -36,6 +36,7 @@ export default function Dashboard(props) {
   const [users, setUsers] = useState([]);
   const [items, setItems] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [userPresent, setUserPresent] = useState(null);
   console.log(event);
   console.log(users);
   console.log(items);
@@ -47,9 +48,8 @@ export default function Dashboard(props) {
       category_id: 1,
       name: item,
     };
-    console.log("event id:", event.id);
-    console.log("user adding meal:", currentUser.first_name);
-    console.log("meal added:", item);
+
+
 
     axios.post("http://localhost:3003/items/add", input).then((response) => {
       console.log("meal added!");
@@ -81,7 +81,7 @@ export default function Dashboard(props) {
         console.log(messages);
       });
   //   }
-  }, []);
+  }, [items])
 
   while (isLoading) {
     return <p>Loading...</p>;
@@ -119,7 +119,7 @@ export default function Dashboard(props) {
               event={event}
               items={items}
               users={users}
-              currentUser={currentUser}
+              loggedUser={loggedUser}
               addMeal={addMeal}
             />
             <OthersContainer />
