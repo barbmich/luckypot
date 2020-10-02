@@ -4,10 +4,12 @@ const PORT = process.env.PORT || 3003;
 const ENV = process.env.ENV || "development";
 
 const express = require("express");
+const app = express();
+const WebSocket = require("ws");
+const server = require("http").Server(app);
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const pino = require("express-pino-logger")();
-const app = express();
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
@@ -33,8 +35,14 @@ app.use("", favoritesRoutes(db));
 app.use("", itemsRoutes(db));
 app.use("", dashboardRoutes(db));
 
-app.listen(PORT, () =>
+server.listen(PORT, () =>
   console.log(`Express server is running on port ${PORT}`)
 );
 
-// sasdsa
+const ws = new WebSocket.Server({ server });
+
+const users = {};
+
+ws.on("connection", (socket) => {
+  socket.on("message", (message) => {});
+});
