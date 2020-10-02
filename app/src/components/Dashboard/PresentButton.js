@@ -14,7 +14,7 @@ export default function PresentButton(props) {
       )
       .then((result) => {
         setUserPresent(result.data[0].present);
-        console.log(userPresent);
+        console.log("USER PRESENT FROM GET: ", userPresent);
       });
   }
 
@@ -27,9 +27,10 @@ export default function PresentButton(props) {
         event_id: event.id,
       })
       .then((result) => {
-        setUserPresent(result.data[0].present);
-        console.log(userPresent);
-      });
+        const present = result.data[0].present; 
+        setUserPresent(present);
+        console.log(userPresent)
+      })
   };
 
   return (
