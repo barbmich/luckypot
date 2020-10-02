@@ -78,7 +78,6 @@ module.exports = (db) => {
       values
     )
       .then((data) => {
-        console.log("DATA.ROWS FOR TASTED RECIPES:", data.rows);
         res.json(data.rows);
       })
       .catch((err) => {

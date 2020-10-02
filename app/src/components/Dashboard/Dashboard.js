@@ -3,7 +3,7 @@ import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Dashboard.scss";
 import AddButton from "./AddButton";
-import AttendanceButton from "./AttendanceButton";
+import PresentButton from "./PresentButton";
 import ProfilePic from "./ProfilePicture/ProfilePic.js";
 import EventInfo from "./EventInfo";
 import GuestList from "./GuestList";
@@ -35,6 +35,7 @@ export default function Dashboard(props) {
   const [xuser, setUsers] = useState(users);
   const [xitems, setItems] = useState(items);
   const [xmessage, setMessages] = useState(messages);
+  const [userPresent, setUserPresent] = useState(null);
 
   function addMeal(item, category) {
     const input = {
@@ -77,15 +78,24 @@ export default function Dashboard(props) {
   return (
     <div className="mainDashboard">
       <Container fluid>
-        <div className="attendanceBtn">
+        <div>
           <h4>
             Let <strong>INSERT NAME</strong> know if you're going
           </h4>
-          <AttendanceButton />
+          <PresentButton
+            userPresent={userPresent}
+            setUserPresent={setUserPresent}
+            event={event}
+            loggedUser={loggedUser}
+          />
         </div>
         <Col lg={{ span: 2, offset: 1 }} sm={6}>
           <Row>
-            <GuestList users={users} />
+            <GuestList
+              loggedUser={loggedUser}
+              userPresent={userPresent}
+              users={users}
+            />
           </Row>
         </Col>
         <Col lg={{ span: 4, offset: 1 }} sm={6}>
