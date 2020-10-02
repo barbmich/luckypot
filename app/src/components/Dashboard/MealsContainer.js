@@ -7,7 +7,7 @@ import MealWithRecipe from "./MealWithRecipe";
 import "./MealsContainer.scss";
 
 export default function MealsContainer(props) {
-  const { items, users, loggedUser, event, addMeal } = props;
+  const { items, users, loggedUser, event, addMeal, userPresent } = props;
 
   const itemsArray = items.map((item) => {
     const user = users.find((user) => {
@@ -15,9 +15,11 @@ export default function MealsContainer(props) {
     });
     return (
       <MealItem
+        userPresent={userPresent}
         itemID={item.id}
         name={item.name}
         user={user}
+        users={users}
         loggedUser={loggedUser}
       />
     );

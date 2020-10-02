@@ -51,10 +51,3 @@ export default function MealItem(props) {
     </Card>
   );
 }
-// const currentUser = {
-//   id: 1,
-//   first_name: "Daniel",
-//   last_name: "Nascimento",
-//   email: "daniel@email.com",
-//   avatar_url: "https://uifaces.co/our-content/donated/XdLjsJX_.jpg",
-// };

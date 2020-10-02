@@ -1,8 +1,6 @@
 import React from "react";
 import "./ProfilePic.scss";
 import { Figure } from "react-bootstrap";
-// const classNames = require('classnames');
-import classnames from "classnames";
 
 export default function ProfilePic(props) {
   const {
@@ -24,7 +22,7 @@ export default function ProfilePic(props) {
         src={avatar_url}
         className="rounded-circle"
       />
-      <Figure.Caption>
+      <Figure.Caption className="name">
         {!first_name ? "" : `${first_name} ${last_name}`}
       </Figure.Caption>
     </Figure>
