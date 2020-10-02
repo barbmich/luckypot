@@ -113,11 +113,42 @@ module.exports = (db) => {
         res.send(err);
       });
   });
-  // .catch((err) => {
-  //   console.log(err);
-  //   res.send(err);
-  // });
-  // });
+
+  router.put("/dashboard/present/", (req, res) => {
+    const values = [req.body.present, req.body.user_id, req.body.event_id];
+    // console.log("REQ.BODY: ", req.body);
+    db.query(
+      `
+            UPDATE guest_details SET present = $1 WHERE user_id = $2 AND event_id = $3 RETURNING *;
+            `,
+      values
+    )
+      .then((data) => {
+        const presentStatus = data.rows;
+        res.json(presentStatus);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+  });
+
+  router.get("/dashboard/present/:user_id/:event_id", (req, res) => {
+    const values = [req.params.user_id, req.params.event_id];
+    db.query(
+      `
+      SELECT present FROM guest_details WHERE user_id = $1 AND event_id = $2;`,
+      values
+    )
+      .then((data) => {
+        console.log("DATA FROM SERVER", data);
+        res.json(data.rows);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+  });
 
   return router;
 };
