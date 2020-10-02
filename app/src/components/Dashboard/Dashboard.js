@@ -28,18 +28,19 @@ const currentUser = {
 
 export default function Dashboard(props) {
   const { loggedUser } = props;
-  const { id } = useParams()
-  
+  const { id } = useParams();
+
   // ROUTES WORKING, BUT STATES NOT FUNCTIONAL AND COMPONENTS STILL USING MOCK DATA
   const [isLoading, setLoading] = useState(true);
   const [event, setEvent] = useState({});
   const [users, setUsers] = useState([]);
   const [items, setItems] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [userPresent, setUserPresent] = useState(null);
   console.log(event);
   console.log(users);
   console.log(items);
-  console.log(messages)
+  console.log(messages);
 
   function addMeal(item, category) {
     const input = {
@@ -60,33 +61,36 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     // if (loggedUser.id) {
-      Promise.all([
-        Promise.resolve(
-          axios.get(`http://localhost:3003//dashboard/events/${id}`)
-        ),
-        Promise.resolve(
-          axios.get(`http://localhost:3003//dashboard/guests/${id}`)
-        ),
-        Promise.resolve(axios.get(`http://localhost:3003//dashboard/items/${id}`)),
-        Promise.resolve(axios.get(`http://localhost:3003/dashboard/messages/${id}`)),
-      ]).then((all) => {
-        setEvent((all[0].data[0]));
-        setUsers(all[1].data);
-        setItems(all[2].data);
-        setMessages(all[3].data);
-        setLoading(false);
-        console.log(event);
-        console.log(users);
-        console.log(items);
-        console.log(messages);
-      });
-  //   }
+    Promise.all([
+      Promise.resolve(
+        axios.get(`http://localhost:3003//dashboard/events/${id}`)
+      ),
+      Promise.resolve(
+        axios.get(`http://localhost:3003//dashboard/guests/${id}`)
+      ),
+      Promise.resolve(
+        axios.get(`http://localhost:3003//dashboard/items/${id}`)
+      ),
+      Promise.resolve(
+        axios.get(`http://localhost:3003/dashboard/messages/${id}`)
+      ),
+    ]).then((all) => {
+      setEvent(all[0].data[0]);
+      setUsers(all[1].data);
+      setItems(all[2].data);
+      setMessages(all[3].data);
+      setLoading(false);
+      console.log(event);
+      console.log(users);
+      console.log(items);
+      console.log(messages);
+    });
+    //   }
   }, []);
 
   while (isLoading) {
     return <p>Loading...</p>;
   }
-
 
   // END OF NEW CODE
 
