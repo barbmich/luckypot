@@ -133,6 +133,32 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/dashboard/addguest", (req, res) => {
+    const values = [];
+    console.log(req.body);
+    for (key in req.body) {
+      values.push(req.body[key]);
+    }
+    console.log(values);
+    db.query(
+      `
+      INSERT INTO guest_details (event_id, user_id) VALUES
+      ($1, $2) RETURNING *;
+      `
+       ,values)
+      .then((data) => {
+        console.log(data);
+        res.json(data.rows)
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+
+
+
+  })
+
   router.get("/dashboard/present/:user_id/:event_id", (req, res) => {
     const values = [req.params.user_id, req.params.event_id];
     db.query(
