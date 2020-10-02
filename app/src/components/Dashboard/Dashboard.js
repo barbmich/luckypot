@@ -28,10 +28,11 @@ const currentUser = {
 export default function Dashboard(props) {
   const { loggedUser } = props;
 
-  // loggeedUser.id
+
+        // loggeedUser.id
 
   // ROUTES WORKING, BUT STATES NOT FUNCTIONAL AND COMPONENTS STILL USING MOCK DATA
-  const [xevent, setEvent] = useState(event);
+  // const [event, setEvent] = useState("");
   const [xuser, setUsers] = useState(users);
   const [xitems, setItems] = useState(items);
   const [xmessage, setMessages] = useState(messages);
@@ -55,23 +56,23 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     // if (loggedUser.id) {
-    //   Promise.all([
+      Promise.all([
     //     Promise.resolve(
     //       axios.get(`http://localhost:3003//dashboard/events/${event.id}//`)
     //     ),
-    //     Promise.resolve(
-    //       axios.get(`http://localhost:3003/dashboard/users/${loggedUser.id}/`)
-    //     ),
+        Promise.resolve(
+          axios.get(`http://localhost:3003//dashboard/guests/${event.id}`)
+        ),
     //     Promise.resolve(axios.get(`http://localhost:3003/dashboard/items/`)),
     //     Promise.resolve(axios.get(`http://localhost:3003/dashboard/messages/`)),
-    //   ]).then((all) => {
-    //     setEvent(all[0].data);
+      ]).then((all) => {
+        console.log((all[0].data));
     //     setUsers(all[1].data);
     //     setItems(all[2].data);
     //     setMessages(all[3].data);
-    //   });
-    // }
-  }, [xitems]);
+      });
+  //   }
+  }, [event]);
   // END OF NEW CODE
 
   return (
