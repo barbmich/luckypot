@@ -57,7 +57,7 @@ export default function Dashboard(props) {
     // if (loggedUser.id) {
     //   Promise.all([
     //     Promise.resolve(
-    //       axios.get(`http://localhost:3003/dashboard/events/${loggedUser.id}/`)
+    //       axios.get(`http://localhost:3003//dashboard/events/${event.id}//`)
     //     ),
     //     Promise.resolve(
     //       axios.get(`http://localhost:3003/dashboard/users/${loggedUser.id}/`)

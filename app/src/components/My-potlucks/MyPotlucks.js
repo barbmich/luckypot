@@ -27,7 +27,7 @@ export default function MyPotlucks(props) {
         <div>
           <h3>{potluck.event_name}</h3>
           <p>{potluck.date}</p>
-          <Link>visit the page</Link>
+          <Link to={`/dashboard/${potluck.id}`}>Get details</Link>
         </div>
       );
     } else {
