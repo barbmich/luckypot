@@ -34,7 +34,31 @@ module.exports = (db) => {
         console.log(err);
         res.send(err);
       });
-    // })
+  });
+
+  //add potluck to events
+  router.post("/mypotlucks/add", (req, res) => {
+    console.log("REQ.BODY ~~~~~~~~~~~~~~~~");
+    console.log(req.body);
+    const values = [];
+    for (const key in req.body) {
+      values.push(req.body[key]);
+    }
+    console.log("QUERY VALUES ~~~~~~~~~~~~~~~~~~~");
+    console.log(values);
+    db.query(
+      `
+      INSERT INTO events (owner_id, name, date, address, post_code, city, province)
+      VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;
+      `,
+      values
+    )
+      .then((data) => {
+        res.json(data.rows);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
 
   return router;

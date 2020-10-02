@@ -50,7 +50,7 @@ export default function App() {
           <Route exact="/">
             <Redirect to="/home" />
           </Route>
-          <Route path="/home" component={Home} />
+          <Route path="/home" component={() => <Home auth={auth} />} />
           <Route
             path="/mypotlucks"
             component={() =>
