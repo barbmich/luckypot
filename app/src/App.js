@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Link,
@@ -22,13 +22,19 @@ import Home from "./components/Home/Home";
 import Dashboard from "./components/Dashboard/Dashboard";
 
 export default function App() {
-  const [auth, setAuth] = useState(false);
   const [event, setEvent] = useState({});
   const [users, setUsers] = useState([]);
   const [items, setItems] = useState([]);
   const [messages, setMessages] = useState([]);
   const [comments, setComments] = useState([]);
-  const [loggedUser, setLoggedUser] = useState("");
+  const [loggedUser, setLoggedUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || ""
+  );
+  const [auth, setAuth] = useState(loggedUser ? true : false);
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(loggedUser));
+  }, [loggedUser]);
 
   return (
     <Router>
@@ -44,7 +50,7 @@ export default function App() {
           <Route exact="/">
             <Redirect to="/home" />
           </Route>
-          <Route path="/home" component={Home} />
+          <Route path="/home" component={() => <Home auth={auth} />} />
           <Route
             path="/mypotlucks"
             component={() =>
