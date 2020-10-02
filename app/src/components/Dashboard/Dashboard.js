@@ -12,7 +12,7 @@ import MealsContainer from "./MealsContainer";
 import MealWithRecipe from "./MealWithRecipe";
 import Messages from "./Messages";
 import OthersContainer from "./OthersContainer";
-const db = require("../../db/db.js");
+// const db = require("../../db/db.js");
 
 // const messages = db.event_messages;
 // const items = db.items;
