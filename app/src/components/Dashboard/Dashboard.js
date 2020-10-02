@@ -60,7 +60,6 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     // if (loggedUser.id) {
-<<<<<<< HEAD
       Promise.all([
         Promise.resolve(
           axios.get(`http://localhost:3003//dashboard/events/${id}`)
