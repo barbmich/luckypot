@@ -81,7 +81,7 @@ export default function Dashboard(props) {
         console.log(messages);
       });
   //   }
-  }, [items])
+  }, [])
 
   while (isLoading) {
     return <p>Loading...</p>;
