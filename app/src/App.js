@@ -47,7 +47,7 @@ export default function App() {
           setAuth={setAuth}
         />
         <section>
-          <Route exact="/">
+          <Route exact path="/">
             <Redirect to="/home" />
           </Route>
           <Route path="/home" component={() => <Home auth={auth} />} />
@@ -64,7 +64,11 @@ export default function App() {
           <Route
             path="/dashboard/:id"
             component={() =>
-              auth ? <Dashboard loggedUser={loggedUser} /> : <Redirect to="/signin" />
+              auth ? (
+                <Dashboard loggedUser={loggedUser} />
+              ) : (
+                <Redirect to="/signin" />
+              )
             }
           />
           <Route
