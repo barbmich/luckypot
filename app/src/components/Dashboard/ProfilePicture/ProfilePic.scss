@@ -5,26 +5,31 @@
   margin: 1em;
 }
 
-// .pic {
-//   object-fit: cover;
-// }
-
-// .pic--no {
-//   opacity: 1.0;
-// }
-
-// .pic--yes {
-//   filter: grayscale(70%);
-// }
+.name {
+  color: black;
+  font-size: small;
+}
 
 .present-state {
   background-color: grey;
+  width: 100%;
+  margin-bottom: 0px;
 }
 
 .present-state-going {
-  background-color: green;
+  background-color: #92d76f;
+  width: 100%;
+  margin-bottom: 0px;
 }
 
 .present-state-missing {
-  background-color: red;
+  width: 100%;
+  filter: grayscale(70%);
+  margin-bottom: 0px;
+}
+
+.present-state-maybe {
+  background-color: #e7e482;
+  width: 100%;
+  margin-bottom: 0px;
 }

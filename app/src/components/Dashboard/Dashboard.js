@@ -69,10 +69,6 @@ export default function Dashboard(props) {
       setItems(all[2].data);
       setMessages(all[3].data);
       setLoading(false);
-      console.log(event);
-      console.log(users);
-      console.log(items);
-      console.log(messages);
     });
     //   }
   }, [userPresent]);
@@ -81,23 +77,26 @@ export default function Dashboard(props) {
     return <p>Loading...</p>;
   }
 
-  // END OF NEW CODE
+  const host = users.find((user) => {
+    return user.id === event.owner_id;
+  });
 
   return (
     <div className="mainDashboard">
       <Container fluid>
-        <div>
-          <h4>
-            Let <strong>INSERT NAME</strong> know if you're going
-          </h4>
-          <PresentButton
-            userPresent={userPresent}
-            setUserPresent={setUserPresent}
-            event={event}
-            loggedUser={loggedUser}
-          />
-        </div>
         <Col lg={{ span: 2, offset: 1 }} sm={6}>
+          <div className="guestTitle">
+            <h4>
+              Let <strong>{host.first_name}</strong> know if you're going!
+            </h4>
+            <PresentButton
+              userPresent={userPresent}
+              setUserPresent={setUserPresent}
+              event={event}
+              users={users}
+              loggedUser={loggedUser}
+            />
+          </div>
           <Row>
             <GuestList
               loggedUser={loggedUser}
@@ -109,6 +108,7 @@ export default function Dashboard(props) {
         <Col lg={{ span: 4, offset: 1 }} sm={6}>
           <Row>
             <MealsContainer
+              userPresent={userPresent}
               event={event}
               items={items}
               users={users}

@@ -4,19 +4,21 @@ import "./PresentButton.scss";
 import { Button, ButtonGroup } from "react-bootstrap";
 
 export default function PresentButton(props) {
-  const { loggedUser, event, setUserPresent, userPresent } = props;
+  const { loggedUser, event, setUserPresent, userPresent, host } = props;
 
   // Get request to know value of whether user is attending //
-  if (!userPresent) {
-    axios
-      .get(
-        `http://localhost:3003/dashboard/present/${loggedUser.id}/${event.id}`
-      )
-      .then((result) => {
-        setUserPresent(result.data[0].present);
-        console.log("USER PRESENT FROM GET: ", userPresent);
-      });
-  }
+  useEffect(() => {
+    if (!userPresent) {
+      axios
+        .get(
+          `http://localhost:3003/dashboard/present/${loggedUser.id}/${event.id}`
+        )
+        .then((result) => {
+          setUserPresent(result.data[0].present);
+          console.log("USER PRESENT FROM GET: ", userPresent);
+        });
+    }
+  }, []);
 
   // Put req to update whether user is attending //
   const updatePresentValue = (value) => {
@@ -27,10 +29,10 @@ export default function PresentButton(props) {
         event_id: event.id,
       })
       .then((result) => {
-        const present = result.data[0].present; 
+        const present = result.data[0].present;
         setUserPresent(present);
-        console.log(userPresent)
-      })
+        console.log(userPresent);
+      });
   };
 
   return (

@@ -20,28 +20,13 @@
 
 .guestTitleContainer {
   background-color: #317dce;
-  border: solid grey 1px;
+  border: solid grey 2px;
   border-radius: 80%;
   width: 100%;
+  color: white;
 }
 .guestContainerTitle {
   text-align: center;
   font-size: 20px;
   margin: 0px;
-}
-
-.present-state {
-  background-color: grey;
-}
-
-.present-state-going {
-  background-color: green;
-}
-
-.present-state-missing {
-  background-color: red;
-}
-
-.present-state-maybe {
-  background-color: pink;
 }
