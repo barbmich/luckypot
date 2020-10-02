@@ -122,10 +122,12 @@ GET http://localhost:3003/dashboard/messages/
 
 ###
 
+# Return present status
 GET http://localhost:3003/dashboard/present/2/1
 
 ###
 
+# Add guest do potluck
 POST http://localhost:3003/dashboard/addguest
 Content-Type: application/json
 
@@ -133,3 +135,8 @@ Content-Type: application/json
   "even_id" : 1,
   "user_id" : 6
 }
+
+###
+
+#Check if user is in event
+GET http://localhost:3003/dashboard/check/1/2

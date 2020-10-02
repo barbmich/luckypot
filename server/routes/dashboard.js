@@ -174,6 +174,23 @@ module.exports = (db) => {
         console.log(err);
         res.send(err);
       });
+
+  })
+            // check if user is in potluck
+  router.get("/dashboard/check/:event_id/:user_id",(req, res) =>{
+    const values = [req.params.event_id, req.params.user_id];    
+    db.query(
+      `
+      SELECT * FROM guest_details WHERE event_id = $1 AND user_id = $2;`,
+      values
+    )
+    .then((data) => {
+      res.json(data.rows)
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
   });
 
   return router;
