@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Dashboard.scss";
@@ -13,10 +14,10 @@ import Messages from "./Messages";
 import OthersContainer from "./OthersContainer";
 const db = require("../../db/db.js");
 
-const messages = db.event_messages;
-const items = db.items;
-const users = db.users;
-const event = db.event;
+// const messages = db.event_messages;
+// const items = db.items;
+// const users = db.users;
+// const event = db.event;
 const currentUser = {
   id: 1,
   first_name: "Daniel",
@@ -27,15 +28,18 @@ const currentUser = {
 
 export default function Dashboard(props) {
   const { loggedUser } = props;
-
-
-        // loggeedUser.id
-
+  const { id } = useParams()
+  
   // ROUTES WORKING, BUT STATES NOT FUNCTIONAL AND COMPONENTS STILL USING MOCK DATA
-  // const [event, setEvent] = useState("");
-  const [xuser, setUsers] = useState(users);
-  const [xitems, setItems] = useState(items);
-  const [xmessage, setMessages] = useState(messages);
+  const [isLoading, setLoading] = useState(true);
+  const [event, setEvent] = useState({});
+  const [users, setUsers] = useState([]);
+  const [items, setItems] = useState([]);
+  const [messages, setMessages] = useState([]);
+  console.log(event);
+  console.log(users);
+  console.log(items);
+  console.log(messages)
 
   function addMeal(item, category) {
     const input = {
@@ -50,29 +54,40 @@ export default function Dashboard(props) {
     axios.post("http://localhost:3003/items/add", input).then((response) => {
       console.log("meal added!");
       console.log(response.data);
-      setItems([...xitems, response.data]);
+      setItems([...items, response.data]);
     });
   }
 
   useEffect(() => {
     // if (loggedUser.id) {
       Promise.all([
-    //     Promise.resolve(
-    //       axios.get(`http://localhost:3003//dashboard/events/${event.id}//`)
-    //     ),
         Promise.resolve(
-          axios.get(`http://localhost:3003//dashboard/guests/${event.id}`)
+          axios.get(`http://localhost:3003//dashboard/events/${id}`)
         ),
-    //     Promise.resolve(axios.get(`http://localhost:3003/dashboard/items/`)),
-    //     Promise.resolve(axios.get(`http://localhost:3003/dashboard/messages/`)),
+        Promise.resolve(
+          axios.get(`http://localhost:3003//dashboard/guests/${id}`)
+        ),
+        Promise.resolve(axios.get(`http://localhost:3003//dashboard/items/${id}`)),
+        Promise.resolve(axios.get(`http://localhost:3003/dashboard/messages/${id}`)),
       ]).then((all) => {
-        console.log((all[0].data));
-    //     setUsers(all[1].data);
-    //     setItems(all[2].data);
-    //     setMessages(all[3].data);
+        setEvent((all[0].data[0]));
+        setUsers(all[1].data);
+        setItems(all[2].data);
+        setMessages(all[3].data);
+        setLoading(false);
+        console.log(event);
+        console.log(users);
+        console.log(items);
+        console.log(messages);
       });
   //   }
-  }, [event]);
+  }, []);
+
+  while (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+
   // END OF NEW CODE
 
   return (

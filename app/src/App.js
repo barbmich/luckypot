@@ -64,7 +64,7 @@ export default function App() {
           <Route
             path="/dashboard/:id"
             component={() =>
-              auth ? <Dashboard loggedUser={loggedUser} /> : <Redirect to="/" />
+              auth ? <Dashboard loggedUser={loggedUser} /> : <Redirect to="/signin" />
             }
           />
           <Route
