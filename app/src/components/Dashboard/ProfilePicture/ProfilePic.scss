@@ -5,14 +5,26 @@
   margin: 1em;
 }
 
-.pic {
-  object-fit: cover;
+// .pic {
+//   object-fit: cover;
+// }
+
+// .pic--no {
+//   opacity: 1.0;
+// }
+
+// .pic--yes {
+//   filter: grayscale(70%);
+// }
+
+.present-state {
+  background-color: grey;
 }
 
-.pic--no {
-  opacity: 1.0;
+.present-state-going {
+  background-color: green;
 }
 
-.pic--yes {
-  filter: grayscale(70%);
+.present-state-missing {
+  background-color: red;
 }

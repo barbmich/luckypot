@@ -29,3 +29,19 @@
   font-size: 20px;
   margin: 0px;
 }
+
+.present-state {
+  background-color: grey;
+}
+
+.present-state-going {
+  background-color: green;
+}
+
+.present-state-missing {
+  background-color: red;
+}
+
+.present-state-maybe {
+  background-color: pink;
+}
