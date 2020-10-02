@@ -12,7 +12,7 @@ import MealsContainer from "./MealsContainer";
 import MealWithRecipe from "./MealWithRecipe";
 import Messages from "./Messages";
 import OthersContainer from "./OthersContainer";
-// const db = require("../../db/db.js");
+const db = require("../../db/db.js");
 
 // const messages = db.event_messages;
 // const items = db.items;
@@ -81,35 +81,7 @@ export default function Dashboard(props) {
         console.log(messages);
       });
   //   }
-  }, [items])
-=======
-    Promise.all([
-      Promise.resolve(
-        axios.get(`http://localhost:3003//dashboard/events/${id}`)
-      ),
-      Promise.resolve(
-        axios.get(`http://localhost:3003//dashboard/guests/${id}`)
-      ),
-      Promise.resolve(
-        axios.get(`http://localhost:3003//dashboard/items/${id}`)
-      ),
-      Promise.resolve(
-        axios.get(`http://localhost:3003/dashboard/messages/${id}`)
-      ),
-    ]).then((all) => {
-      setEvent(all[0].data[0]);
-      setUsers(all[1].data);
-      setItems(all[2].data);
-      setMessages(all[3].data);
-      setLoading(false);
-      console.log(event);
-      console.log(users);
-      console.log(items);
-      console.log(messages);
-    });
-    //   }
-  }, []);
->>>>>>> 2ccbb747430d20f50f57e67f037268e79e752d59
+  }, [])
 
   while (isLoading) {
     return <p>Loading...</p>;
