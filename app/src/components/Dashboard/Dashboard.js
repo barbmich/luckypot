@@ -49,8 +49,6 @@ export default function Dashboard(props) {
       name: item,
     };
 
-
-
     axios.post("http://localhost:3003/items/add", input).then((response) => {
       console.log("meal added!");
       console.log(response.data);
@@ -60,28 +58,24 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     // if (loggedUser.id) {
-      Promise.all([
-        Promise.resolve(
-          axios.get(`http://localhost:3003//dashboard/events/${id}`)
-        ),
-        Promise.resolve(
-          axios.get(`http://localhost:3003//dashboard/guests/${id}`)
-        ),
-        Promise.resolve(axios.get(`http://localhost:3003//dashboard/items/${id}`)),
-        Promise.resolve(axios.get(`http://localhost:3003/dashboard/messages/${id}`)),
-      ]).then((all) => {
-        setEvent((all[0].data[0]));
-        setUsers(all[1].data);
-        setItems(all[2].data);
-        setMessages(all[3].data);
-        setLoading(false);
-        console.log(event);
-        console.log(users);
-        console.log(items);
-        console.log(messages);
-      });
-  //   }
-  }, [])
+    Promise.all([
+      axios.get(`http://localhost:3003//dashboard/events/${id}`),
+      axios.get(`http://localhost:3003//dashboard/guests/${id}`),
+      axios.get(`http://localhost:3003//dashboard/items/${id}`),
+      axios.get(`http://localhost:3003/dashboard/messages/${id}`),
+    ]).then((all) => {
+      setEvent(all[0].data[0]);
+      setUsers(all[1].data);
+      setItems(all[2].data);
+      setMessages(all[3].data);
+      setLoading(false);
+      console.log(event);
+      console.log(users);
+      console.log(items);
+      console.log(messages);
+    });
+    //   }
+  }, [userPresent]);
 
   while (isLoading) {
     return <p>Loading...</p>;
