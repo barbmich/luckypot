@@ -12,19 +12,19 @@ import MealsContainer from "./MealsContainer";
 import MealWithRecipe from "./MealWithRecipe";
 import Messages from "./Messages";
 import OthersContainer from "./OthersContainer";
-const db = require("../../db/db.js");
+// const db = require("../../db/db.js");
 
 // const messages = db.event_messages;
 // const items = db.items;
 // const users = db.users;
 // const event = db.event;
-const currentUser = {
-  id: 1,
-  first_name: "Daniel",
-  last_name: "Nascimento",
-  email: "daniel@email.com",
-  avatar_url: "https://uifaces.co/our-content/donated/XdLjsJX_.jpg",
-};
+// const currentUser = {
+//   id: 1,
+//   first_name: "Daniel",
+//   last_name: "Nascimento",
+//   email: "daniel@email.com",
+//   avatar_url: "https://uifaces.co/our-content/donated/XdLjsJX_.jpg",
+// };
 
 export default function Dashboard(props) {
   const { loggedUser } = props;
