@@ -81,7 +81,7 @@ export default function Messages(props) {
         </Card.Header>
         <ul className="list-unstyled">{eventMessages}</ul>
         <div className="msgInput">
-          <Form onSubmit={() => sendMessage(messageContent)}>
+          <Form>
             <Form.Group controlId="exampleForm.ControlTextarea1">
               <Form.Label>Enter Message</Form.Label>
               <Form.Control
@@ -90,7 +90,11 @@ export default function Messages(props) {
                 value={messageContent}
                 onChange={(event) => setMessageContent(event.target.value)}
               />
-              <Button className="msgBtn" type="submit" variant="primary">
+              <Button
+                className="msgBtn"
+                onClick={() => sendMessage(messageContent)}
+                variant="primary"
+              >
                 Send
               </Button>
             </Form.Group>
