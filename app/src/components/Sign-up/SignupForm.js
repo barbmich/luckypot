@@ -32,30 +32,30 @@ export default function SignupForm(props) {
 
   function validate(event) {
     event.preventDefault();
-    // if (!firstName) {
-    //   setError("First name is required.");
-    //   return;
-    // }
-    // if (!lastName) {
-    //   setError("Last name is required.");
-    //   return;
-    // }
-    // if (!email) {
-    //   setError("E-mail is required.");
-    //   return;
-    // }
-    // if (!password) {
-    //   setError("A password is required.");
-    //   return;
-    // }
-    // if (!retypePassword) {
-    //   setError("A password confirmation is required.");
-    //   return;
-    // }
-    // if (password !== retypePassword) {
-    //   setError("The passwords provided don't match");
-    //   return;
-    // }
+    if (!firstName) {
+      setError("First name is required.");
+      return;
+    }
+    if (!lastName) {
+      setError("Last name is required.");
+      return;
+    }
+    if (!email) {
+      setError("E-mail is required.");
+      return;
+    }
+    if (!password) {
+      setError("A password is required.");
+      return;
+    }
+    if (!retypePassword) {
+      setError("A password confirmation is required.");
+      return;
+    }
+    if (password !== retypePassword) {
+      setError("The passwords provided don't match");
+      return;
+    }
     setError("");
     const user = {
       firstName,
