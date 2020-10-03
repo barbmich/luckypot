@@ -11,7 +11,6 @@
     "bs-custom-file-input": "^1.3.4",
     "i": "^0.3.6",
     "node-sass": "^4.14.1",
-    "prettylink": "^0.1.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.3.0",
     "react-datepicker": "^3.2.2",
