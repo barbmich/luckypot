@@ -140,6 +140,8 @@ Content-Type: application/json
 
 #Check if user is in event
 GET http://localhost:3003/dashboard/check/1/1
+
+###
 POST http://localhost:3003/messages/add
 Content-Type: application/json
 
