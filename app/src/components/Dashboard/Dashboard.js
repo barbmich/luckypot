@@ -37,6 +37,7 @@ export default function Dashboard(props) {
   const [items, setItems] = useState([]);
   const [messages, setMessages] = useState([]);
   const [userPresent, setUserPresent] = useState(null);
+  const [host, setHost] = useState({})
   // console.log(event);
   // console.log(users);
   // console.log(items);
@@ -100,12 +101,19 @@ export default function Dashboard(props) {
       }
       setItems(all[2].data);
       setMessages(all[3].data);
-      setLoading(false);
+      setLoading(false);   
+      setHost({
+        first_name: event.owner_first_name,
+        last_name: event.owner_last_name
+      })
+      console.log(host);
+     
       // console.log(event);
       // console.log(users);
       // console.log(items);
       // console.log(messages);
-    });
+
+    })
     //   }
   }, [userPresent]);
 
@@ -113,14 +121,13 @@ export default function Dashboard(props) {
     return <p>Loading...</p>;
   }
 
-  const host = users.find((user) => {
-    return user.id === event.owner_id;
-  });
+
 
   return (
     <div className="mainDashboard">
       <Container fluid>
         <Col lg={{ span: 2, offset: 1 }} sm={6}>
+                   
           <div className="guestTitle">
             <h4>
               Let <strong>{host.first_name}</strong> know if you're going!
@@ -156,7 +163,11 @@ export default function Dashboard(props) {
         </Col>
         <Col lg={{ span: 3, offset: 1 }} sm={6}>
           <Row>
-            <EventInfo event={event} users={users} />
+            <EventInfo
+             event={event} 
+             users={users}
+             host={host}
+            />
             <Messages
               messages={messages}
               users={users}

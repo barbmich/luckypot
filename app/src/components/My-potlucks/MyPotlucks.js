@@ -28,7 +28,8 @@ export default function MyPotlucks(props) {
         <div>
           <h3>{potluck.event_name}</h3>
           <p>{moment(potluck.date).format("dddd, MMMM Do YYYY, h:mm a")}</p>
-          <Link to={`/dashboard/${potluck.id}`}>Get details</Link>
+          <p><Link to={`/dashboard/${potluck.id}`}>Get details</Link></p>
+          <a href={potluck.tiny_url}>Invite your friends!</a>
         </div>
       );
     } else {

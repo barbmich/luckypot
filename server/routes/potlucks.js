@@ -20,11 +20,11 @@ module.exports = (db) => {
       events.tiny_url AS tiny_url
       FROM guest_details
       JOIN events ON events.id = guest_details.event_id
-      JOIN items ON events.id = items.event_id
       JOIN users ON users.id = guest_details.user_id
       WHERE events.id IN(SELECT event_id
       FROM guest_details
-      WHERE user_id = $1);
+      WHERE user_id = $1)
+      ORDER BY events.date DESC;
       `,
       values
     )
@@ -75,7 +75,7 @@ module.exports = (db) => {
               return db.query(
                 `
                 INSERT INTO guest_details (event_id, user_id) 
-                VALUES ($1, $2) RETURNING *;
+                VALUES ($1, $2) RETURNING (SELECT id FROM events WHERE id =$1);
                 `
               , values)
             })
