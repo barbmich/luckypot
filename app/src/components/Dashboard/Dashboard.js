@@ -12,6 +12,7 @@ import MealsContainer from "./MealsContainer";
 import MealWithRecipe from "./MealWithRecipe";
 import Messages from "./Messages";
 import OthersContainer from "./OthersContainer";
+import moment from "moment";
 const db = require("../../db/db.js");
 
 // const messages = db.event_messages;
@@ -30,6 +31,8 @@ export default function Dashboard(props) {
   const { loggedUser } = props;
   const { id } = useParams();
   let history = useHistory();
+  const m = moment();
+  console.log("DATE!!!!!", m.format("dddd"));
 
   const [isLoading, setLoading] = useState(true);
   const [event, setEvent] = useState({});
@@ -156,7 +159,7 @@ export default function Dashboard(props) {
         </Col>
         <Col lg={{ span: 3, offset: 1 }} sm={6}>
           <Row>
-            <EventInfo event={event} users={users} />
+            <EventInfo m={m} event={event} users={users} />
             <Messages
               messages={messages}
               users={users}
