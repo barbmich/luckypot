@@ -7,6 +7,7 @@ module.exports = (db) => {
     for (key in req.body) {
       values.push(req.body[key]);
     }
+    console.log("VALUES", values);
     db.query(
       `
       INSERT INTO event_messages (event_id, user_id, message) VALUES

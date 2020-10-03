@@ -81,7 +81,7 @@ export default function Messages(props) {
         </Card.Header>
         <ul className="list-unstyled">{eventMessages}</ul>
         <div className="msgInput">
-          <Form onSubmit={sendMessage(messageContent)}>
+          <Form onSubmit={() => sendMessage(messageContent)}>
             <Form.Group controlId="exampleForm.ControlTextarea1">
               <Form.Label>Enter Message</Form.Label>
               <Form.Control
