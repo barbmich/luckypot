@@ -17,6 +17,7 @@ import SearchRecipe from "./components/Search-recipe/SearchRecipe";
 import MyFavorites from "./components/My-favorites/MyFavorites";
 import MyPotlucks from "./components/My-potlucks/MyPotlucks";
 import MyRecipes from "./components/My-recipes/MyRecipes";
+import Search from "./components/Search/Search";
 import useVisualMode from "./hooks/useVisualMode";
 import Home from "./components/Home/Home";
 import Dashboard from "./components/Dashboard/Dashboard";
@@ -101,6 +102,16 @@ export default function App() {
             component={() =>
               auth ? (
                 <CreatePotluck loggedUser={loggedUser} />
+              ) : (
+                <Redirect to="/signin" />
+              )
+            }
+          />
+          <Route
+            path="/search"
+            component={() =>
+              auth ? (
+                <Search loggedUser={loggedUser} />
               ) : (
                 <Redirect to="/signin" />
               )

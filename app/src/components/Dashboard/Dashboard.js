@@ -61,7 +61,7 @@ export default function Dashboard(props) {
       .get(`http://localhost:3003/dashboard/check/${event}/${user}`)
       .then((response) => {
         const check = response.data;
-        console.log("DATA", check);
+        // console.log("DATA", check);
         if (check.length === 0) {
           const guest = {
             event_id: event,
@@ -70,12 +70,12 @@ export default function Dashboard(props) {
           return axios
             .post("http://localhost:3003/dashboard/addguest", guest)
             .then(() => {
-              console.log("new user");
+              // console.log("new user");
               history.push(`/dashboard/${event}`);
             });
         } else {
           history.push(`/dashboard/${event}`);
-          console.log("existing user");
+          // console.log("existing user");
         }
       });
   }
@@ -92,7 +92,6 @@ export default function Dashboard(props) {
       axios.get(`http://localhost:3003/dashboard/messages/${id}`),
     ]).then((all) => {
       setEvent(all[0].data[0]);
-      console.log("all[1]", all[1]);
       if (all[1].data.length === 0) {
         setUsers([loggedUser]);
       } else {

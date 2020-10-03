@@ -39,6 +39,11 @@ export default function NavBar(props) {
               {auth && `Welcome ${loggedUser.first_name}`}
             </div>
             {auth && (
+              <Link to="/search" className="link-nav">
+                Search Recipes
+              </Link>
+            )}
+            {auth && (
               <Link to="/create" className="link-nav">
                 Create Potluck
               </Link>

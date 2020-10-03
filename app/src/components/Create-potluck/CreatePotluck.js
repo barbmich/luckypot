@@ -62,7 +62,7 @@ export default function CreatePotluck(props) {
       .post("http://localhost:3003/mypotlucks/add", newPotluck)
       .then((result) => {
         const event_id = result.data[0].id;
-        console.log("CREATED EVENT:", result.data[0]);
+        // console.log("CREATED EVENT:", result.data[0]);
         history.push(`/Dashboard/${event_id}`);
       })
       .catch((err) => console.log(err));

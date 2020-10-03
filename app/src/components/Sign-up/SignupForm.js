@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./SignupForm.scss";
@@ -147,6 +147,12 @@ export default function SignupForm(props) {
           Submit
         </Button>
       </Form>
+      <p className="link-reg">
+        Already have an account? &nbsp;
+        <Link className="link-reg" to="/signin">
+          Login Here
+        </Link>
+      </p>
     </div>
   );
 }
