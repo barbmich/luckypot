@@ -1,11 +1,13 @@
 import React from "react";
 import "./EventInfo.scss";
 import { Card } from "react-bootstrap";
+import moment from "moment";
 
 export default function EventInfo(props) {
   const { event, users } = props;
   const time = new Date().toString();
-
+  // const m = moment();
+  console.log("EVT: ", event);
   // console.log("USERS EI", users);
   // console.log("EVENT EI", event);
   const host = users.find((user) => {
@@ -23,7 +25,8 @@ export default function EventInfo(props) {
           <p>
             Hosted by: {host.first_name} {host.last_name}
           </p>
-          <p>{time}</p>
+          <p>{moment(event.date).format("dddd, MMMM Do YYYY, h:mm a")}</p>
+          {/* {moment(event.date).format("dddd")} */}
           <span>{event.address}</span>
           <br />
           <span>
@@ -32,7 +35,9 @@ export default function EventInfo(props) {
           <p>{event.province}</p>
         </Card.Text>
       </Card.Body>
-      <Card.Footer className="text-muted">Happening in 2 days!</Card.Footer>
+      <Card.Footer className="text-muted">
+        Happening {moment(event.date).fromNow()}
+      </Card.Footer>
     </Card>
   );
 }

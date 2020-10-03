@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 export default function MyPotlucks(props) {
   const { loggedUser } = props;
@@ -26,7 +27,7 @@ export default function MyPotlucks(props) {
       return (
         <div>
           <h3>{potluck.event_name}</h3>
-          <p>{potluck.date}</p>
+          <p>{moment(potluck.date).format("dddd, MMMM Do YYYY, h:mm a")}</p>
           <Link to={`/dashboard/${potluck.id}`}>Get details</Link>
         </div>
       );

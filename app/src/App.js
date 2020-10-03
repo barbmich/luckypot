@@ -96,6 +96,16 @@ export default function App() {
           <Route path="/myfavorites">
             <MyFavorites loggedUser={loggedUser} />
           </Route>
+          <Route
+            path="/create"
+            component={() =>
+              auth ? (
+                <CreatePotluck loggedUser={loggedUser} />
+              ) : (
+                <Redirect to="/signin" />
+              )
+            }
+          />
         </section>
       </main>
     </Router>
