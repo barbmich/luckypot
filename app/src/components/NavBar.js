@@ -38,6 +38,11 @@ export default function NavBar(props) {
             <div className="welcomeMsg">
               {auth && `Welcome ${loggedUser.first_name}`}
             </div>
+            {auth && (
+              <Link to="/create" className="link-nav">
+                Create Potluck
+              </Link>
+            )}
             {!auth && (
               <Link className="link-nav" to="/signup">
                 Register

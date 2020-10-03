@@ -34,6 +34,7 @@ export default function CreatePotluck(props) {
   // Validated all fields were filled out. //
   // If validation passes, potluck is inseted into db and user redirected to dashboard//
   function validatePotluck(event) {
+    const host_id = loggedUser.id;
     if (
       !potluckName ||
       !address ||
@@ -47,7 +48,6 @@ export default function CreatePotluck(props) {
     }
     event.preventDefault();
     // console.log(date);
-    const host_id = loggedUser.id;
     const newPotluck = {
       host_id,
       potluckName,
@@ -62,6 +62,7 @@ export default function CreatePotluck(props) {
       .post("http://localhost:3003/mypotlucks/add", newPotluck)
       .then((result) => {
         const event_id = result.data[0].id;
+        console.log("CREATED EVENT:", result.data[0]);
         history.push(`/Dashboard/${event_id}`);
       })
       .catch((err) => console.log(err));

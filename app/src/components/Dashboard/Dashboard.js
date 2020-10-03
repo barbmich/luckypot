@@ -57,29 +57,30 @@ export default function Dashboard(props) {
   }
 
   function isInPotluck(user, event) {
-    axios.get(`http://localhost:3003/dashboard/check/${event}/${user}`)
-    .then((response) => {
-      const check = response.data;
-      console.log("DATA", check);
-      if (check.length === 0){
-        
-        const guest = {
-          event_id : event,
-          user_id : user 
+    axios
+      .get(`http://localhost:3003/dashboard/check/${event}/${user}`)
+      .then((response) => {
+        const check = response.data;
+        console.log("DATA", check);
+        if (check.length === 0) {
+          const guest = {
+            event_id: event,
+            user_id: user,
+          };
+          return axios
+            .post("http://localhost:3003/dashboard/addguest", guest)
+            .then(() => {
+              console.log("new user");
+              history.push(`/dashboard/${event}`);
+            });
+        } else {
+          history.push(`/dashboard/${event}`);
+          console.log("existing user");
         }
-        return axios.post("http://localhost:3003/dashboard/addguest", guest)
-        .then(() =>{
-          console.log("new user");
-          history.push(`/dashboard/${event}`)
-        })
-      } else {
-        history.push(`/dashboard/${event}`)
-        console.log("existing user");
-      }
-    })
-  }       
+      });
+  }
   useEffect(() => {
-    isInPotluck(loggedUser.id, id)
+    isInPotluck(loggedUser.id, id);
   }, []);
 
   useEffect(() => {
@@ -91,7 +92,12 @@ export default function Dashboard(props) {
       axios.get(`http://localhost:3003/dashboard/messages/${id}`),
     ]).then((all) => {
       setEvent(all[0].data[0]);
-      setUsers(all[1].data);
+      console.log("all[1]", all[1]);
+      if (all[1].data.length === 0) {
+        setUsers([loggedUser]);
+      } else {
+        setUsers(all[1].data);
+      }
       setItems(all[2].data);
       setMessages(all[3].data);
       setLoading(false);
@@ -111,7 +117,6 @@ export default function Dashboard(props) {
     return user.id === event.owner_id;
   });
 
-  
   return (
     <div className="mainDashboard">
       <Container fluid>
