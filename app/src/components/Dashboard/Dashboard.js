@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Dashboard.scss";
@@ -29,18 +29,15 @@ const db = require("../../db/db.js");
 export default function Dashboard(props) {
   const { loggedUser } = props;
   const { id } = useParams();
+  let history = useHistory();
 
-  // ROUTES WORKING, BUT STATES NOT FUNCTIONAL AND COMPONENTS STILL USING MOCK DATA
   const [isLoading, setLoading] = useState(true);
   const [event, setEvent] = useState({});
   const [users, setUsers] = useState([]);
   const [items, setItems] = useState([]);
   const [messages, setMessages] = useState([]);
   const [userPresent, setUserPresent] = useState(null);
-  console.log(event);
-  console.log(users);
-  console.log(items);
-  console.log(messages);
+
 
   function addMeal(item, category) {
     const input = {
@@ -55,6 +52,32 @@ export default function Dashboard(props) {
       setItems([...items, response.data]);
     });
   }
+
+  function isInPotluck(user, event) {
+    axios.get(`http://localhost:3003/dashboard/check/${event}/${user}`)
+    .then((response) => {
+      const check = response.data;
+      console.log("DATA", check);
+      if (check.length === 0){
+        
+        const guest = {
+          event_id : event,
+          user_id : user 
+        }
+        return axios.post("http://localhost:3003/dashboard/addguest", guest)
+        .then(() =>{
+          console.log("new user");
+          history.push(`/dashboard/${event}`)
+        })
+      } else {
+        history.push(`/dashboard/${event}`)
+        console.log("existing user");
+      }
+    })
+  }       
+  useEffect(() => {
+    isInPotluck(loggedUser.id, id)
+  }, []);
 
   useEffect(() => {
     // if (loggedUser.id) {
@@ -81,6 +104,7 @@ export default function Dashboard(props) {
     return user.id === event.owner_id;
   });
 
+  
   return (
     <div className="mainDashboard">
       <Container fluid>
