@@ -32,7 +32,7 @@ export default function PresentButton(props) {
       .then((result) => {
         const present = result.data[0].present;
         setUserPresent(present);
-        console.log(userPresent);
+        // console.log(userPresent)
       });
   };
 

@@ -6,7 +6,8 @@ import classnames from "classnames";
 
 export default function GuestList(props) {
   const { users, userPresent, loggedUser } = props;
-  console.log("USERS: ", users);
+  // console.log("USERS: ", users);
+  // Sets class based on whether user is going or not, default is maybe
 
   // Sets class based on whether user is going or not, default is maybe
   const usersArray = users.map((user) => {

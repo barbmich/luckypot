@@ -20,6 +20,7 @@ const favoritesRoutes = require("./routes/favorites");
 const potluckRoutes = require("./routes/potlucks");
 const itemsRoutes = require("./routes/items");
 const dashboardRoutes = require("./routes/dashboard");
+const messagesRoutes = require("./routes/messages");
 
 db.connect();
 
@@ -34,15 +35,21 @@ app.use("", recipesRoutes(db));
 app.use("", favoritesRoutes(db));
 app.use("", itemsRoutes(db));
 app.use("", dashboardRoutes(db));
+app.use("", messagesRoutes(db));
 
 server.listen(PORT, () =>
   console.log(`Express server is running on port ${PORT}`)
 );
 
-const ws = new WebSocket.Server({ server });
+const wss = new WebSocket.Server({ server });
 
-const users = {};
-
-ws.on("connection", (socket) => {
-  socket.on("message", (message) => {});
+wss.on("connection", function connection(ws) {
+  ws.on("message", function incoming(data) {
+    console.log("data incoming:", JSON.stringify(data));
+    wss.clients.forEach(function each(client) {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(data);
+      }
+    });
+  });
 });
