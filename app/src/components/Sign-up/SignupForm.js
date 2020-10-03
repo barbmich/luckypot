@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./SignupForm.scss";
 import axios from "axios";
+import FileBase64 from "react-file-base64";
 
 export default function SignupForm(props) {
   const { setAuth, setLoggedUser } = props;
@@ -14,7 +15,13 @@ export default function SignupForm(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
+  const [avatar, setAvatar] = useState([]);
+
   let history = useHistory();
+
+  function getFile(image) {
+    setAvatar(image);
+  }
 
   const authenticateUser = (user) => {
     if (typeof user === "object") {
@@ -55,6 +62,7 @@ export default function SignupForm(props) {
       lastName,
       email,
       password,
+      avatar: avatar[0],
     };
 
     axios
@@ -112,19 +120,6 @@ export default function SignupForm(props) {
             We'll never share your email with anyone else.
           </Form.Text>
         </Form.Group>
-        <Form controlId="formBasicLastName">
-          <Form.Label>Profile Picture</Form.Label>
-          <Form.File
-            id="custom-file"
-            type="file"
-            label={img}
-            onChange={(event) => {
-              setImg(event.target.value);
-            }}
-            value={img}
-            custom
-          />
-        </Form>
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -143,7 +138,18 @@ export default function SignupForm(props) {
             onChange={(event) => setRetypePassword(event.target.value)}
           />
         </Form.Group>
-        <Button variant="primary" onClick={validate}>
+        <Form.Label>Profile Picture</Form.Label>
+        <FileBase64 multiple={true} onDone={getFile.bind(this)} />
+        {avatar.length != 0 ? (
+          <div>
+            {avatar.map((index) => {
+              console.log(index);
+              return <img src={index.base64} />;
+            })}
+            <img src="" />
+          </div>
+        ) : null}
+        <Button variant="primary" onClick={(event) => validate(event)}>
           Submit
         </Button>
       </Form>

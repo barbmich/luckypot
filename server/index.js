@@ -25,7 +25,7 @@ const messagesRoutes = require("./routes/messages");
 db.connect();
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: false }));
 app.use(express.json());
 app.use(pino);
 
@@ -45,7 +45,7 @@ const wss = new WebSocket.Server({ server });
 
 wss.on("connection", function connection(ws) {
   ws.on("message", function incoming(data) {
-    console.log("data incoming:", JSON.stringify(data));
+    // console.log("data incoming:", JSON.stringify(data));
     wss.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
         client.send(data);

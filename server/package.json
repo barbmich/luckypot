@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "cloudinary": "^1.23.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "pg": "^8.3.3",
