@@ -61,5 +61,22 @@ module.exports = (db) => {
       });
   });
 
+  // router.post("/create", (req, res) => {
+  //   const values = [];
+  //   db.query(
+  //     `
+  //     // INSERT INTO events (owner_id, name, date, address, post_code, city, province)
+  //     // VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;
+  //     `,
+  //     values
+  //   )
+  //     .then((data) => {
+  //       res.json(data.rows);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // })
+
   return router;
 };
