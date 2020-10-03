@@ -43,6 +43,7 @@ export default function Messages(props) {
       user_id: loggedUser.id,
       message: message,
     };
+    console.log("obj sent to ws:", eventMessage);
     axios
       .post("http://localhost:3003/messages/add", eventMessage)
       .then((response) => {
@@ -66,7 +67,9 @@ export default function Messages(props) {
     ws.current.onmessage = (message) => {
       const newMessage = JSON.parse(message.data);
       console.log("from websocket:", newMessage.data);
-      setChatMessages([...chatMessages, newMessage.data]);
+      if (newMessage.data.event_id === event.id) {
+        setChatMessages([...chatMessages, newMessage.data]);
+      }
     };
     //   setChatMessages((prev) => [...prev, message.data]);
     // }
