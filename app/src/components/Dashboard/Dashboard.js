@@ -37,10 +37,10 @@ export default function Dashboard(props) {
   const [items, setItems] = useState([]);
   const [messages, setMessages] = useState([]);
   const [userPresent, setUserPresent] = useState(null);
-  console.log(event);
-  console.log(users);
-  console.log(items);
-  console.log(messages);
+  // console.log(event);
+  // console.log(users);
+  // console.log(items);
+  // console.log(messages);
 
   function addMeal(item, category) {
     const input = {
@@ -50,8 +50,8 @@ export default function Dashboard(props) {
     };
 
     axios.post("http://localhost:3003/items/add", input).then((response) => {
-      console.log("meal added!");
-      console.log(response.data);
+      // console.log("meal added!");
+      // console.log(response.data);
       setItems([...items, response.data]);
     });
   }
@@ -69,10 +69,10 @@ export default function Dashboard(props) {
       setItems(all[2].data);
       setMessages(all[3].data);
       setLoading(false);
-      console.log(event);
-      console.log(users);
-      console.log(items);
-      console.log(messages);
+      // console.log(event);
+      // console.log(users);
+      // console.log(items);
+      // console.log(messages);
     });
     //   }
   }, [userPresent]);
@@ -121,7 +121,12 @@ export default function Dashboard(props) {
         <Col lg={{ span: 3, offset: 1 }} sm={6}>
           <Row>
             <EventInfo event={event} users={users} />
-            <Messages messages={messages} users={users} />
+            <Messages
+              messages={messages}
+              users={users}
+              loggedUser={loggedUser}
+              event={event}
+            />
           </Row>
         </Col>
       </Container>

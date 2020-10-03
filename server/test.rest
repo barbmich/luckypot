@@ -130,6 +130,16 @@ POST http://localhost:3003/dashboard/addguest
 Content-Type: application/json
 
 {
-  "even_id" : 1,
+  "event_id" : 1,
   "user_id" : 6
+}
+
+###
+POST http://localhost:3003/messages/add
+Content-Type: application/json
+
+{
+  "event_id": 1,
+  "user_id": 1,
+  "message": "test"
 }

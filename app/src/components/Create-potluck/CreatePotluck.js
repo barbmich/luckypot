@@ -8,7 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 export default function CreatePotluck(props) {
   const [startDate, setStartDate] = useState(new Date());
 
-  console.log(startDate);
+  // console.log(startDate);
 
   function DateSelection() {
     return (
@@ -73,7 +73,7 @@ export default function CreatePotluck(props) {
             variant="primary"
             onClick={(e) => {
               e.preventDefault();
-              console.log("click");
+              // console.log("click");
             }}
           >
             Submit

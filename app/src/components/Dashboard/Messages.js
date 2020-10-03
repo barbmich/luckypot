@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./MealsContainer.scss";
 import {
   Card,
@@ -10,16 +10,19 @@ import {
 } from "react-bootstrap";
 import "./Messages.scss";
 import ProfilePic from "./ProfilePicture/ProfilePic";
+import axios from "axios";
 
 export default function Messages(props) {
-  const { messages, users } = props;
+  const { messages, event, users, loggedUser } = props;
 
-  const xmessages = [];
-  const eventMessages = xmessages
+  const [messageContent, setMessageContent] = useState();
+  const [chatMessages, setChatMessages] = useState(messages);
+  const ws = useRef(null);
+
+  const eventMessages = chatMessages
     // .sort((a, b) => a.timestamp < b.timestamp)
     .map((msg) => {
       const user = users.find((user) => user.id === msg.user_id);
-
       return (
         <Media as="li">
           <ProfilePic
@@ -34,16 +37,41 @@ export default function Messages(props) {
       );
     });
 
+  const sendMessage = (message) => {
+    const eventMessage = {
+      event_id: event.id,
+      user_id: loggedUser.id,
+      message: message,
+    };
+    axios
+      .post("http://localhost:3003/messages/add", eventMessage)
+      .then((response) => {
+        console.log(typeof response);
+        ws.current.send(JSON.stringify(response));
+        setMessageContent("");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:3003");
-    socket.onopen = () => {
-      console.log("WebSocket is open");
-      socket.send("THIS IS ME");
+    ws.current = new WebSocket("ws://localhost:3003");
+    // ws.current.onopen = () =>
+    //   // ws.current.send(`user ${loggedUser.first_name} connected to the chat`);
+    //   (ws.current.onclose = () =>
+    //     ws.current.send(
+    //       `user ${loggedUser.first_name} disconnected from the chat`
+    //     ));
+    ws.current.onmessage = (message) => {
+      const newMessage = JSON.parse(message.data);
+      console.log("from websocket:", newMessage.data);
+      setChatMessages([...chatMessages, newMessage.data]);
     };
-    socket.onmessage = (event) => {
-      console.log("message from server:", event.data);
-    };
-  }, []);
+    //   setChatMessages((prev) => [...prev, message.data]);
+    // }
+    return () => ws.current.close();
+  }, [chatMessages]);
 
   return (
     <Card bg="dark" text="light" className="msgContainer">
@@ -53,13 +81,20 @@ export default function Messages(props) {
         </Card.Header>
         <ul className="list-unstyled">{eventMessages}</ul>
         <div className="msgInput">
-          <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Enter Message</Form.Label>
-            <Form.Control as="textarea" rows={3} />
-          </Form.Group>
-          <Button className="msgBtn" variant="primary" type="submit">
-            Send
-          </Button>
+          <Form onSubmit={sendMessage(messageContent)}>
+            <Form.Group controlId="exampleForm.ControlTextarea1">
+              <Form.Label>Enter Message</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                value={messageContent}
+                onChange={(event) => setMessageContent(event.target.value)}
+              />
+              <Button className="msgBtn" type="submit" variant="primary">
+                Send
+              </Button>
+            </Form.Group>
+          </Form>
         </div>
       </Card.Body>
     </Card>

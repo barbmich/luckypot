@@ -6,14 +6,14 @@ export default function EventInfo(props) {
   const { event, users } = props;
   const time = new Date().toString();
 
-  console.log("USERS EI", users);
-  console.log("EVENT EI", event);
+  // console.log("USERS EI", users);
+  // console.log("EVENT EI", event);
   const host = users.find((user) => {
-    console.log("User", user.id);
-    console.log("Owner", event.owner_id);
-    return user.id === event.owner_id
+    // console.log("User", user.id);
+    // console.log("Owner", event.owner_id);
+    return user.id === event.owner_id;
   });
-  console.log("HOST", host);
+  // console.log("HOST", host);
   return (
     <Card className="text-center eventContainer">
       <Card.Header>Event Details</Card.Header>
