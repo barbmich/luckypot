@@ -132,11 +132,11 @@ POST http://localhost:3003/dashboard/addguest
 Content-Type: application/json
 
 {
-  "even_id" : 1,
+  "event_id" : 1,
   "user_id" : 6
 }
 
 ###
 
 #Check if user is in event
-GET http://localhost:3003/dashboard/check/1/2
+GET http://localhost:3003/dashboard/check/1/1
