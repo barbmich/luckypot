@@ -20,11 +20,9 @@ export default function Search(props) {
     axios
       .get(`http://localhost:3003/recipes/search/${searchInput}`)
       .then((result) => {
-        if (result.data.length === 0) {
-        } else {
-          console.log(result.data);
-          setSearchResults(result.data);
-        }
+        setSearchResults(result.data);
+        // setLoading(false);
+        // console.log("result.data ")
       })
       .catch((err) => console.log("Error on Recipe Search Response:", err));
   };

@@ -8,7 +8,7 @@ export default function GuestList(props) {
   const { users, userPresent, loggedUser } = props;
 
   const usersArray = users.map((user, i) => {
-    console.log(user.id, user.present);
+    // console.log(user.id, user.present);
     const presentStateClass = classnames("present-state", {
       "present-state-going": user.present === 2,
       "present-state-missing": user.present === 0,
