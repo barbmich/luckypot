@@ -14,9 +14,12 @@ module.exports = (db) => {
       events.address AS address,
       events.post_code AS post_code,
       events.city AS city,
-      events.province AS province
+      events.province AS province,
+      users.first_name AS owner_first_name,
+      users.last_name AS owner_last_name
       FROM events
-      WHERE id = $1;
+      LEFT JOIN users ON events.owner_id = users.id
+      WHERE events.id = $1;
       `,
       values
     )

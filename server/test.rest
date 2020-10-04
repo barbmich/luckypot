@@ -87,7 +87,7 @@ Content-Type: application/json
 
 #DASHBOARD
 
-GET http://localhost:3003/dashboard/events/1/
+GET http://localhost:3003/dashboard/events/2/
 
 
 ###
@@ -110,7 +110,7 @@ POST http://localhost:3003/mypotlucks/add
 Content-Type: application/json
 
 {
-  "owner_id": 1,
+  "owner_id": 4,
   "name": "Best party ever",
   "date": "2020-12-31 22:00:00",
   "address": "2nd Street",
@@ -118,6 +118,9 @@ Content-Type: application/json
   "city": "Montreal",
   "province": "Quebec"
 }
+
+###
+
 GET http://localhost:3003/dashboard/messages/
 
 ###
@@ -140,6 +143,8 @@ Content-Type: application/json
 
 #Check if user is in event
 GET http://localhost:3003/dashboard/check/1/1
+
+###
 POST http://localhost:3003/messages/add
 Content-Type: application/json
 

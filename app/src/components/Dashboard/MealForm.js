@@ -29,7 +29,6 @@ export default function MealForm(props) {
           onChange={(event) => setMeal(event.target.value)}
           placeholder="Enter Meal Name"
         />
-
         <Button
           className="formBtn"
           variant="primary"

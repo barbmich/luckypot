@@ -21,6 +21,7 @@ export default function Dashboard(props) {
   const [items, setItems] = useState([]);
   const [messages, setMessages] = useState([]);
   const [userPresent, setUserPresent] = useState(null);
+  const [host, setHost] = useState({});
 
   function addMeal(item, category) {
     const input = {
@@ -78,16 +79,17 @@ export default function Dashboard(props) {
       setItems(all[2].data);
       setMessages(all[3].data);
       setLoading(false);
+      setHost({
+        first_name: event.owner_first_name,
+        last_name: event.owner_last_name,
+      });
+      console.log(host);
     });
   }, [userPresent]);
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
-
-  const host = users.find((user) => {
-    return user.id === event.owner_id;
-  });
 
   return (
     <div className="mainDashboard">
@@ -128,7 +130,7 @@ export default function Dashboard(props) {
         </Col>
         <Col lg={{ span: 3, offset: 1 }} sm={6}>
           <Row>
-            <EventInfo event={event} users={users} />
+            <EventInfo event={event} users={users} host={host} />
             <Messages
               messages={messages}
               users={users}
