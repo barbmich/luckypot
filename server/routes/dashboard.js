@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
-  router.get("/dashboard/events/:event_id/", (req, res) => {
-    const values = [parseInt(req.params.event_id, 10)];
+  router.get("/dashboard/events/:unique_key/", (req, res) => {
+    const values = [req.params.unique_key];
     db.query(
       `
       SELECT DISTINCT 
@@ -19,7 +19,7 @@ module.exports = (db) => {
       users.last_name AS owner_last_name
       FROM events
       LEFT JOIN users ON events.owner_id = users.id
-      WHERE events.id = $1;
+      WHERE events.unique_key = $1;
       `,
       values
     )
@@ -34,8 +34,8 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/dashboard/guests/:event_id/", (req, res) => {
-    const values = [parseInt(req.params.event_id, 10)];
+  router.get("/dashboard/guests/:unique_key/", (req, res) => {
+    const values = [req.params.unique_key];
     db.query(
       `
       SELECT DISTINCT 
@@ -51,7 +51,7 @@ module.exports = (db) => {
        JOIN users ON users.id = guest_details.user_id
        WHERE events.id IN(SELECT event_id
        FROM guest_details
-       WHERE events.id = $1);
+       WHERE events.unique_key = $1);
     `,
       values
     )
@@ -66,14 +66,14 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/dashboard/items/:event_id", (req, res) => {
-    const values = [parseInt(req.params.event_id, 10)];
+  router.get("/dashboard/items/:unique_key", (req, res) => {
+    const values = [req.params.unique_key];
     db.query(
       `
-      SELECT 
-      ITEMS.*
-      FROM ITEMS
-      WHERE ITEMS.event_id = $1;
+      SELECT items.*
+      FROM items
+      JOIN events ON events.id = items.event_id
+      WHERE events.unique_key = $1;
       `,
       values
     )
@@ -89,18 +89,19 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/dashboard/messages/:event_id", (req, res) => {
-    const values = [parseInt(req.params.event_id, 10)];
+  router.get("/dashboard/messages/:unique_key", (req, res) => {
+    const values = [req.params.unique_key];
     db.query(
       `
-          SELECT 
-          id, 
-          event_id, 
-          user_id, 
-          message, 
-          date AS timestamp 
-          FROM event_messages
-          WHERE event_id = $1;
+      SELECT 
+      event_messages.id, 
+      event_messages.event_id, 
+      event_messages.user_id, 
+      event_messages.message, 
+      event_messages.date AS timestamp 
+      FROM event_messages
+      JOIN events ON events.id = event_messages.event_id
+      WHERE events.unique_key = $1;
           `,
       values
     )
@@ -173,13 +174,14 @@ module.exports = (db) => {
         console.log(err);
         res.send(err);
       });
-  });
-  // check if user is in potluck
-  router.get("/dashboard/check/:event_id/:user_id", (req, res) => {
-    const values = [req.params.event_id, req.params.user_id];
+
+  })
+            // check if user is in potluck
+  router.get("/dashboard/check/:unique_key/:user_id",(req, res) =>{
+    const values = [req.params.unique_key, req.params.user_id];    
     db.query(
       `
-      SELECT * FROM guest_details WHERE event_id = $1 AND user_id = $2;`,
+      SELECT * FROM guest_details WHERE events.unique_key = $1 AND user_id = $2;`,
       values
     )
       .then((data) => {

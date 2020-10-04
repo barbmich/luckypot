@@ -61,9 +61,9 @@ export default function CreatePotluck(props) {
     axios
       .post("http://localhost:3003/mypotlucks/add", newPotluck)
       .then((result) => {
-        const event_id = result.data[0].id;
+        const unique_key = result.data[0].unique_key;
         // console.log("CREATED EVENT:", result.data[0]);
-        history.push(`/Dashboard/${event_id}`);
+        history.push(`/Dashboard/${unique_key}`);
       })
       .catch((err) => console.log(err));
   }
