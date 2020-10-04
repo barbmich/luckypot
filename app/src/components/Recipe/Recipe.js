@@ -4,12 +4,17 @@ import axios from "axios";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Dropdown from "react-bootstrap/Dropdown";
 import "./Recipe.scss";
 
 export default function Recipe(props) {
+  const { loggedUser } = props;
   const { recipe_id } = useParams();
   const [recipe, setRecipe] = useState("");
   const [isLoading, setLoading] = useState(true);
+  const [myPotlucksList, setMyPotlucksList] = useState([]);
 
   const getRecipeDetails = (recipe_id) => {
     axios.get(`http://localhost:3003/recipe/${recipe_id}`).then((result) => {
@@ -19,9 +24,18 @@ export default function Recipe(props) {
   };
 
   useEffect(() => {
+    axios
+      .get(`http://localhost:3003/mypotlucks/${loggedUser.id}`)
+      .then((result) => {
+        setMyPotlucksList(result.data);
+        // setLoading(false);
+      });
+
     getRecipeDetails(recipe_id);
   }, []);
 
+  console.log("potluck list from Recipe", myPotlucksList);
+  console.log("logged user form Recipe.js", loggedUser);
   console.log("RECIPE DETAILS::", recipe);
 
   if (isLoading) {
@@ -37,13 +51,34 @@ export default function Recipe(props) {
   }
 
   const ingredients = recipe.extendedIngredients.map((each) => {
-    return <ul>{each.name}</ul>;
+    return <li>{each.name}</li>;
+  });
+
+  const potlucks = myPotlucksList.map((each) => {
+    return (
+      <div>
+        <Dropdown.Item eventKey="1">{each.event_name}</Dropdown.Item>
+        <Dropdown.Divider />
+      </div>
+    );
   });
 
   return (
     <div>
       <h1 className="pageTitle">{recipe.title}</h1>
       <div className="recipeCard">
+        <div className="mb-2">
+          <DropdownButton
+            // as={ButtonGroup}
+            key={"right"}
+            id={`dropdown-button-drop-right`}
+            drop={"right"}
+            variant="secondary"
+            title={` Bring to Potluck `}
+          >
+            {potlucks}
+          </DropdownButton>
+        </div>
         <Card>
           <Card.Img variant="top" src={recipe.image} />
           <Card.Body>
@@ -71,7 +106,7 @@ export default function Recipe(props) {
           </ListGroup>
           <Card.Body>
             <Card.Link href="#">Bring to Potluck??</Card.Link>
-            <Card.Link href={`${recipe.spoonacularSourceUrl}`}>
+            <Card.Link target="_blank" href={`${recipe.sourceUrl}`}>
               Recipe Source
             </Card.Link>
           </Card.Body>
