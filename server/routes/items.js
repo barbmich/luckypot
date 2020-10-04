@@ -39,6 +39,25 @@ module.exports = (db) => {
       .catch((err) => console.log(err));
   });
 
+  // router.get("/items/:values", (req, res) => {
+  //   const values = [];
+  //   console.log("REQ>BODY FROM BACK", req.body);
+  //   for (key in req.body) {
+  //     values.push(req.body[key]);
+  //   }
+  //   db.query(
+  //     `SELECT * FROM "items" WHERE assigned = $1 AND event_id = $2;`,
+  //     values
+  //   )
+  //     .then((data) => {
+  //       res.json(data.rows);
+  //       console.log("GET response from server getting RECIPES:", data.rows);
+  //     })
+  //     .catch((err) => {
+  //       res.send(err);
+  //     });
+  // });
+
   return router;
 };
 

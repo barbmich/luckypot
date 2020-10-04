@@ -15,6 +15,7 @@ export default function Recipe(props) {
   const [recipe, setRecipe] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [myPotlucksList, setMyPotlucksList] = useState([]);
+  const [potluckChosen, setPotluckChosen] = useState("");
 
   const getRecipeDetails = (recipe_id) => {
     axios.get(`http://localhost:3003/recipe/${recipe_id}`).then((result) => {
@@ -27,6 +28,7 @@ export default function Recipe(props) {
     axios
       .get(`http://localhost:3003/mypotlucks/${loggedUser.id}`)
       .then((result) => {
+        console.log("USE EFFECT", result.data);
         setMyPotlucksList(result.data);
         // setLoading(false);
       });
@@ -34,13 +36,10 @@ export default function Recipe(props) {
     getRecipeDetails(recipe_id);
   }, []);
 
-  console.log("potluck list from Recipe", myPotlucksList);
-  console.log("logged user form Recipe.js", loggedUser);
-  console.log("RECIPE DETAILS::", recipe);
-
   if (isLoading) {
     return <p>Loading...</p>;
   }
+
   // Api returns html format in a string //
   // This function converts into proper HTMl with the help of dangerouslySetInnerHTML https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml//
   function createMarkup(stringHTML) {
@@ -53,17 +52,43 @@ export default function Recipe(props) {
   const ingredients = recipe.extendedIngredients.map((each) => {
     return <li>{each.name}</li>;
   });
-  console.log("potluck list:", myPotlucksList);
+
+  // console.log("potluck list:", myPotlucksList);
+
   const potlucks = myPotlucksList.map((each) => {
     return (
       <div>
-        <Link to={`/dashboard/${each.id}`}>
-          <Dropdown.Item eventKey="1">{each.event_name}</Dropdown.Item>
-        </Link>
+        <Dropdown.Item eventKey="1">
+          <Link
+            to={`/dashboard/${each.unique_key}/`}
+            onClick={() => {
+              setPotluckChosen(each.id);
+              // addMeal(each.id, recipe.title);
+            }}
+          >
+            {each.event_name}
+          </Link>
+        </Dropdown.Item>
         <Dropdown.Divider />
       </div>
     );
   });
+
+  // function addMeal(event_id, recipe_name) {
+  //   const input = {
+  //     event_id: event_id,
+  //     recipe_id: recipe.id,
+  //     name: recipe_name,
+  //     category_id: 1,
+  //   };
+  //   // console.log("EVENT id:", event_id);
+  //   // console.log("Recipe_id:", recipe_id);
+  //   // console.log("NAME", name);
+
+  //   axios.put("http://localhost:3003/items/add", input).then((response) => {
+  //     console.log(response.data);
+  //   });
+  // }
 
   return (
     <div>
