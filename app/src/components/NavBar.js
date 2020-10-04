@@ -62,9 +62,6 @@ export default function NavBar(props) {
                 <NavDropdown.Item>
                   <Link to="/myfavorites">My Favorites</Link>
                 </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Link to={`/dashboard/${loggedUser.id}`}>MOCKDASHBOARD</Link>
-                </NavDropdown.Item>
               </NavDropdown>
             </div>
           </div>

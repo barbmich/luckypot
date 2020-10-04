@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
@@ -9,7 +9,9 @@ import "./Search.scss";
 import axios from "axios";
 
 export default function Search(props) {
-  const [searchInput, setSearchInput] = useState(null);
+  const location = useLocation();
+  const { searchItem } = location.state;
+  const [searchInput, setSearchInput] = useState(searchItem || null);
   const [searchResults, setSearchResults] = useState(null);
 
   const getSearchResults = (event) => {
@@ -18,16 +20,20 @@ export default function Search(props) {
     axios
       .get(`http://localhost:3003/recipes/search/${searchInput}`)
       .then((result) => {
-        setSearchResults(result.data);
+        if (result.data.length === 0) {
+        } else {
+          console.log(result.data);
+          setSearchResults(result.data);
+        }
       })
       .catch((err) => console.log("Error on Recipe Search Response:", err));
   };
 
   const searchCards =
     searchResults &&
-    searchResults.results.map((result) => {
+    searchResults.results.map((result, i) => {
       return (
-        <ul>
+        <ul key={i}>
           <Card className="searchedMealSingle">
             <Card.Title className="mealTitle">{result.title}</Card.Title>
             <Card.Body>
@@ -52,6 +58,7 @@ export default function Search(props) {
             type="text"
             placeholder="Search Recipes"
             className="mr-sm-2"
+            value={searchInput}
           />
           <Button variant="outline-primary" onClick={getSearchResults}>
             Search

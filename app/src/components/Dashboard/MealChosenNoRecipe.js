@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./MealItem.scss";
+import Search from "../Search/Search";
 import { Card, Button } from "react-bootstrap";
 
 export default function MealChosenNoRecipe(props) {
   const { item } = props;
-  // function searchRecipe(meal) {
-  //   console.log("searching", meal);
-  // }
 
   return (
     <Card className="meal-unchosen">
@@ -16,7 +14,12 @@ export default function MealChosenNoRecipe(props) {
           ✔️
         </span>{" "}
         You have chosen <strong>{item && item.name}</strong>
-        <Link to={"/search"}>
+        <Link
+          to={{
+            pathname: "/search",
+            state: item ? { searchItem: item.name } : null,
+          }}
+        >
           <Button className="recipeBtn" variant="primary">
             Search among our recipes
           </Button>
