@@ -7,7 +7,7 @@ export default function EventInfo(props) {
   const { event, users, host } = props;
   const time = new Date().toString();
   // const m = moment();
-  console.log("EVT: ", event);
+  // console.log("EVT: ", event);
   // console.log("USERS EI", users);
   // console.log("EVENT EI", event);
   // const host = users.find((user) => {

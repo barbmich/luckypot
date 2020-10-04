@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Dropdown from "react-bootstrap/Dropdown";
 import "./Recipe.scss";
 
 export default function Recipe(props) {
+  const { loggedUser } = props;
   const { recipe_id } = useParams();
   const [recipe, setRecipe] = useState("");
   const [isLoading, setLoading] = useState(true);
+  const [myPotlucksList, setMyPotlucksList] = useState([]);
+  const [potluckChosen, setPotluckChosen] = useState("");
 
   const getRecipeDetails = (recipe_id) => {
     axios.get(`http://localhost:3003/recipe/${recipe_id}`).then((result) => {
@@ -19,14 +25,21 @@ export default function Recipe(props) {
   };
 
   useEffect(() => {
+    axios
+      .get(`http://localhost:3003/mypotlucks/${loggedUser.id}`)
+      .then((result) => {
+        console.log("USE EFFECT", result.data);
+        setMyPotlucksList(result.data);
+        // setLoading(false);
+      });
+
     getRecipeDetails(recipe_id);
   }, []);
-
-  console.log("RECIPE DETAILS::", recipe);
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
+
   // Api returns html format in a string //
   // This function converts into proper HTMl with the help of dangerouslySetInnerHTML https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml//
   function createMarkup(stringHTML) {
@@ -37,13 +50,62 @@ export default function Recipe(props) {
   }
 
   const ingredients = recipe.extendedIngredients.map((each) => {
-    return <ul>{each.name}</ul>;
+    return <li>{each.name}</li>;
   });
+
+  // console.log("potluck list:", myPotlucksList);
+
+  const potlucks = myPotlucksList.map((each) => {
+    return (
+      <div>
+        <Dropdown.Item eventKey="1">
+          <Link
+            to={`/dashboard/${each.unique_key}/`}
+            onClick={() => {
+              setPotluckChosen(each.id);
+              // addMeal(each.id, recipe.title);
+            }}
+          >
+            {each.event_name}
+          </Link>
+        </Dropdown.Item>
+        <Dropdown.Divider />
+      </div>
+    );
+  });
+
+  // function addMeal(event_id, recipe_name) {
+  //   const input = {
+  //     event_id: event_id,
+  //     recipe_id: recipe.id,
+  //     name: recipe_name,
+  //     category_id: 1,
+  //   };
+  //   // console.log("EVENT id:", event_id);
+  //   // console.log("Recipe_id:", recipe_id);
+  //   // console.log("NAME", name);
+
+  //   axios.put("http://localhost:3003/items/add", input).then((response) => {
+  //     console.log(response.data);
+  //   });
+  // }
 
   return (
     <div>
       <h1 className="pageTitle">{recipe.title}</h1>
       <div className="recipeCard">
+        <div className="mb-2">
+          <DropdownButton
+            // as={ButtonGroup}
+            key={"right"}
+            id={`dropdown-button-drop-right`}
+            drop={"right"}
+            variant="secondary"
+            title={` Bring to Potluck `}
+          >
+            {potlucks}
+          </DropdownButton>
+        </div>
         <Card>
           <Card.Img variant="top" src={recipe.image} />
           <Card.Body>
@@ -71,7 +133,7 @@ export default function Recipe(props) {
           </ListGroup>
           <Card.Body>
             <Card.Link href="#">Bring to Potluck??</Card.Link>
-            <Card.Link href={`${recipe.spoonacularSourceUrl}`}>
+            <Card.Link target="_blank" href={`${recipe.sourceUrl}`}>
               Recipe Source
             </Card.Link>
           </Card.Body>
