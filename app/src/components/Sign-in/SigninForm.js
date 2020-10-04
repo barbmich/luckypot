@@ -12,6 +12,7 @@ export default function SignInForm(props) {
   let history = useHistory();
 
   const authenticateUser = (user) => {
+    console.log(history);
     if (typeof user === "object") {
       setAuth((prev) => !prev);
       history.push("/MyPotlucks");
