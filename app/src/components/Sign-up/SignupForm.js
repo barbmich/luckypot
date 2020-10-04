@@ -11,7 +11,6 @@ export default function SignupForm(props) {
   const [error, setError] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [img, setImg] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
@@ -140,13 +139,12 @@ export default function SignupForm(props) {
         </Form.Group>
         <Form.Label>Profile Picture</Form.Label>
         <FileBase64 multiple={true} onDone={getFile.bind(this)} />
-        {avatar.length != 0 ? (
+        {avatar.length !== 0 ? (
           <div>
             {avatar.map((index) => {
               console.log(index);
-              return <img src={index.base64} />;
+              return <img src={index.base64} alt="profile" />;
             })}
-            <img src="" />
           </div>
         ) : null}
         <Button variant="primary" onClick={(event) => validate(event)}>

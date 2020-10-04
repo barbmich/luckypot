@@ -4,7 +4,7 @@ import "./MealForm.scss";
 import { Form, Button } from "react-bootstrap";
 
 export default function MealForm(props) {
-  const { items, addMeal } = props;
+  const { items, addMeal, collapse } = props;
   const [meal, setMeal] = useState("");
   const [category, setCategory] = useState(null);
 
@@ -37,6 +37,7 @@ export default function MealForm(props) {
           variant="primary"
           onClick={() => {
             addMeal(meal);
+            collapse();
           }}
         >
           Confirm

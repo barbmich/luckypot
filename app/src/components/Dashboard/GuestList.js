@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect } from "react";
+import React from "react";
 import { Media, Card } from "react-bootstrap";
 import ProfilePic from "./ProfilePicture/ProfilePic";
 import "./GuestList.scss";

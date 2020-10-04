@@ -22,7 +22,7 @@ export default function MyPotlucks(props) {
     return <p>Loading...</p>;
   }
 
-  const userPotlucks = potlucksList.map((potluck) => {
+  const userPotlucks = potlucksList.map((potluck, i) => {
     if (potluck) {
       return (
         <div>
