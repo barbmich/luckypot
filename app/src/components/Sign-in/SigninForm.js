@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -8,7 +8,7 @@ export default function SignInForm(props) {
   const [email, setEmail] = useState(props.email || "");
   const [password, setPassword] = useState(props.password || "");
   const [error, setError] = useState("");
-  const { setAuth, loggedUser, setLoggedUser } = props;
+  const { setAuth, setLoggedUser } = props;
   let history = useHistory();
 
   const authenticateUser = (user) => {
@@ -23,10 +23,15 @@ export default function SignInForm(props) {
       setError("Email cannot be blank.");
       return;
     }
+    if (!email.includes("@")) {
+      setError("This is not a valid email.");
+      return;
+    }
     if (!password) {
       setError("Password cannot be blank.");
       return;
     }
+    setError("");
     const user = {
       email,
       password,
@@ -50,6 +55,7 @@ export default function SignInForm(props) {
   return (
     <div className="authForm">
       <h1 className="pageTitle">Login</h1>
+      {error && <p>{error}</p>}
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>

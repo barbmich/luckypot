@@ -1,18 +1,6 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
-import {
-  BrowserRouter as Router,
-  useHistory,
-  Link,
-  Route,
-  Switch,
-} from "react-router-dom";
-import MyFavorites from "./My-favorites/MyFavorites";
-import MyRecipes from "./My-recipes/MyRecipes";
-import Home from "./Home/Home";
-import MyPotlucks from "./My-potlucks/MyPotlucks";
-import SignupForm from "./Sign-up/SignupForm";
-import SigninForm from "./Sign-in/SigninForm";
+import { useHistory, Link } from "react-router-dom";
 import "./NavBar.scss";
 
 export default function NavBar(props) {

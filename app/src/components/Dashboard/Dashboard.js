@@ -3,28 +3,12 @@ import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Dashboard.scss";
-import AddButton from "./AddButton";
 import PresentButton from "./PresentButton";
-import ProfilePic from "./ProfilePicture/ProfilePic.js";
 import EventInfo from "./EventInfo";
 import GuestList from "./GuestList";
 import MealsContainer from "./MealsContainer";
-import MealWithRecipe from "./MealWithRecipe";
 import Messages from "./Messages";
 import OthersContainer from "./OthersContainer";
-const db = require("../../db/db.js");
-
-// const messages = db.event_messages;
-// const items = db.items;
-// const users = db.users;
-// const event = db.event;
-// const currentUser = {
-//   id: 1,
-//   first_name: "Daniel",
-//   last_name: "Nascimento",
-//   email: "daniel@email.com",
-//   avatar_url: "https://uifaces.co/our-content/donated/XdLjsJX_.jpg",
-// };
 
 export default function Dashboard(props) {
   const { loggedUser } = props;
@@ -37,10 +21,6 @@ export default function Dashboard(props) {
   const [items, setItems] = useState([]);
   const [messages, setMessages] = useState([]);
   const [userPresent, setUserPresent] = useState(null);
-  // console.log(event);
-  // console.log(users);
-  // console.log(items);
-  // console.log(messages);
 
   function addMeal(item, category) {
     const input = {
@@ -50,8 +30,6 @@ export default function Dashboard(props) {
     };
 
     axios.post("http://localhost:3003/items/add", input).then((response) => {
-      // console.log("meal added!");
-      // console.log(response.data);
       setItems([...items, response.data]);
     });
   }
@@ -84,7 +62,6 @@ export default function Dashboard(props) {
   }, []);
 
   useEffect(() => {
-    // if (loggedUser.id) {
     Promise.all([
       axios.get(`http://localhost:3003//dashboard/events/${id}`),
       axios.get(`http://localhost:3003//dashboard/guests/${id}`),
@@ -101,12 +78,7 @@ export default function Dashboard(props) {
       setItems(all[2].data);
       setMessages(all[3].data);
       setLoading(false);
-      // console.log(event);
-      // console.log(users);
-      // console.log(items);
-      // console.log(messages);
     });
-    //   }
   }, [userPresent]);
 
   if (isLoading) {
