@@ -9,12 +9,8 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "bs-custom-file-input": "^1.3.4",
-<<<<<<< HEAD
-    "i": "^0.3.6",
     "moment": "^2.29.0",
-=======
     "cloudinary-react": "^1.6.6",
->>>>>>> d1de13e73be6154caed8ad692cbff6356fb73304
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.3.0",
