@@ -17,6 +17,7 @@ import SearchRecipe from "./components/Search-recipe/SearchRecipe";
 import MyFavorites from "./components/My-favorites/MyFavorites";
 import MyPotlucks from "./components/My-potlucks/MyPotlucks";
 import MyRecipes from "./components/My-recipes/MyRecipes";
+import Recipe from "./components/Recipe/Recipe";
 import Search from "./components/Search/Search";
 import useVisualMode from "./hooks/useVisualMode";
 import Home from "./components/Home/Home";
@@ -112,6 +113,16 @@ export default function App() {
             component={() =>
               auth ? (
                 <Search loggedUser={loggedUser} />
+              ) : (
+                <Redirect to="/signin" />
+              )
+            }
+          />
+          <Route
+            path="/recipe/:recipe_id"
+            component={() =>
+              auth ? (
+                <Recipe loggedUser={loggedUser} />
               ) : (
                 <Redirect to="/signin" />
               )
