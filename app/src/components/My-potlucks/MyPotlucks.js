@@ -13,6 +13,7 @@ export default function MyPotlucks(props) {
     axios
       .get(`http://localhost:3003/mypotlucks/${loggedUser.id}`)
       .then((result) => {
+        console.log("this is result:", result.data);
         setPotlucksList(result.data);
         setLoading(false);
       });
@@ -28,7 +29,9 @@ export default function MyPotlucks(props) {
         <div>
           <h3>{potluck.event_name}</h3>
           <p>{moment(potluck.date).format("dddd, MMMM Do YYYY, h:mm a")}</p>
-          <p><Link to={`/dashboard/${potluck.unique_key}`}>Get details</Link></p>
+          <p>
+            <Link to={`/dashboard/${potluck.unique_key}`}>Get details</Link>
+          </p>
           <a href={potluck.tiny_url}>Invite your friends!</a>
         </div>
       );
