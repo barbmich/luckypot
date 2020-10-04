@@ -22,13 +22,15 @@ export default function MyPotlucks(props) {
     return <p>Loading...</p>;
   }
 
-  const userPotlucks = potlucksList.map((potluck, i) => {
+  const userPotlucks = potlucksList.map((potluck) => {
     if (potluck) {
       return (
         <div>
           <h3>{potluck.event_name}</h3>
           <p>{moment(potluck.date).format("dddd, MMMM Do YYYY, h:mm a")}</p>
-          <p><Link to={`/dashboard/${potluck.id}`}>Get details</Link></p>
+          <p>
+            <Link to={`/dashboard/${potluck.id}`}>Get details</Link>
+          </p>
           <a href={potluck.tiny_url}>Invite your friends!</a>
         </div>
       );
