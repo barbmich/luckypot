@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
@@ -11,6 +11,13 @@ import axios from "axios";
 export default function Search(props) {
   const [searchInput, setSearchInput] = useState(null);
   const [searchResults, setSearchResults] = useState(null);
+
+  const location  = useLocation();
+  console.log("LOCATION", location);
+  console.log("location.pathname", location.pathname);
+  console.log("location.search", location.search);
+  console.log("location.state.search_item",location.state.search_item);
+
 
   const getSearchResults = (event) => {
     event.preventDefault();

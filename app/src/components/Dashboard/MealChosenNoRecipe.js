@@ -16,7 +16,11 @@ export default function MealChosenNoRecipe(props) {
           ✔️
         </span>{" "}
         You have chosen <strong>{item && item.name}</strong>
-        <Link to={"/search"}>
+        <Link to={{
+                  pathname:"/search",
+                  search: "salmon",
+                  state: {search_item:item}
+                  }}>
           <Button className="recipeBtn" variant="primary">
             Search among our recipes
           </Button>
