@@ -12,9 +12,9 @@ import OthersContainer from "./OthersContainer";
 
 export default function Dashboard(props) {
   const { loggedUser } = props;
-  const { id } = useParams();
+  const { unique_key } = useParams();
   let history = useHistory();
-
+    
   const [isLoading, setLoading] = useState(true);
   const [event, setEvent] = useState({});
   const [users, setUsers] = useState([]);
@@ -35,9 +35,9 @@ export default function Dashboard(props) {
     });
   }
 
-  function isInPotluck(user, event) {
+  function isInPotluck(user, key) {
     axios
-      .get(`http://localhost:3003/dashboard/check/${event}/${user}`)
+      .get(`http://localhost:3003/dashboard/check/${key}/${user}`)
       .then((response) => {
         const check = response.data;
         // console.log("DATA", check);
@@ -49,25 +49,25 @@ export default function Dashboard(props) {
           return axios
             .post("http://localhost:3003/dashboard/addguest", guest)
             .then(() => {
-              // console.log("new user");
-              history.push(`/dashboard/${event}`);
+              console.log("new user");
+              history.push(`/dashboard/${key}`);
             });
         } else {
-          history.push(`/dashboard/${event}`);
-          // console.log("existing user");
+          history.push(`/dashboard/${key}`);
+          console.log("existing user");
         }
       });
   }
   useEffect(() => {
-    isInPotluck(loggedUser.id, id);
+    isInPotluck(loggedUser.id, unique_key);
   }, []);
 
   useEffect(() => {
     Promise.all([
-      axios.get(`http://localhost:3003//dashboard/events/${id}`),
-      axios.get(`http://localhost:3003//dashboard/guests/${id}`),
-      axios.get(`http://localhost:3003//dashboard/items/${id}`),
-      axios.get(`http://localhost:3003/dashboard/messages/${id}`),
+      axios.get(`http://localhost:3003//dashboard/events/${unique_key}`),
+      axios.get(`http://localhost:3003//dashboard/guests/${unique_key}`),
+      axios.get(`http://localhost:3003//dashboard/items/${unique_key}`),
+      axios.get(`http://localhost:3003/dashboard/messages/${unique_key}`),
     ]).then((all) => {
       setEvent(all[0].data[0]);
       if (all[1].data.length === 0) {
@@ -80,10 +80,15 @@ export default function Dashboard(props) {
       setLoading(false);
       setHost({
         first_name: event.owner_first_name,
-        last_name: event.owner_last_name,
-      });
-      console.log(host);
-    });
+        last_name: event.owner_last_name
+      })
+      // console.log(event);
+      // console.log(users);
+      // console.log(items);
+      // console.log(messages);
+
+    })
+    //   }
   }, [userPresent]);
 
   if (isLoading) {

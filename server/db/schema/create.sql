@@ -27,7 +27,8 @@ CREATE TABLE events (
   post_code VARCHAR(60) NOT NULL,
   city VARCHAR(60) NOT NULL,
   province VARCHAR(60) NOT NULL,
-  tiny_url VARCHAR(60)
+  tiny_url VARCHAR(60),
+  unique_key VARCHAR(60)
 );
 
 CREATE TABLE categories (
