@@ -26,7 +26,7 @@ module.exports = (db) => {
       WHERE events.id IN(SELECT event_id
       FROM guest_details
       WHERE user_id = $1)
-      ORDER BY events.date DESC;
+      ORDER BY events.date ASC;
       `,
       values
     )
@@ -69,6 +69,7 @@ module.exports = (db) => {
         })
         .then(([tiny, unique_key]) => {
             const values = [tiny, unique_key[0]];
+            console.log("TINY URL AND UNIQUE KEY ~~~~~~~~~~~~~~~~~~~");
             console.log(values);
             return db.query(
               `
@@ -78,14 +79,17 @@ module.exports = (db) => {
           })
             .then((data) => {
               const values = [data.rows[0].id, data.rows[0].owner_id]
+              console.log("EVENT ID AND OWNER ID ~~~~~~~~~~~~~~~~~~~");
               return db.query(
                 `
                 INSERT INTO guest_details (event_id, user_id) 
-                VALUES ($1, $2) RETURNING (SELECT id FROM events WHERE id =$1);
+                VALUES ($1, $2) RETURNING (SELECT unique_key FROM events WHERE id =$1);
                 `
               , values)
             })
               .then((data) => {
+                console.log("LAST PROMISE ~~~~~~~~~~~~~~~~~~~");
+                console.log(data.rows);
                 res.send(data.rows)
               }) 
               .catch((err) => {

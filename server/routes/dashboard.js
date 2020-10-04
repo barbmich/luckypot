@@ -70,10 +70,10 @@ module.exports = (db) => {
     const values = [req.params.unique_key];
     db.query(
       `
-      SELECT 
-      ITEMS.*
-      FROM ITEMS
-      WHERE ITEMS.event_id = $1;
+      SELECT items.*
+      FROM items
+      JOIN events ON events.id = items.event_id
+      WHERE events.unique_key = $1;
       `,
       values
     )
