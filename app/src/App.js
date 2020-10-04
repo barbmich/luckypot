@@ -62,7 +62,7 @@ export default function App() {
             }
           />
           <Route
-            path="/dashboard/:id"
+            path="/dashboard/:unique_key"
             component={() =>
               auth ? (
                 <Dashboard loggedUser={loggedUser} />

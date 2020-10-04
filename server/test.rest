@@ -66,6 +66,21 @@ GET http://localhost:3003/mypotlucks/2
 
 ###
 
+POST http://localhost:3003/mypotlucks/add
+Content-Type: application/json
+
+{
+  "owner_id": 5,
+  "name": "2nBest party ever",
+  "date": "2020-12-31 22:00:00",
+  "address": "2nd Street",
+  "post_code": "S4T 4N4",
+  "city": "Montreal",
+  "province": "Quebec"
+}
+
+###
+
 PUT http://localhost:3003/items/update
 Content-Type: application/json
 
@@ -87,41 +102,23 @@ Content-Type: application/json
 
 #DASHBOARD
 
-GET http://localhost:3003/dashboard/events/2/
+GET http://localhost:3003/dashboard/events/z3sfpr2xdd/
 
 
 ###
 
-GET http://localhost:3003/dashboard/guests/1/
+GET http://localhost:3003/dashboard/guests/z3sfpr2xdd/
 
 
 ###
 
-GET http://localhost:3003/dashboard/items/1
+GET http://localhost:3003/dashboard/items/z3sfpr2xdd/
 
 
 ###
 
-GET http://localhost:3003/dashboard/messages/1
+GET http://localhost:3003/dashboard/messages/z3sfpr2xdd/
 
-###
-
-POST http://localhost:3003/mypotlucks/add
-Content-Type: application/json
-
-{
-  "owner_id": 4,
-  "name": "Best party ever",
-  "date": "2020-12-31 22:00:00",
-  "address": "2nd Street",
-  "post_code": "S4T 4N4",
-  "city": "Montreal",
-  "province": "Quebec"
-}
-
-###
-
-GET http://localhost:3003/dashboard/messages/
 
 ###
 
