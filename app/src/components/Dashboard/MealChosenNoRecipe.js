@@ -1,14 +1,27 @@
 import React from "react";
-import "./MealItem.scss"
+import { Link } from "react-router-dom";
+import "./MealItem.scss";
 import { Card, Button } from "react-bootstrap";
 
 export default function MealChosenNoRecipe(props) {
+  const { item } = props;
+  // function searchRecipe(meal) {
+  //   console.log("searching", meal);
+  // }
+
   return (
-<Card className="meal-unchosen" >
-  <Card.Body>
-    <Card.Link href="#">✔️ You have chosen <strong>Jalapeños</strong></Card.Link>
-    <Button className="recipeBtn" variant="primary">Search Our Recipes</Button>
-  </Card.Body>
-</Card>
+    <Card className="meal-unchosen">
+      <Card.Body>
+        <span aria-label={"checkmark"} role={"img"}>
+          ✔️
+        </span>{" "}
+        You have chosen <strong>{item && item.name}</strong>
+        <Link to={"/search"}>
+          <Button className="recipeBtn" variant="primary">
+            Search among our recipes
+          </Button>
+        </Link>
+      </Card.Body>
+    </Card>
   );
 }

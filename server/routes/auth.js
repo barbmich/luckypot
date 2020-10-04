@@ -13,6 +13,7 @@ module.exports = (db) => {
     for (key in req.body) {
       values.push(req.body[key]);
     }
+    console.log("values from req:", values);
     db.query(
       `SELECT id, first_name, last_name, email, avatar_url 
               FROM users
@@ -21,8 +22,11 @@ module.exports = (db) => {
       values
     )
       .then((data) => {
+        if (data.rows.length === 0) {
+          res.send("Incorrect credentials.");
+        }
         user = data.rows[0];
-        console.log(user);
+        console.log("user that signed in:", user);
         res.json({ user });
       })
       .catch((err) => {
@@ -32,60 +36,61 @@ module.exports = (db) => {
 
   router.post("/signup", (req, res) => {
     const validationByEmail = [req.body.email];
-    // db.query(
-    //   `
-    // SELECT * FROM users WHERE email=$1;
-    // `,
-    //   validationByEmail
-    // )
-    //   .then((data) => {
-    //     if (data.rows.length > 0) {
-    //       res.send("a user with this email already exists");
-    //     } else {
-    console.log("image upload");
-    const imageInfo = {
-      public_id: req.body.email,
-      folder: "luckypot",
-    };
+    db.query(
+      `
+    SELECT * FROM users WHERE email=$1;
+    `,
+      validationByEmail
+    ).then((data) => {
+      if (data.rows.length > 0) {
+        res.send("a user with this email already exists");
+      } else {
+        console.log("image upload");
+        const imageInfo = {
+          public_id: req.body.email,
+          folder: "luckypot",
+        };
 
-    cloudinary.uploader
-      .upload(req.body.avatar.base64, imageInfo, (err, image) => {
-        console.log("file upload");
-        if (err) {
-          console.log(err);
-        }
-        console.log(image.url);
-        return image;
-      })
-      .then((imageData) => {
-        console.log("this is url:", imageData.url);
-        const values = [
-          req.body.firstName,
-          req.body.lastName,
-          req.body.email,
-          req.body.password,
-          imageData.url,
-        ];
-        console.log(values);
-        db.query(
-          `INSERT INTO users (first_name, last_name, email, password, avatar_url)
+        cloudinary.uploader
+          .upload(req.body.avatar.base64, imageInfo, (err, image) => {
+            console.log("file upload");
+            if (err) {
+              console.log(err);
+            }
+            console.log(image.url);
+            return image;
+          })
+          .then((imageData) => {
+            console.log("this is url:", imageData.url);
+            const values = [
+              req.body.firstName,
+              req.body.lastName,
+              req.body.email,
+              req.body.password,
+              imageData.url,
+            ];
+            console.log(values);
+            db.query(
+              `INSERT INTO users (first_name, last_name, email, password, avatar_url)
               VALUES ($1, $2, $3, $4, $5)
               RETURNING *;
               `,
-          values
-        )
-          .then((data) => {
-            const user = data.rows[0];
-            delete user.password;
-            res.json({ user });
+              values
+            )
+              .then((data) => {
+                const user = data.rows[0];
+                delete user.password;
+                res.json({ user });
+              })
+              .catch((err) => {
+                res.status(500).send("insert not working");
+              });
           })
           .catch((err) => {
-            res.status(500).send("insert not working");
+            res.status(500).send("not working");
           });
-      })
-      .catch((err) => {
-        res.status(500).send("not working");
-      });
+      }
+    });
   });
 
   return router;

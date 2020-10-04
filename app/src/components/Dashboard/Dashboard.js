@@ -94,18 +94,22 @@ export default function Dashboard(props) {
     <div className="mainDashboard">
       <Container fluid>
         <Col lg={{ span: 2, offset: 1 }} sm={6}>
-          <div className="guestTitle">
-            <h4>
-              Let <strong>{host.first_name}</strong> know if you're going!
-            </h4>
-            <PresentButton
-              userPresent={userPresent}
-              setUserPresent={setUserPresent}
-              event={event}
-              users={users}
-              loggedUser={loggedUser}
-            />
-          </div>
+          {loggedUser.id === event.owner_id ? (
+            "link to event"
+          ) : (
+            <div className="guestTitle">
+              <h4>
+                Let <strong>{host.first_name}</strong> know if you're going!
+              </h4>
+              <PresentButton
+                userPresent={userPresent}
+                setUserPresent={setUserPresent}
+                event={event}
+                users={users}
+                loggedUser={loggedUser}
+              />
+            </div>
+          )}
           <Row>
             <GuestList
               loggedUser={loggedUser}

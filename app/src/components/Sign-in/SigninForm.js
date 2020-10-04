@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -41,10 +41,8 @@ export default function SignInForm(props) {
     axios
       .post("http://localhost:3003/login", user)
       .then((result) => {
-        if (
-          result.data === ("Incorrect credentials" || "Incorrect password.")
-        ) {
-          // console.log(result);
+        console.log(result);
+        if (result.data === "Incorrect credentials.") {
           setError(result.data);
         } else {
           setLoggedUser(result.data.user);

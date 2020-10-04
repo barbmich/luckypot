@@ -149,9 +149,9 @@ export default function SignupForm(props) {
         <FileBase64 multiple={true} onDone={getFile.bind(this)} />
         {avatar.length !== 0 ? (
           <div>
-            {avatar.map((index) => {
+            {avatar.map((index, i) => {
               console.log(index);
-              return <img src={index.base64} alt="profile" />;
+              return <img key={i} src={index.base64} alt="profile" />;
             })}
           </div>
         ) : null}

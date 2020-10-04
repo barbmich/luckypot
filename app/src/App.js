@@ -100,13 +100,7 @@ export default function App() {
             />
             <Route
               path="/search"
-              component={() =>
-                auth ? (
-                  <Search loggedUser={loggedUser} />
-                ) : (
-                  <Redirect to="/signin" />
-                )
-              }
+              component={() => (auth ? <Search /> : <Redirect to="/signin" />)}
             />
             <Route
               path="/recipe/:recipe_id"

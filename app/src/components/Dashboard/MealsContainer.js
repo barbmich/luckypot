@@ -14,7 +14,7 @@ export default function MealsContainer(props) {
     return (
       <MealItem
         userPresent={userPresent}
-        itemID={item.id}
+        item={item}
         name={item.name}
         user={user}
         users={users}

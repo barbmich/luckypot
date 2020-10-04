@@ -3,16 +3,17 @@ import "./MealItem.scss";
 import ProfilePic from "./ProfilePicture/ProfilePic";
 import { Card, Button } from "react-bootstrap";
 import axios from "axios";
+import MealChosenNoRecipe from "./MealChosenNoRecipe";
 
 export default function MealItem(props) {
-  const { itemID, name, user, loggedUser } = props;
+  const { item, name, user, loggedUser } = props;
 
   const [userAssigned, setUserAssigned] = useState(user || null);
 
   function removeYourself() {
     axios
       .put(`http://localhost:3003/items/update`, {
-        item: itemID,
+        item: item.id,
         assigned: null,
       })
       .then(() => {
@@ -23,7 +24,7 @@ export default function MealItem(props) {
   function setAssigned(user) {
     axios
       .put(`http://localhost:3003/items/update`, {
-        item: itemID,
+        item: item.id,
         assigned: loggedUser.id,
       })
       .then(() => {
@@ -39,7 +40,10 @@ export default function MealItem(props) {
           <>
             <ProfilePic avatar_url={userAssigned.avatar_url} />
             {userAssigned.id === loggedUser.id ? (
-              <Button onClick={() => removeYourself()}>X</Button>
+              <>
+                <Button onClick={() => removeYourself()}>X</Button>
+                <MealChosenNoRecipe item={item} />
+              </>
             ) : null}
           </>
         ) : (
