@@ -14,9 +14,9 @@ export default function PresentButton(props) {
           `http://localhost:3003/dashboard/present/${loggedUser.id}/${event.id}`
         )
         .then((result) => {
-          console.log("ERROR PB", result.data[0]);
+          // console.log("ERROR PB",result.data[0]);
           setUserPresent(result.data[0].present);
-          console.log("USER PRESENT FROM GET: ", userPresent);
+          // console.log("USER PRESENT FROM GET: ", userPresent);
         });
     }
   }, []);

@@ -153,3 +153,6 @@ Content-Type: application/json
   "user_id": 1,
   "message": "test"
 }
+
+###
+GET http://localhost:3003/recipe/657359

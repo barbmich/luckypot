@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useHistory, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import "./SigninForm.scss";
 
 export default function SignInForm(props) {
   const [email, setEmail] = useState(props.email || "");
@@ -43,7 +44,7 @@ export default function SignInForm(props) {
         if (
           result.data === ("Incorrect credentials" || "Incorrect password.")
         ) {
-          console.log(result);
+          // console.log(result);
           setError(result.data);
         } else {
           setLoggedUser(result.data.user);
@@ -79,6 +80,12 @@ export default function SignInForm(props) {
           Submit
         </Button>
       </Form>
+      <p className="link-reg">
+        Don't have an account? &nbsp;
+        <Link className="link-reg" to="/signup">
+          Register Here
+        </Link>
+      </p>
     </div>
   );
 }
