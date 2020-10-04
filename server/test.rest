@@ -87,7 +87,7 @@ Content-Type: application/json
 
 #DASHBOARD
 
-GET http://localhost:3003/dashboard/events/3/
+GET http://localhost:3003/dashboard/events/2/
 
 
 ###

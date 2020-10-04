@@ -37,7 +37,7 @@ export default function MealForm(props) {
           variant="primary"
           onClick={() => {
             addMeal(meal);
-            collapse();
+
           }}
         >
           Confirm
