@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import "./SigninForm.scss";
 
 export default function SignInForm(props) {
   const [email, setEmail] = useState(props.email || "");
   const [password, setPassword] = useState(props.password || "");
   const [error, setError] = useState("");
-  const { setAuth, loggedUser, setLoggedUser } = props;
+  const { setAuth, setLoggedUser } = props;
   let history = useHistory();
 
   const authenticateUser = (user) => {
+    console.log(history);
     if (typeof user === "object") {
       setAuth((prev) => !prev);
       history.push("/MyPotlucks");
@@ -23,10 +25,15 @@ export default function SignInForm(props) {
       setError("Email cannot be blank.");
       return;
     }
+    if (!email.includes("@")) {
+      setError("This is not a valid email.");
+      return;
+    }
     if (!password) {
       setError("Password cannot be blank.");
       return;
     }
+    setError("");
     const user = {
       email,
       password,
@@ -37,7 +44,7 @@ export default function SignInForm(props) {
         if (
           result.data === ("Incorrect credentials" || "Incorrect password.")
         ) {
-          console.log(result);
+          // console.log(result);
           setError(result.data);
         } else {
           setLoggedUser(result.data.user);
@@ -50,6 +57,7 @@ export default function SignInForm(props) {
   return (
     <div className="authForm">
       <h1 className="pageTitle">Login</h1>
+      {error && <p>{error}</p>}
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -72,6 +80,12 @@ export default function SignInForm(props) {
           Submit
         </Button>
       </Form>
+      <p className="link-reg">
+        Don't have an account? &nbsp;
+        <Link className="link-reg" to="/signup">
+          Register Here
+        </Link>
+      </p>
     </div>
   );
 }

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import "./PresentButton.scss";
 import { Button, ButtonGroup } from "react-bootstrap";
 
 export default function PresentButton(props) {
-  const { loggedUser, event, setUserPresent, userPresent, host } = props;
+  const { loggedUser, event, setUserPresent, userPresent } = props;
 
   // Get request to know value of whether user is attending //
   useEffect(() => {
@@ -14,9 +14,9 @@ export default function PresentButton(props) {
           `http://localhost:3003/dashboard/present/${loggedUser.id}/${event.id}`
         )
         .then((result) => {
-          console.log("ERROR PB",result.data[0]);
+          // console.log("ERROR PB",result.data[0]);
           setUserPresent(result.data[0].present);
-          console.log("USER PRESENT FROM GET: ", userPresent);
+          // console.log("USER PRESENT FROM GET: ", userPresent);
         });
     }
   }, []);

@@ -11,6 +11,7 @@ export default function GuestList(props) {
 
   // Sets class based on whether user is going or not, default is maybe
   const usersArray = users.map((user) => {
+    console.log(user.id, user.present);
     const presentStateClass = classnames("present-state", {
       "present-state-going": user.present === 2,
       "present-state-missing": user.present === 0,
@@ -38,7 +39,7 @@ export default function GuestList(props) {
       <Card.Header className="guestTitleContainer">
         <Card.Title className="guestContainerTitle">Guests</Card.Title>
       </Card.Header>
-      {usersArray}
+      {usersArray.sort((a, b) => a.present > b.present)}
     </div>
   );
 }

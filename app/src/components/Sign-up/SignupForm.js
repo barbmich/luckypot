@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./SignupForm.scss";
@@ -43,6 +43,10 @@ export default function SignupForm(props) {
       setError("E-mail is required.");
       return;
     }
+    if (!email.includes("@")) {
+      setError("This is not a valid email.");
+      return;
+    }
     if (!password) {
       setError("A password is required.");
       return;
@@ -52,7 +56,11 @@ export default function SignupForm(props) {
       return;
     }
     if (password !== retypePassword) {
-      setError("The passwords provided don't match");
+      setError("The passwords provided don't match.");
+      return;
+    }
+    if (avatar.length === 0) {
+      setError("You need to upload a picture.");
       return;
     }
     setError("");
@@ -83,8 +91,8 @@ export default function SignupForm(props) {
   }
 
   return (
-    <div class="authForm">
-      <h1 class="pageTitle">Register</h1>
+    <div className="authForm">
+      <h1 className="pageTitle">Register</h1>
       {error && <p>{error}</p>}
       <Form className="form">
         <Form.Group controlId="formBasicFirstName">
@@ -151,6 +159,12 @@ export default function SignupForm(props) {
           Submit
         </Button>
       </Form>
+      <p className="link-reg">
+        Already have an account? &nbsp;
+        <Link className="link-reg" to="/signin">
+          Login Here
+        </Link>
+      </p>
     </div>
   );
 }

@@ -71,18 +71,15 @@ module.exports = (db) => {
     db.query(
       `
       SELECT 
-      items.*
-      FROM items
-      JOIN categories ON items.category_id = categories.id
-      JOIN guest_items ON items.id = guest_items.item_id
-      JOIN users ON users.id = guest_items.guest_id
-      JOIN events ON events.id = items.event_id
-      WHERE events.unique_key = $1;
+      ITEMS.*
+      FROM ITEMS
+      WHERE ITEMS.event_id = $1;
       `,
       values
     )
       .then((data) => {
         const items = data.rows;
+        console.log("ITEMS FROM QUERY:");
         console.log(data.rows);
         res.json(items);
       })
@@ -149,20 +146,18 @@ module.exports = (db) => {
       `
       INSERT INTO guest_details (event_id, user_id) VALUES
       ($1, $2) RETURNING *;
-      `
-       ,values)
+      `,
+      values
+    )
       .then((data) => {
         console.log(data);
-        res.json(data.rows)
+        res.json(data.rows);
       })
       .catch((err) => {
         console.log(err);
         res.send(err);
       });
-
-
-
-  })
+  });
 
   router.get("/dashboard/present/:user_id/:event_id", (req, res) => {
     const values = [req.params.user_id, req.params.event_id];
@@ -189,13 +184,13 @@ module.exports = (db) => {
       SELECT * FROM guest_details WHERE events.unique_key = $1 AND user_id = $2;`,
       values
     )
-    .then((data) => {
-      res.json(data.rows)
-    })
-    .catch((err) => {
-      console.log(err);
-      res.send(err);
-    });
+      .then((data) => {
+        res.json(data.rows);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
   });
 
   return router;

@@ -1,13 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./MealsContainer.scss";
-import {
-  Card,
-  Form,
-  Button,
-  ListGroup,
-  ListGroupItem,
-  Media,
-} from "react-bootstrap";
+import { Card, Form, Button, Media } from "react-bootstrap";
 import "./Messages.scss";
 import ProfilePic from "./ProfilePicture/ProfilePic";
 import axios from "axios";

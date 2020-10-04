@@ -3,28 +3,12 @@ import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Dashboard.scss";
-import AddButton from "./AddButton";
 import PresentButton from "./PresentButton";
-import ProfilePic from "./ProfilePicture/ProfilePic.js";
 import EventInfo from "./EventInfo";
 import GuestList from "./GuestList";
 import MealsContainer from "./MealsContainer";
-import MealWithRecipe from "./MealWithRecipe";
 import Messages from "./Messages";
 import OthersContainer from "./OthersContainer";
-const db = require("../../db/db.js");
-
-// const messages = db.event_messages;
-// const items = db.items;
-// const users = db.users;
-// const event = db.event;
-// const currentUser = {
-//   id: 1,
-//   first_name: "Daniel",
-//   last_name: "Nascimento",
-//   email: "daniel@email.com",
-//   avatar_url: "https://uifaces.co/our-content/donated/XdLjsJX_.jpg",
-// };
 
 export default function Dashboard(props) {
   const { loggedUser } = props;
@@ -37,11 +21,7 @@ export default function Dashboard(props) {
   const [items, setItems] = useState([]);
   const [messages, setMessages] = useState([]);
   const [userPresent, setUserPresent] = useState(null);
-  const [host, setHost] = useState({})
-  // console.log(event);
-  // console.log(users);
-  // console.log(items);
-  // console.log(messages);
+  const [host, setHost] = useState({});
 
   function addMeal(item, category) {
     const input = {
@@ -51,8 +31,6 @@ export default function Dashboard(props) {
     };
 
     axios.post("http://localhost:3003/items/add", input).then((response) => {
-      // console.log("meal added!");
-      // console.log(response.data);
       setItems([...items, response.data]);
     });
   }
@@ -62,7 +40,7 @@ export default function Dashboard(props) {
       .get(`http://localhost:3003/dashboard/check/${key}/${user}`)
       .then((response) => {
         const check = response.data;
-        console.log("DATA", check);
+        // console.log("DATA", check);
         if (check.length === 0) {
           const guest = {
             event_id: event,
@@ -85,7 +63,6 @@ export default function Dashboard(props) {
   }, []);
 
   useEffect(() => {
-    // if (loggedUser.id) {
     Promise.all([
       axios.get(`http://localhost:3003//dashboard/events/${unique_key}`),
       axios.get(`http://localhost:3003//dashboard/guests/${unique_key}`),
@@ -93,7 +70,6 @@ export default function Dashboard(props) {
       axios.get(`http://localhost:3003/dashboard/messages/${unique_key}`),
     ]).then((all) => {
       setEvent(all[0].data[0]);
-      console.log("all[1]", all[1]);
       if (all[1].data.length === 0) {
         setUsers([loggedUser]);
       } else {
@@ -101,7 +77,7 @@ export default function Dashboard(props) {
       }
       setItems(all[2].data);
       setMessages(all[3].data);
-      setLoading(false);   
+      setLoading(false);
       setHost({
         first_name: event.owner_first_name,
         last_name: event.owner_last_name
@@ -119,13 +95,10 @@ export default function Dashboard(props) {
     return <p>Loading...</p>;
   }
 
-
-
   return (
     <div className="mainDashboard">
       <Container fluid>
         <Col lg={{ span: 2, offset: 1 }} sm={6}>
-                   
           <div className="guestTitle">
             <h4>
               Let <strong>{host.first_name}</strong> know if you're going!
@@ -161,11 +134,7 @@ export default function Dashboard(props) {
         </Col>
         <Col lg={{ span: 3, offset: 1 }} sm={6}>
           <Row>
-            <EventInfo
-             event={event} 
-             users={users}
-             host={host}
-            />
+            <EventInfo event={event} users={users} host={host} />
             <Messages
               messages={messages}
               users={users}

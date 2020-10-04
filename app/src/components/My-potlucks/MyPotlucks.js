@@ -22,14 +22,7 @@ export default function MyPotlucks(props) {
     return <p>Loading...</p>;
   }
 
-  const generateRandomString = () => {
-    return Math.random()    //  Returns a random number between 0 and 1.
-    .toString(36)           //  Base36 encoding; use of letters with digits.
-    .substring(2,8);        //  Returns the part of the string between the start and end indexes, or to the end of the string. 
-  };
-
-
-  const userPotlucks = potlucksList.map((potluck, i) => {
+  const userPotlucks = potlucksList.map((potluck) => {
     if (potluck) {
       return (
         <div>

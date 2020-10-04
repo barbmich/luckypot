@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import "./MealForm.scss";
 import { Form, Button } from "react-bootstrap";
 
 export default function MealForm(props) {
-  const { items, addMeal, collapse } = props;
+  const { addMeal } = props;
   const [meal, setMeal] = useState("");
-  const [category, setCategory] = useState(null);
 
   // function addMeal(item, category) {
   //   const input = {
@@ -31,14 +29,10 @@ export default function MealForm(props) {
           onChange={(event) => setMeal(event.target.value)}
           placeholder="Enter Meal Name"
         />
-
         <Button
           className="formBtn"
           variant="primary"
-          onClick={() => {
-            addMeal(meal);
-
-          }}
+          onClick={() => addMeal(meal)}
         >
           Confirm
         </Button>

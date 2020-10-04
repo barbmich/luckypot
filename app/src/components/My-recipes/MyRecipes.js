@@ -20,15 +20,13 @@ export default function MyRecipes(props) {
       ),
     ]).then((all) => {
       const [myRecipes, tastedRecipes] = all;
-      console.log(myRecipes);
-      console.log(tastedRecipes);
       setRecipeList(myRecipes.data);
       setTastedList(tastedRecipes.data);
       setLoading(false);
     });
   }, []);
 
-  while (isLoading) {
+  if (isLoading) {
     return <p>Loading...</p>;
   }
 
