@@ -13,9 +13,7 @@ export default function AddButton(props) {
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="text" eventKey="1">
-            <button className="button-add" onClick={props.onClick}>
-              +{props.children}
-            </button>
+            <button className="button-add">+{props.children}</button>
           </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey="1">

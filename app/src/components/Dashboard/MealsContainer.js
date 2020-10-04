@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Card } from "react-bootstrap";
-import axios from "axios";
 import AddButton from "./AddButton";
 import MealItem from "./MealItem";
-import MealWithRecipe from "./MealWithRecipe";
 import "./MealsContainer.scss";
 
 export default function MealsContainer(props) {
-  const { items, users, loggedUser, event, addMeal, userPresent } = props;
+  const { items, users, loggedUser, addMeal, userPresent } = props;
 
   const itemsArray = items.map((item) => {
     const user = users.find((user) => {
