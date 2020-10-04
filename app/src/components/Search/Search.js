@@ -38,9 +38,10 @@ export default function Search(props) {
         <div>
           <ul>
             <Card className="searchedMealSingle">
-              <Card.Title>{result.title}</Card.Title>
+              <Card.Title className="mealTitle">{result.title}</Card.Title>
               <Card.Body>
-                <Figure.Image src={result.image} />
+                <Figure.Image className="recipePic" src={result.image} />
+                <br />
                 <Link to={`/recipe/${result.id}`}>
                   <Button variant="primary">View Full Recipe</Button>
                 </Link>

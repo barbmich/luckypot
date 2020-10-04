@@ -4,15 +4,16 @@ import axios from "axios";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
+import "./Recipe.scss";
 
 export default function Recipe(props) {
   const { recipe_id } = useParams();
-  const [recipeDetails, setRecipeDetails] = useState("");
+  const [recipe, setRecipe] = useState("");
   const [isLoading, setLoading] = useState(true);
 
   const getRecipeDetails = (recipe_id) => {
     axios.get(`http://localhost:3003/recipe/${recipe_id}`).then((result) => {
-      setRecipeDetails(result.data);
+      setRecipe(result.data);
       setLoading(false);
     });
   };
@@ -21,43 +22,61 @@ export default function Recipe(props) {
     getRecipeDetails(recipe_id);
   }, []);
 
-  console.log("RECIPE DETAILS::", recipeDetails);
+  console.log("RECIPE DETAILS::", recipe);
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
+  // Api returns html format in a string //
+  // This function converts into proper HTMl with the help of dangerouslySetInnerHTML https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml//
+  function createMarkup(stringHTML) {
+    const placeholder = document.createElement("div");
+    placeholder.insertAdjacentHTML("afterbegin", stringHTML);
+    // const summary = placeholder.firstElementChild;
+    return { __html: stringHTML };
+  }
 
-  // const stringToHTML = function (str) {
-  //   const parser = new DOMParser();
-  //   const doc = parser.parseFromString(str, "text/html");
-  //   console.log("DOC, ", typeof doc);
-  //   console.log("HHHHHHHHHHHHH:", typeof doc.body);
-  //   return doc.body;
-  // };
-  // const summary = stringToHTML(recipeDetails.summary);
-  // console.log("SUMMARY", summary);
+  const ingredients = recipe.extendedIngredients.map((each) => {
+    return <ul>{each.name}</ul>;
+  });
 
   return (
     <div>
-      <h1 className="pageTitle">Recipe Details</h1>
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
-        <Card.Body>
-          <Card.Title>{recipeDetails.id}</Card.Title>
-          {/* <Card.Text>{summary}</Card.Text> */}
-        </Card.Body>
-        <ListGroup className="list-group-flush">
-          <ListGroupItem>Cras justo odio</ListGroupItem>
-          <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-          <ListGroupItem>Vestibulum at eros</ListGroupItem>
-        </ListGroup>
-        <Card.Body>
-          <Card.Link href="#">Bring to Potluck??</Card.Link>
-          <Card.Link href={`${recipeDetails.spoonacularSourceUrl}`}>
-            Recipe Source
-          </Card.Link>
-        </Card.Body>
-      </Card>
+      <h1 className="pageTitle">{recipe.title}</h1>
+      <div className="recipeCard">
+        <Card>
+          <Card.Img variant="top" src={recipe.image} />
+          <Card.Body>
+            <Card.Title>{recipe.title}</Card.Title>
+            <Card.Text>
+              <div dangerouslySetInnerHTML={createMarkup(recipe.summary)} />
+            </Card.Text>
+          </Card.Body>
+          <ListGroup className="list-group-flush">
+            <ListGroupItem>
+              Ingredients
+              <ul>{ingredients}</ul>
+            </ListGroupItem>
+            <ListGroupItem>
+              Directions
+              <div
+                dangerouslySetInnerHTML={createMarkup(recipe.instructions)}
+              />
+            </ListGroupItem>
+            <ListGroupItem>
+              Ready in {recipe.readyInMinutes} minutes
+              <br />
+              Servings: {recipe.servings}
+            </ListGroupItem>
+          </ListGroup>
+          <Card.Body>
+            <Card.Link href="#">Bring to Potluck??</Card.Link>
+            <Card.Link href={`${recipe.spoonacularSourceUrl}`}>
+              Recipe Source
+            </Card.Link>
+          </Card.Body>
+        </Card>
+      </div>
     </div>
   );
 }
