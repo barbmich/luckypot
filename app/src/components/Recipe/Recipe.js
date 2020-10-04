@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -53,11 +53,13 @@ export default function Recipe(props) {
   const ingredients = recipe.extendedIngredients.map((each) => {
     return <li>{each.name}</li>;
   });
-
+  console.log("potluck list:", myPotlucksList);
   const potlucks = myPotlucksList.map((each) => {
     return (
       <div>
-        <Dropdown.Item eventKey="1">{each.event_name}</Dropdown.Item>
+        <Link to={`/dashboard/${each.id}`}>
+          <Dropdown.Item eventKey="1">{each.event_name}</Dropdown.Item>
+        </Link>
         <Dropdown.Divider />
       </div>
     );
