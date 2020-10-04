@@ -19,6 +19,8 @@ export default function Search(props) {
       .get(`http://localhost:3003/recipes/search/${searchInput}`)
       .then((result) => {
         setSearchResults(result.data);
+        // setLoading(false);
+        // console.log("result.data ")
       })
       .catch((err) => console.log("Error on Recipe Search Response:", err));
   };

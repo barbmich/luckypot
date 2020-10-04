@@ -92,10 +92,22 @@ POST http://localhost:3003/items/add
 Content-Type: application/json
 
 {
-  "event_id": 1,
-  "category_id": 1,
-  "name": "Something",
+  "event_id": 5,
+  "recipe_id": 648652,
+  "name": "Jumbo Size Yogurt Marble Cupcakes",
   "assigned": 1
+}
+
+###
+
+POST http://localhost:3003/items/add
+Content-Type: application/json
+
+{
+  "event_id": 2,
+  "recipe_id": 648652,
+  "name": "Jumbo Size Yogurt Marble Cupcakes",
+  "category_id": 1
 }
 
 ###

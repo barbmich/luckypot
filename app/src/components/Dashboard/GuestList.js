@@ -11,7 +11,7 @@ export default function GuestList(props) {
 
   // Sets class based on whether user is going or not, default is maybe
   const usersArray = users.map((user) => {
-    console.log(user.id, user.present);
+    // console.log(user.id, user.present);
     const presentStateClass = classnames("present-state", {
       "present-state-going": user.present === 2,
       "present-state-missing": user.present === 0,
