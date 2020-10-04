@@ -6,11 +6,8 @@ import classnames from "classnames";
 
 export default function GuestList(props) {
   const { users, userPresent, loggedUser } = props;
-  // console.log("USERS: ", users);
-  // Sets class based on whether user is going or not, default is maybe
 
-  // Sets class based on whether user is going or not, default is maybe
-  const usersArray = users.map((user) => {
+  const usersArray = users.map((user, i) => {
     // console.log(user.id, user.present);
     const presentStateClass = classnames("present-state", {
       "present-state-going": user.present === 2,
@@ -19,7 +16,7 @@ export default function GuestList(props) {
     });
 
     return (
-      <Media className="guestRow">
+      <Media key={i} className="guestRow">
         <ProfilePic
           customStyle={presentStateClass}
           loggedUser={loggedUser}

@@ -9,7 +9,9 @@ import "./Search.scss";
 import axios from "axios";
 
 export default function Search(props) {
-  const [searchInput, setSearchInput] = useState(null);
+  const location = useLocation();
+  const { searchItem } = location.state;
+  const [searchInput, setSearchInput] = useState(searchItem || null);
   const [searchResults, setSearchResults] = useState(null);
 
   const location  = useLocation();
@@ -34,9 +36,9 @@ export default function Search(props) {
 
   const searchCards =
     searchResults &&
-    searchResults.results.map((result) => {
+    searchResults.results.map((result, i) => {
       return (
-        <ul>
+        <ul key={i}>
           <Card className="searchedMealSingle">
             <Card.Title className="mealTitle">{result.title}</Card.Title>
             <Card.Body>
@@ -61,6 +63,7 @@ export default function Search(props) {
             type="text"
             placeholder="Search Recipes"
             className="mr-sm-2"
+            value={searchInput}
           />
           <Button variant="outline-primary" onClick={getSearchResults}>
             Search

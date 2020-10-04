@@ -15,6 +15,7 @@ export default function CreatePotluck(props) {
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [province, setProvince] = useState("");
+  const [error, setError] = useState("");
   let history = useHistory();
 
   function DateSelection() {
@@ -43,11 +44,12 @@ export default function CreatePotluck(props) {
       !province ||
       !startDate
     ) {
-      alert("Please enter all fields");
+      setError("Please enter all fields");
       return;
     }
     event.preventDefault();
-    // console.log(date);
+    setError("");
+
     const newPotluck = {
       host_id,
       potluckName,
@@ -62,7 +64,6 @@ export default function CreatePotluck(props) {
       .post("http://localhost:3003/mypotlucks/add", newPotluck)
       .then((result) => {
         const unique_key = result.data[0].unique_key;
-        // console.log("CREATED EVENT:", result.data[0]);
         history.push(`/Dashboard/${unique_key}`);
       })
       .catch((err) => console.log(err));
@@ -71,7 +72,8 @@ export default function CreatePotluck(props) {
   return (
     <div className="container">
       <div className="createPotluck">
-        <h1 class="pageTitle">Create a Potluck!</h1>
+        <h1 className="pageTitle">Create a Potluck!</h1>
+        {error && <p>{error}</p>}
         <Form>
           <Form.Group controlId="formBasicFirstName">
             <Form.Label>Potluck Name</Form.Label>
@@ -83,11 +85,6 @@ export default function CreatePotluck(props) {
             />
             <Form.Text className="text-muted"></Form.Text>
           </Form.Group>
-          {/* <Form.Group controlId="formBasicFirstName">
-            <Form.Label>Date</Form.Label>
-            <Form.Control type="text" placeholder="Enter Date" />
-            <Form.Text className="text-muted"></Form.Text>
-          </Form.Group>{" "} */}
           <Form.Group controlId="formBasicFirstName">
             <Form.Label>Address</Form.Label>
             <Form.Control
@@ -128,18 +125,14 @@ export default function CreatePotluck(props) {
             />
             <Form.Text className="text-muted"></Form.Text>
           </Form.Group>
-          {/* <Form.Group> */}
-          {/* <Form.Label>Date & Time</Form.Label> */}
-          <Form>
-            <Form.Label>Date & time</Form.Label>
+          <Form.Label>Date & time</Form.Label>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <br />
             <DateSelection />
-          </Form>
-          {/* </Form.Group> */}
-          <br />
-          <Button variant="primary" onClick={validatePotluck}>
-            Submit
-          </Button>
+            <Button variant="primary" onClick={validatePotluck}>
+              Submit
+            </Button>
+          </div>
         </Form>
       </div>
     </div>
