@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import SignupForm from "./components/Sign-up/SignupForm";
@@ -10,7 +15,6 @@ import MyPotlucks from "./components/My-potlucks/MyPotlucks";
 import MyRecipes from "./components/My-recipes/MyRecipes";
 import Recipe from "./components/Recipe/Recipe";
 import Search from "./components/Search/Search";
-import useVisualMode from "./hooks/useVisualMode";
 import Home from "./components/Home/Home";
 import Dashboard from "./components/Dashboard/Dashboard";
 
@@ -34,85 +38,96 @@ export default function App() {
           setAuth={setAuth}
         />
         <section>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-          <Route path="/home" component={() => <Home auth={auth} />} />
-          <Route
-            path="/mypotlucks"
-            component={() =>
-              auth ? (
-                <MyPotlucks loggedUser={loggedUser} />
-              ) : (
-                <Redirect to="/signin" />
-              )
-            }
-          />
-          <Route
-            path="/dashboard/:id"
-            component={() =>
-              auth ? (
-                <Dashboard loggedUser={loggedUser} />
-              ) : (
-                <Redirect to="/signin" />
-              )
-            }
-          />
-          <Route
-            path="/signup"
-            component={() => (
-              <SignupForm setLoggedUser={setLoggedUser} setAuth={setAuth} />
-            )}
-          />
-          <Route
-            path="/signin"
-            component={() => (
-              <SigninForm setLoggedUser={setLoggedUser} setAuth={setAuth} />
-            )}
-          />
-          <Route
-            path="/myrecipes"
-            component={() =>
-              auth ? (
-                <MyRecipes loggedUser={loggedUser} />
-              ) : (
-                <Redirect to="/signin" />
-              )
-            }
-          />
-          <Route path="/myfavorites">
-            <MyFavorites loggedUser={loggedUser} />
-          </Route>
-          <Route
-            path="/create"
-            component={() =>
-              auth ? (
-                <CreatePotluck loggedUser={loggedUser} />
-              ) : (
-                <Redirect to="/signin" />
-              )
-            }
-          />
-          <Route
-            path="/search"
-            component={() =>
-              auth ? (
-                <Search loggedUser={loggedUser} />
-              ) : (
-                <Redirect to="/signin" />
-              )
-            }
-          />
-          <Route
-            path="/recipe/:recipe_id"
-            component={() =>
-              auth ? (
-                <Recipe loggedUser={loggedUser} />
-              ) : (
-                <Redirect to="/signin" />
-              )
-            }
-          />
+          <Switch>
+            <Route exact path="/">
+              <Redirect to="/home" />
+            </Route>
+            <Route path="/home" component={() => <Home auth={auth} />} />
+            <Route
+              path="/mypotlucks"
+              component={() =>
+                auth ? (
+                  <MyPotlucks loggedUser={loggedUser} />
+                ) : (
+                  <Redirect to="/signin" />
+                )
+              }
+            />
+            <Route
+              path="/dashboard/:id"
+              component={() =>
+                auth ? (
+                  <Dashboard loggedUser={loggedUser} />
+                ) : (
+                  <Redirect to="/signin" />
+                )
+              }
+            />
+            <Route
+              path="/signup"
+              component={() => (
+                <SignupForm setLoggedUser={setLoggedUser} setAuth={setAuth} />
+              )}
+            />
+            <Route
+              path="/signin"
+              component={() => (
+                <SigninForm setLoggedUser={setLoggedUser} setAuth={setAuth} />
+              )}
+            />
+            <Route
+              path="/myrecipes"
+              component={() =>
+                auth ? (
+                  <MyRecipes loggedUser={loggedUser} />
+                ) : (
+                  <Redirect to="/signin" />
+                )
+              }
+            />
+            <Route path="/myfavorites">
+              <MyFavorites loggedUser={loggedUser} />
+            </Route>
+            <Route
+              path="/create"
+              component={() =>
+                auth ? (
+                  <CreatePotluck loggedUser={loggedUser} />
+                ) : (
+                  <Redirect to="/signin" />
+                )
+              }
+            />
+            <Route
+              path="/search"
+              component={() =>
+                auth ? (
+                  <Search loggedUser={loggedUser} />
+                ) : (
+                  <Redirect to="/signin" />
+                )
+              }
+            />
+            <Route
+              path="/recipe/:recipe_id"
+              component={() =>
+                auth ? (
+                  <Recipe loggedUser={loggedUser} />
+                ) : (
+                  <Redirect to="/signin" />
+                )
+              }
+            />
+            <Route path="*">
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <div>404 Page Not Found</div>
+            </Route>
+          </Switch>
         </section>
       </main>
     </Router>
