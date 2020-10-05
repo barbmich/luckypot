@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, useLocation } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./SignupForm.scss";
@@ -7,6 +7,8 @@ import axios from "axios";
 import FileBase64 from "react-file-base64";
 
 export default function SignupForm(props) {
+  const location = useLocation();
+  const urlGiven = location.state ? location.state.urlGiven : null;
   const { setAuth, setLoggedUser } = props;
   const [error, setError] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -18,6 +20,8 @@ export default function SignupForm(props) {
 
   let history = useHistory();
 
+  console.log("urlGiven FROM Signin::", urlGiven);
+
   function getFile(image) {
     setAvatar(image);
   }
@@ -25,7 +29,11 @@ export default function SignupForm(props) {
   const authenticateUser = (user) => {
     if (typeof user === "object") {
       setAuth((prev) => !prev);
-      history.push("/MyPotlucks");
+      if (urlGiven) {
+        history.push(urlGiven);
+      } else {
+        history.push("/MyPotlucks");
+      }
     }
   };
 

@@ -38,7 +38,9 @@ export default function GuestList(props) {
       <Card.Header className="guestTitleContainer">
         <Card.Title className="guestContainerTitle">Guests</Card.Title>
       </Card.Header>
-      {usersArray.sort((a, b) => a.present > b.present)}
+      <div className="proofilePicList">
+        {usersArray.sort((a, b) => a.present > b.present)}
+      </div>
     </div>
   );
 }

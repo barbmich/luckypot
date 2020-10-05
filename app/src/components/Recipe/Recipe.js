@@ -17,7 +17,6 @@ export default function Recipe(props) {
   const [isLoading, setLoading] = useState(true);
   const [myPotlucksList, setMyPotlucksList] = useState([]);
 
-
   // Get event id from location
   const eventId = location.state ? location.state.eventId : null;
   // Get itemId that is going to be updated if user is coming from dashboard
@@ -28,23 +27,23 @@ export default function Recipe(props) {
       setRecipe(result.data);
       setLoading(false);
     });
-  };
+  }
 
   useEffect(() => {
     axios
       .get(`http://localhost:3003/mypotlucks/${loggedUser.id}`)
       .then((result) => {
         console.log("USE EFFECT", result.data);
-        const potlucksList = result.data
+        const potlucksList = result.data;
         // Filter for specific event if coming from dashboard
-        if(eventId) {
+        if (eventId) {
           const potluck = potlucksList.find((each) => each.id === eventId);
           return setMyPotlucksList([potluck]);
         } else {
           return setMyPotlucksList(potlucksList);
         }
-      }).then(() => getRecipeDetails(recipe_id))
-   
+      })
+      .then(() => getRecipeDetails(recipe_id));
   }, []);
 
   if (isLoading) {
@@ -79,42 +78,43 @@ export default function Recipe(props) {
             {each.event_name}
           </Link>
         </Dropdown.Item>
-        <Dropdown.Divider />
       </div>
     );
   });
 
   function addMeal(event_id, recipe_name) {
-    if(eventId && itemId){
+    if (eventId && itemId) {
       const input = {
         name: recipe_name,
         recipe_id: recipe.id,
-        id: itemId
+        id: itemId,
       };
       console.log("IF INPUT ~~~~");
-      console.log(input)
-    axios.put("http://localhost:3003/items/update_meal", input)
-    .then((response) => {
-      console.log("IF RESPONSE ~~~~");
-      console.log(response.data);
-    })
+      console.log(input);
+      axios
+        .put("http://localhost:3003/items/update_meal", input)
+        .then((response) => {
+          console.log("IF RESPONSE ~~~~");
+          console.log(response.data);
+        });
     } else {
       const input = {
         event_id: event_id,
         category_id: 1,
         name: recipe_name,
         recipe_id: recipe.id,
-        assigned: loggedUser.id
+        assigned: loggedUser.id,
       };
       console.log("ELSE INPUT~~~~");
       console.log(input);
-      axios.post("http://localhost:3003/items/add_search", input)
-      .then((response) => {
-        console.log("ELSE RESPONSE~~~~");
-        console.log(response.data);
-      });
+      axios
+        .post("http://localhost:3003/items/add_search", input)
+        .then((response) => {
+          console.log("ELSE RESPONSE~~~~");
+          console.log(response.data);
+        });
     }
-  };
+  }
 
   return (
     <div>

@@ -1,22 +1,33 @@
 import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, useLocation } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import "./SigninForm.scss";
 
 export default function SignInForm(props) {
+  const location = useLocation();
+  const urlGiven = location.state ? location.state.urlGiven : null;
   const [email, setEmail] = useState(props.email || "");
   const [password, setPassword] = useState(props.password || "");
   const [error, setError] = useState("");
-  const { setAuth, setLoggedUser } = props;
+  const { setAuth, setLoggedUser, directUrl } = props;
   let history = useHistory();
 
+  console.log("URL PASSED:: ", directUrl);
+
+  // console.log("urlGiven FROM HOME::", urlGiven);
   const authenticateUser = (user) => {
     console.log(history);
     if (typeof user === "object") {
       setAuth((prev) => !prev);
-      history.push("/MyPotlucks");
+      if (urlGiven) {
+        history.push(urlGiven);
+      } else if (directUrl.includes("dashboard")) {
+        history.push(directUrl);
+      } else {
+        history.push("/MyPotlucks");
+      }
     }
   };
 
@@ -80,7 +91,13 @@ export default function SignInForm(props) {
       </Form>
       <p className="link-reg">
         Don't have an account? &nbsp;
-        <Link className="link-reg" to="/signup">
+        <Link
+          to={{
+            pathname: "/signup",
+            state: urlGiven ? { urlGiven: urlGiven } : null,
+          }}
+          className="link-reg"
+        >
           Register Here
         </Link>
       </p>
