@@ -49,15 +49,15 @@ export default function Recipe(props) {
     return { __html: stringHTML };
   }
 
-  const ingredients = recipe.extendedIngredients.map((each) => {
-    return <li>{each.name}</li>;
+  const ingredients = recipe.extendedIngredients.map((each, i) => {
+    return <li key={i}>{each.name}</li>;
   });
 
   // console.log("potluck list:", myPotlucksList);
 
-  const potlucks = myPotlucksList.map((each) => {
+  const potlucks = myPotlucksList.map((each, i) => {
     return (
-      <div>
+      <div key={i}>
         <Dropdown.Item eventKey="1">
           <Link
             to={`/dashboard/${each.unique_key}/`}
@@ -110,9 +110,7 @@ export default function Recipe(props) {
           <Card.Img variant="top" src={recipe.image} />
           <Card.Body>
             <Card.Title>{recipe.title}</Card.Title>
-            <Card.Text>
-              <div dangerouslySetInnerHTML={createMarkup(recipe.summary)} />
-            </Card.Text>
+            <div dangerouslySetInnerHTML={createMarkup(recipe.summary)} />
           </Card.Body>
           <ListGroup className="list-group-flush">
             <ListGroupItem>
