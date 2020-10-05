@@ -42,7 +42,9 @@ CREATE TABLE items (
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
   name VARCHAR(255) NOT NULL,
   recipe_id INTEGER DEFAULT NULL,
-  assigned INTEGER DEFAULT NULL
+  assigned INTEGER DEFAULT NULL,
+  url TEXT, 
+  image_url TEXT
 );
 
 CREATE TABLE guest_details (
