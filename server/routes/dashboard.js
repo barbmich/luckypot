@@ -80,7 +80,7 @@ module.exports = (db) => {
       .then((data) => {
         const items = data.rows;
         console.log("ITEMS FROM QUERY:");
-        console.log(data.rows);
+        console.log(items);
         res.json(items);
       })
       .catch((err) => {
@@ -181,7 +181,9 @@ module.exports = (db) => {
     const values = [req.params.unique_key, req.params.user_id];    
     db.query(
       `
-      SELECT * FROM guest_details WHERE events.unique_key = $1 AND user_id = $2;`,
+      SELECT * FROM guest_details 
+      JOIN events ON events.id = guest_details.event_id
+      WHERE events.unique_key = $1 AND user_id = $2;`,
       values
     )
       .then((data) => {

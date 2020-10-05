@@ -124,7 +124,7 @@ GET http://localhost:3003/dashboard/guests/z3sfpr2xdd/
 
 ###
 
-GET http://localhost:3003/dashboard/items/cokieltnpi
+GET http://localhost:3003/dashboard/items/z3sfpr2xdd
 
 
 ###
@@ -151,7 +151,7 @@ Content-Type: application/json
 ###
 
 #Check if user is in event
-GET http://localhost:3003/dashboard/check/1/1
+GET http://localhost:3003/dashboard/check/z3sfpr2xdd/1
 
 ###
 POST http://localhost:3003/messages/add
