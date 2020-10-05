@@ -10,7 +10,7 @@ import axios from "axios";
 
 export default function Search(props) {
   const location = useLocation();
-  const { searchItem } = location.state;
+  const searchItem = location.state ? location.state.searchItem : null;
   const [searchInput, setSearchInput] = useState(searchItem || null);
   const [searchResults, setSearchResults] = useState(null);
 
