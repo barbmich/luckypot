@@ -94,7 +94,9 @@ export default function SignInForm(props) {
         <Link
           to={{
             pathname: "/signup",
-            state: urlGiven ? { urlGiven: urlGiven } : null,
+            // state: urlGiven ? { urlGiven: urlGiven } : null,
+            // directUrl: directUrl,
+            state: { urlGiven: urlGiven, directUrl: directUrl },
           }}
           className="link-reg"
         >
