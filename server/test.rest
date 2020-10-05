@@ -189,4 +189,7 @@ Content-Type: application/json
   "assigned": 2
 }
 
+###
+
+GET http://localhost:3003/myrecipes/1
 

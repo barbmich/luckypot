@@ -62,7 +62,7 @@ module.exports = (db) => {
      WHERE user_id = $1) AS test
      JOIN events ON events.id = test.event_id
      JOIN items ON events.id = items.event_id
-     JOIN users ON users.id = test.user_id;
+     JOIN users ON users.id = test.user_id
      `,
       values
     )

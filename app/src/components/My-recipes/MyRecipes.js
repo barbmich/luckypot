@@ -52,6 +52,7 @@ export default function MyRecipes(props) {
     return (
       <ul key={i}>
         <Card className="meal-unchosen">
+          <Card.Img variant="top" src={recipe.meal_picture} />
           <Card.Title>{recipe.name}</Card.Title>
           <Card.Body>{recipe.potluck_name}</Card.Body>
           <Button

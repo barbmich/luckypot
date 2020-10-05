@@ -11,7 +11,7 @@ import Messages from "./Messages";
 import OthersContainer from "./OthersContainer";
 
 export default function Dashboard(props) {
-  const loggedUser = JSON.parse(localStorage.getItem('user'));
+  const loggedUser = JSON.parse(localStorage.getItem("user"));
   const { unique_key } = useParams();
   let history = useHistory();
 
@@ -34,7 +34,6 @@ export default function Dashboard(props) {
       setItems([...items, response.data]);
     });
   }
-
 
   useEffect(() => {
     Promise.all([
@@ -78,7 +77,6 @@ export default function Dashboard(props) {
                 userPresent={userPresent}
                 setUserPresent={setUserPresent}
                 event={event}
-                users={users}
                 loggedUser={loggedUser}
               />
             </div>
