@@ -102,71 +102,84 @@ export default function SignupForm(props) {
     <div className="authForm">
       <h1 className="pageTitle">Register</h1>
       {error && <p>{error}</p>}
-      <Form className="form">
-        <Form.Group controlId="formBasicFirstName">
-          <Form.Label>First Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter first name"
-            value={firstName}
-            onChange={(event) => setFirstName(event.target.value)}
-          />
-          <Form.Text className="text-muted"></Form.Text>
-        </Form.Group>
-        <Form.Group controlId="formBasicLastName">
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter last name"
-            value={lastName}
-            onChange={(event) => setLastName(event.target.value)}
-          />
-          <Form.Text className="text-muted"></Form.Text>
-        </Form.Group>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </Form.Group>
-        <Form.Group controlId="formBasicPasswordConfirmation">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Confirm your password"
-            value={retypePassword}
-            onChange={(event) => setRetypePassword(event.target.value)}
-          />
-        </Form.Group>
-        <Form.Label>Profile Picture</Form.Label>
-        <FileBase64 multiple={true} onDone={getFile.bind(this)} />
-        {avatar.length !== 0 ? (
-          <div>
-            {avatar.map((index, i) => {
-              console.log(index);
-              return <img key={i} src={index.base64} alt="profile" />;
-            })}
+      <div className="form-container">
+        <Form className="form">
+          <div id="sections-container">
+            <section id="left-section">
+              <Form.Group controlId="formBasicFirstName">
+                <Form.Label>First Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter first name"
+                  value={firstName}
+                  onChange={(event) => setFirstName(event.target.value)}
+                />
+                <Form.Text className="text-muted"></Form.Text>
+              </Form.Group>
+              <Form.Group controlId="formBasicLastName">
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter last name"
+                  value={lastName}
+                  onChange={(event) => setLastName(event.target.value)}
+                />
+                <Form.Text className="text-muted"></Form.Text>
+              </Form.Group>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId="formBasicPasswordConfirmation">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirm your password"
+                  value={retypePassword}
+                  onChange={(event) => setRetypePassword(event.target.value)}
+                />
+              </Form.Group>
+            </section>
+            <section id="right-section">
+              <Form.Label>Profile Picture</Form.Label>
+              <FileBase64 multiple={true} onDone={getFile.bind(this)} />
+              {avatar.length !== 0 ? (
+                <div>
+                  {avatar.map((index, i) => {
+                    console.log(index);
+                    return (
+                      <img
+                        key={i}
+                        className="user-avatar"
+                        src={index.base64}
+                        value={avatar.name}
+                        alt="profile"
+                      />
+                    );
+                  })}
+                </div>
+              ) : null}
+            </section>
           </div>
-        ) : null}
-        <Button variant="primary" onClick={(event) => validate(event)}>
-          Submit
-        </Button>
-      </Form>
+          <Button variant="primary" onClick={(event) => validate(event)}>
+            Submit
+          </Button>
+        </Form>
+      </div>
       <p className="link-reg">
         Already have an account? &nbsp;
         <Link className="link-reg" to="/signin">

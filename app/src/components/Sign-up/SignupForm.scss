@@ -1,7 +1,23 @@
-.imgUpload {
-  margin-bottom: 10px;
-}
-
 .link-reg {
   margin-top: 10px;
+}
+
+#sections-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 300px;
+  width: 530px;
+
+  section {
+    padding: 1em;
+  }
+}
+
+.user-avatar {
+  max-height: 20em;
+}
+
+.form-container {
+  max-width: 40em;
 }
