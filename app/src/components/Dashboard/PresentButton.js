@@ -14,10 +14,25 @@ export default function PresentButton(props) {
           `http://localhost:3003/dashboard/present/${loggedUser.id}/${event.id}`
         )
         .then((result) => {
-          // console.log("ERROR PB",result.data[0]);
-          setUserPresent(result.data[0].present);
-          // console.log("USER PRESENT FROM GET: ", userPresent);
-        });
+
+          if(result.data.length === 0){
+            const guest = {
+              event_id: event.id,
+              user_id: loggedUser.id,
+            };
+            axios.post("http://localhost:3003/dashboard/addguest", guest)
+            .then((result) => {
+
+              setUserPresent(result.data[0].present);
+            });
+          } else{
+            setUserPresent(result.data[0].present);
+          }
+
+        })
+        .catch((err) =>{
+          console.log(err);
+        } )
     }
   }, []);
 
