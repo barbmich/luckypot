@@ -127,7 +127,7 @@ export default function Dashboard(props) {
               loggedUser={loggedUser}
               addMeal={addMeal}
             />
-            <OthersContainer />
+            {/* <OthersContainer /> */}
           </Row>
         </Col>
         <Col lg={{ span: 3, offset: 1 }} sm={6}>

@@ -16,14 +16,12 @@ export default function ProfilePic(props) {
   return (
     <Figure className={customStyle}>
       <Figure.Image
-        width={171}
-        height={180}
         alt="171x180"
         src={avatar_url}
-        className="rounded-circle"
+        className="main-profile-pic"
       />
       <Figure.Caption className="name">
-        {!first_name ? "" : `${first_name} ${last_name}`}
+        {!first_name ? "" : `${first_name}`}
       </Figure.Caption>
     </Figure>
   );

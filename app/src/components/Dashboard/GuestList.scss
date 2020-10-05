@@ -5,13 +5,20 @@
   border-radius: 1%;
 }
 
+.proofilePicList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
+}
+
 .guestRow {
-  background-color: #edf2f8;
-  margin-top: 0px;
-  border: solid #ffffff 5px;
-  border-radius: 2%;
+  //   background-color: #edf2f8;
+  //   margin-top: 0px;
+  //   border: solid #ffffff 5px;
+  //   border-radius: 2%;
   text-align: center;
-  display: list-item;
+  //   display: list-item;
 }
 
 .guestRow:hover {
