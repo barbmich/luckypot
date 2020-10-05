@@ -9,6 +9,7 @@ import FileBase64 from "react-file-base64";
 export default function SignupForm(props) {
   const location = useLocation();
   const urlGiven = location.state ? location.state.urlGiven : null;
+  const directUrl = location.state ? location.state.directUrl : null;
   const { setAuth, setLoggedUser } = props;
   const [error, setError] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -20,17 +21,19 @@ export default function SignupForm(props) {
 
   let history = useHistory();
 
-  console.log("urlGiven FROM Signin::", urlGiven);
+  console.log("urlGiven FROM Signin::", directUrl);
 
   function getFile(image) {
     setAvatar(image);
   }
-
+  console.log("directURL REGISTER:", directUrl);
   const authenticateUser = (user) => {
     if (typeof user === "object") {
       setAuth((prev) => !prev);
       if (urlGiven) {
         history.push(urlGiven);
+      } else if (directUrl.includes("dashboard")) {
+        history.push(directUrl);
       } else {
         history.push("/MyPotlucks");
       }
