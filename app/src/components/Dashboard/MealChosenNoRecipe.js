@@ -17,7 +17,7 @@ export default function MealChosenNoRecipe(props) {
         <Link
           to={{
             pathname: "/search",
-            state: item ? { searchItem: item.name } : null,
+            state: item ? { searchItem: item.name, itemId: item.id, eventId: item.event_id } : null,
           }}
         >
           <Button className="recipeBtn" variant="primary">

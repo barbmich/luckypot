@@ -10,17 +10,14 @@ import axios from "axios";
 
 export default function Search(props) {
   const location = useLocation();
-  const { searchItem } = location.state;
+  const searchItem  = location.state ? location.state.searchItem : null;
   const [searchInput, setSearchInput] = useState(searchItem || null);
   const [searchResults, setSearchResults] = useState(null);
+  
+  // Event Id from location if coming from dashboard
+  const eventInfo = location.state;
 
-  const location  = useLocation();
-  console.log("LOCATION", location);
-  console.log("location.pathname", location.pathname);
-  console.log("location.search", location.search);
-  console.log("location.state.search_item",location.state.search_item);
-
-
+  
   const getSearchResults = (event) => {
     event.preventDefault();
     console.log("SEARCHED: ", searchInput); //Valid here
@@ -44,7 +41,9 @@ export default function Search(props) {
             <Card.Body>
               <Figure.Image className="recipePic" src={result.image} />
               <br />
-              <Link to={`/recipe/${result.id}`}>
+              <Link to={{ pathname:`/recipe/${result.id}`,
+                          state: eventInfo
+                       }}>
                 <Button variant="primary">View Full Recipe</Button>
               </Link>
             </Card.Body>

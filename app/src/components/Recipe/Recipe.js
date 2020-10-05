@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useLocation, useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -10,6 +10,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import "./Recipe.scss";
 
 export default function Recipe(props) {
+  const location = useLocation();
   const { loggedUser } = props;
   const { recipe_id } = useParams();
   const [recipe, setRecipe] = useState("");
@@ -17,7 +18,12 @@ export default function Recipe(props) {
   const [myPotlucksList, setMyPotlucksList] = useState([]);
   const [potluckChosen, setPotluckChosen] = useState("");
 
-  const getRecipeDetails = (recipe_id) => {
+  // Get event id from location
+  const eventId = location.state ? location.state.eventId : null;
+  // Get itemId that is going to be updated if user is coming from dashboard
+  const itemId = location.state ? location.state.itemId : null;
+
+  function getRecipeDetails() {
     axios.get(`http://localhost:3003/recipe/${recipe_id}`).then((result) => {
       setRecipe(result.data);
       setLoading(false);
@@ -29,11 +35,16 @@ export default function Recipe(props) {
       .get(`http://localhost:3003/mypotlucks/${loggedUser.id}`)
       .then((result) => {
         console.log("USE EFFECT", result.data);
-        setMyPotlucksList(result.data);
-        // setLoading(false);
-      });
-
-    getRecipeDetails(recipe_id);
+        const potlucksList = result.data
+        // Filter for specific event if coming from dashboard
+        if(eventId) {
+          const potluck = potlucksList.find((each) => each.id === eventId);
+          return setMyPotlucksList([potluck]);
+        } else {
+          return setMyPotlucksList(potlucksList);
+        }
+      }).then(() => getRecipeDetails(recipe_id))
+   
   }, []);
 
   if (isLoading) {
@@ -53,8 +64,6 @@ export default function Recipe(props) {
     return <li>{each.name}</li>;
   });
 
-  // console.log("potluck list:", myPotlucksList);
-
   const potlucks = myPotlucksList.map((each) => {
     return (
       <div>
@@ -63,7 +72,7 @@ export default function Recipe(props) {
             to={`/dashboard/${each.unique_key}/`}
             onClick={() => {
               setPotluckChosen(each.id);
-              // addMeal(each.id, recipe.title);
+              addMeal(each.id, recipe.title);
             }}
           >
             {each.event_name}
@@ -74,21 +83,37 @@ export default function Recipe(props) {
     );
   });
 
-  // function addMeal(event_id, recipe_name) {
-  //   const input = {
-  //     event_id: event_id,
-  //     recipe_id: recipe.id,
-  //     name: recipe_name,
-  //     category_id: 1,
-  //   };
-  //   // console.log("EVENT id:", event_id);
-  //   // console.log("Recipe_id:", recipe_id);
-  //   // console.log("NAME", name);
-
-  //   axios.put("http://localhost:3003/items/add", input).then((response) => {
-  //     console.log(response.data);
-  //   });
-  // }
+  function addMeal(event_id, recipe_name) {
+    if(eventId && itemId){
+      const input = {
+        name: recipe_name,
+        recipe_id: recipe.id,
+        id: itemId
+      };
+      console.log("IF INPUT ~~~~");
+      console.log(input)
+    axios.put("http://localhost:3003/items/update_meal", input)
+    .then((response) => {
+      console.log("IF RESPONSE ~~~~");
+      console.log(response.data);
+    })
+    } else {
+      const input = {
+        event_id: event_id,
+        category_id: 1,
+        name: recipe_name,
+        recipe_id: recipe.id,
+        assigned: loggedUser.id
+      };
+      console.log("ELSE INPUT~~~~");
+      console.log(input);
+      axios.post("http://localhost:3003/items/add_search", input)
+      .then((response) => {
+        console.log("ELSE RESPONSE~~~~");
+        console.log(response.data);
+      });
+    }
+  };
 
   return (
     <div>

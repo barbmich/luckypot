@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Card from "react-bootstrap/Card";
 
 export default function MyFavorites(props) {
   const { loggedUser } = props;
