@@ -23,6 +23,7 @@ export default function App() {
     JSON.parse(localStorage.getItem("user")) || ""
   );
   const [auth, setAuth] = useState(loggedUser ? true : false);
+  const directUrl = window.location.href.slice(21);
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(loggedUser));
@@ -72,7 +73,11 @@ export default function App() {
             <Route
               path="/signin"
               component={() => (
-                <SigninForm setLoggedUser={setLoggedUser} setAuth={setAuth} />
+                <SigninForm
+                  setLoggedUser={setLoggedUser}
+                  setAuth={setAuth}
+                  directUrl={directUrl}
+                />
               )}
             />
             <Route

@@ -11,16 +11,20 @@ export default function SignInForm(props) {
   const [email, setEmail] = useState(props.email || "");
   const [password, setPassword] = useState(props.password || "");
   const [error, setError] = useState("");
-  const { setAuth, setLoggedUser } = props;
+  const { setAuth, setLoggedUser, directUrl } = props;
   let history = useHistory();
 
-  console.log("urlGiven FROM HOME::", urlGiven);
+  console.log("URL PASSED:: ", directUrl);
+
+  // console.log("urlGiven FROM HOME::", urlGiven);
   const authenticateUser = (user) => {
     console.log(history);
     if (typeof user === "object") {
       setAuth((prev) => !prev);
       if (urlGiven) {
         history.push(urlGiven);
+      } else if (directUrl.includes("dashboard")) {
+        history.push(directUrl);
       } else {
         history.push("/MyPotlucks");
       }
