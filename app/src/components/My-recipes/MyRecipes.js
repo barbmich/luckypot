@@ -21,6 +21,10 @@ export default function MyRecipes(props) {
       ),
     ]).then((all) => {
       const [myRecipes, tastedRecipes] = all;
+      console.log("MY RECIPES");
+      console.log(myRecipes.data);
+      console.log("TASTED RECIPES");
+      console.log(tastedRecipes.data);
       setRecipeList(myRecipes.data);
       setTastedList(tastedRecipes.data);
       setLoading(false);
