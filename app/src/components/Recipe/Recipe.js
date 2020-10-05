@@ -16,7 +16,7 @@ export default function Recipe(props) {
   const [recipe, setRecipe] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [myPotlucksList, setMyPotlucksList] = useState([]);
-  const [potluckChosen, setPotluckChosen] = useState("");
+
 
   // Get event id from location
   const eventId = location.state ? location.state.eventId : null;
@@ -73,7 +73,6 @@ export default function Recipe(props) {
           <Link
             to={`/dashboard/${each.unique_key}/`}
             onClick={() => {
-              setPotluckChosen(each.id);
               addMeal(each.id, recipe.title);
             }}
           >
@@ -157,7 +156,6 @@ export default function Recipe(props) {
             </ListGroupItem>
           </ListGroup>
           <Card.Body>
-            <Card.Link href="#">Bring to Potluck??</Card.Link>
             <Card.Link target="_blank" href={`${recipe.sourceUrl}`}>
               Recipe Source
             </Card.Link>
