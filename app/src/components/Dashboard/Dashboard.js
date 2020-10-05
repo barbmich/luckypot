@@ -11,7 +11,7 @@ import Messages from "./Messages";
 import OthersContainer from "./OthersContainer";
 
 export default function Dashboard(props) {
-  const { loggedUser } = props;
+  const loggedUser = JSON.parse(localStorage.getItem('user'));
   const { unique_key } = useParams();
   let history = useHistory();
 
@@ -35,32 +35,6 @@ export default function Dashboard(props) {
     });
   }
 
-  function isInPotluck(user, key) {
-    axios
-      .get(`http://localhost:3003/dashboard/check/${key}/${user}`)
-      .then((response) => {
-        const check = response.data;
-        // console.log("DATA", check);
-        if (check.length === 0) {
-          const guest = {
-            event_id: event,
-            user_id: user,
-          };
-          return axios
-            .post("http://localhost:3003/dashboard/addguest", guest)
-            .then(() => {
-              console.log("new user");
-              history.push(`/dashboard/${key}`);
-            });
-        } else {
-          history.push(`/dashboard/${key}`);
-          console.log("existing user");
-        }
-      });
-  }
-  useEffect(() => {
-    isInPotluck(loggedUser.id, unique_key);
-  }, []);
 
   useEffect(() => {
     Promise.all([
