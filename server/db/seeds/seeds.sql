@@ -18,16 +18,16 @@ INSERT INTO categories (name) VALUES
 ('Main'),
 ('Dessert');
 
-INSERT INTO items (event_id, category_id, name) VALUES
-(1, 1, 'Nuts'),
-(1, 2, 'Lamb'),
-(1, 3, 'Ice cream'),
-(2, 1, 'Cheese'),
-(2, 2, 'Pork'),
-(2, 3, 'Chocolate cookies'),
-(3, 1, 'Potato chips'),
-(3, 2, 'Lasagna'),
-(3, 3, 'Petit gateau');
+INSERT INTO items (event_id, category_id, name, recipe_id) VALUES
+(1, 1, 'Nuts', 1),
+(1, 2, 'Pie', 2),
+(1, 3, 'Chicken', 3),
+(2, 1, 'Salad', 4),
+(2, 2, 'Burgers', 5),
+(2, 3, 'Chocolate cookies', 6),
+(3, 1, 'Dessert', 7),
+(3, 2, 'Lasagna', 8),
+(3, 3, 'Petit gateau', 9);
 
 
 INSERT INTO guest_details (event_id, user_id, present) VALUES
@@ -65,12 +65,26 @@ INSERT INTO event_comments (event_id, user_id, message) VALUES
 (3, 3, 'This is a COMMENT for EVENT 3 !');
 
 INSERT INTO custom_recipes (user_id, category_id, name, ingredients, instructions,  picture_url) VALUES
-(4, 1, 'NoFrills nuts', 'Almonds, cashews, brazil nuts', '1) Grab your wallet; 2) go to NoFrills; 3)buy', 'https://scontent.fymy1-2.fna.fbcdn.net/v/t1.0-9/p720x720/117269134_1245731339152505_8549505575835967506_o.jpg?_nc_cat=101&_nc_sid=8024bb&_nc_ohc=OR8jS7lGiIQAX_zEiA-&_nc_ht=scontent.fymy1-2.fna&tp=6&oh=3e869df797b6d4b026088c246f31b5d8&oe=5F7EA889'),
-(5, 2, 'Grandmas Secret Pie', 'Classifed', 'Classifed', 'https://d2culxnxbccemt.cloudfront.net/craft/content/uploads/articles/uploads/2013/12/20120916-221984-avopie4-thumb-514x385-271847.jpg'),
-(6, 3, 'Famous chicken wings from Sahara', 'Chicken and wing', 'Are there chickens in Sahara?', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR022Bpb5JjwBLLlm1QEmeY5B78w2dhgcePlg&usqp=CAU');
+(4, 1, 'NoFrills nuts', 'Almonds, cashews, brazil nuts', '1) Grab your wallet; 2) go to NoFrills; 3)buy', 'https://i.imgur.com/6RpiqFZ.jpeg'),
+(5, 2, 'Grandmas Secret Pie', 'Classifed', 'Classifed', 'https://i.imgur.com/FLPeldk.jpg'),
+(6, 3, 'Famous chicken wings from Sahara', 'Chicken and wing', 'Are there chickens in Sahara?', 'https://i.imgur.com/nWJPyff.jpg'),
+(2, 3, 'Fresh Caprese Salad', 'Mozzerella, Balsamic Vinegar, Tomato', 'Cut, Combine, Drizzle, and Enjoy!', 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/7/18/0/WU0314H_caprese-salad-recipe_s4x3.jpg.rend.hgtvcom.826.620.suffix/1530799895174.jpeg'),
+(1, 3, 'Cheeseburger Sliders', 'Bun, ground Beef, tomato, onion', 'Toss them on the bbq, season to taste and serve', 'https://natashaskitchen.com/wp-content/uploads/2020/03/Cheeseburger-Sliders-4-728x1092.jpg'),
+(2, 3, 'Double chocolate cookies', 'Flour, sugar, butter, baking powder, chocolate chips', 'combine and bake for 30 minutes at 350F', 'https://i.imgur.com/R1FZ54b.jpeg'),
+(6, 3, 'Lava Cake', 'Chocolate, Chocolate, Chocolate and MORE Chocolate', 'Cook at 375F for 20 minutes, let cool and enjoy!', 'https://i.imgur.com/Ug7qbWu.jpg'),
+(3, 3, 'Lasagna', 'Tomato sauce, ricotta, parmesan, noodles, mozzerella cheese', 'Boil noodles until soft, layer noodles and ricotta until pan is almost full. Bake at 375F for 60 minutes', 'https://i.imgur.com/haB36HO.jpeg'),
+(1, 3, 'Chocolate Brownie Explosion Cake', 'Flour, sugar, butter, baking powder, chocolate chips', 'combine and bake for 30 minutes at 350F. Combine and Enjoy!', 'https://i.imgur.com/BgAvBzn.jpg');
 
 INSERT INTO favorites (user_id, recipe_id) VALUES
 (4, 1),
 (5, 2),
-(6, 3);
+(5, 3),
+(2, 4),
+(2, 5),
+(3, 6),
+(3, 7),
+(1, 8),
+(1, 9);
+
+
 

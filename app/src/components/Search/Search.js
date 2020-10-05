@@ -16,7 +16,7 @@ export default function Search(props) {
   const [error, setError] = useState("");
   // Event Id from location if coming from dashboard
   const eventInfo = location.state;
-  
+
   const getSearchResults = (event) => {
     event.preventDefault();
     console.log("SEARCHED: ", searchInput); //Valid here
@@ -43,9 +43,7 @@ export default function Search(props) {
             <Card.Body>
               <Figure.Image className="recipePic" src={result.image} />
               <br />
-              <Link to={{ pathname:`/recipe/${result.id}`,
-                          state: eventInfo
-                       }}>
+              <Link to={{ pathname: `/recipe/${result.id}`, state: eventInfo }}>
                 <Button variant="primary">View Full Recipe</Button>
               </Link>
             </Card.Body>
