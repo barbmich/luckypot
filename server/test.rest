@@ -124,7 +124,7 @@ GET http://localhost:3003/dashboard/guests/z3sfpr2xdd/
 
 ###
 
-GET http://localhost:3003/dashboard/items/z3sfpr2xdd/
+GET http://localhost:3003/dashboard/items/cokieltnpi
 
 
 ###
@@ -165,3 +165,28 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3003/recipe/657359
+
+###
+PUT http://localhost:3003/items/update_meal
+Content-Type: application/json
+
+{
+  "name" : "Pumpking latte pie",
+  "recipe_id" : 4654,
+  "id": 4
+}
+
+###
+
+POST http://localhost:3003/items/add_search
+Content-Type: application/json
+
+{
+  "event_id": 2,
+  "category_id": 1,
+  "name" : "Pumpking latte pie",
+  "recipe_id" : 4654,
+  "assigned": 2
+}
+
+

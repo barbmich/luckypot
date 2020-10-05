@@ -14,7 +14,8 @@ module.exports = (db) => {
       values
     ).then((data) => {
       res.send(data.rows);
-    });
+    })
+    .catch((err) => console.log(err))
   });
 
   router.post("/items/add", (req, res) => {
@@ -39,25 +40,54 @@ module.exports = (db) => {
       .catch((err) => console.log(err));
   });
 
-  // router.get("/items/:values", (req, res) => {
-  //   const values = [];
-  //   console.log("REQ>BODY FROM BACK", req.body);
-  //   for (key in req.body) {
-  //     values.push(req.body[key]);
-  //   }
-  //   db.query(
-  //     `SELECT * FROM "items" WHERE assigned = $1 AND event_id = $2;`,
-  //     values
-  //   )
-  //     .then((data) => {
-  //       res.json(data.rows);
-  //       console.log("GET response from server getting RECIPES:", data.rows);
-  //     })
-  //     .catch((err) => {
-  //       res.send(err);
-  //     });
-  // });
+  router.put("/items/update_meal", (req, res) => {
+    const values = [];
+    for (key in req.body) {
+      values.push(req.body[key]);
+    }
+    console.log("UPDATE MEAL ~~~~~");
+    console.log(values);
+      db.query(`
+        UPDATE items 
+        SET name = $1,
+            recipe_id = $2
+        WHERE id = $3
+        RETURNING *;
+        `,
+          values
+      ).then((data) => {
+        console.log("UPDATE MEAL DATA ~~~~~");
+        console.log(data.rows);
+        res.send(data.rows);
+      })
+      .catch((err) => console.log(err))
 
+    })
+      router.post("/items/add_search", (req, res) => {
+        const values = [];
+        console.log(req.body);
+        for (key in req.body) {
+          values.push(req.body[key]);
+        }
+        console.log("ADD FROM SEARCH~~~~~");
+        console.log(values);
+        db.query(
+          `
+          INSERT INTO items (event_id, category_id, name, recipe_id, assigned) VALUES
+          ($1, $2, $3, $4, $5) RETURNING *;
+        `,
+          values
+        )
+          .then((data) => {
+            console.log("ITEM ADDED AND USER ASSIGNED!:");
+            console.log(data.rows[0]);
+            res.send(data.rows[0]);
+          })
+          .catch((err) => console.log(err));
+      });
+        
+  
+  
   return router;
 };
 

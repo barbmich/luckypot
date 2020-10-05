@@ -30,16 +30,16 @@ INSERT INTO items (event_id, category_id, name) VALUES
 (3, 3, 'Petit gateau');
 
 
-INSERT INTO guest_details (event_id, user_id) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(2, 2),
-(2, 4),
-(2, 5),
-(3, 3),
-(3, 6),
-(3, 7);
+INSERT INTO guest_details (event_id, user_id, present) VALUES
+(1, 1, 2),
+(1, 2, 1),
+(1, 3, 1),
+(2, 2, 2),
+(2, 4, 1),
+(2, 5, 1),
+(3, 3, 2),
+(3, 6, 1),
+(3, 7, 1);
 
 INSERT INTO guest_items (item_id, guest_id) VALUES
 (1 ,1),

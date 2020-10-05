@@ -82,8 +82,8 @@ module.exports = (db) => {
               console.log("EVENT ID AND OWNER ID ~~~~~~~~~~~~~~~~~~~");
               return db.query(
                 `
-                INSERT INTO guest_details (event_id, user_id) 
-                VALUES ($1, $2) RETURNING (SELECT unique_key FROM events WHERE id =$1);
+                INSERT INTO guest_details (event_id, user_id, present) 
+                VALUES ($1, $2, 2) RETURNING (SELECT unique_key FROM events WHERE id =$1);
                 `
               , values)
             })
