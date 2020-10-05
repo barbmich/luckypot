@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Dashboard.scss";
@@ -14,7 +14,7 @@ export default function Dashboard(props) {
   const { loggedUser } = props;
   const { unique_key } = useParams();
   let history = useHistory();
-    
+
   const [isLoading, setLoading] = useState(true);
   const [event, setEvent] = useState({});
   const [users, setUsers] = useState([]);
@@ -23,7 +23,7 @@ export default function Dashboard(props) {
   const [userPresent, setUserPresent] = useState(null);
   const [host, setHost] = useState({});
 
-  function addMeal(item, category) {
+  function addMeal(item) {
     const input = {
       event_id: event.id,
       category_id: 1,
@@ -80,15 +80,9 @@ export default function Dashboard(props) {
       setLoading(false);
       setHost({
         first_name: event.owner_first_name,
-        last_name: event.owner_last_name
-      })
-      // console.log(event);
-      // console.log(users);
-      // console.log(items);
-      // console.log(messages);
-
-    })
-    //   }
+        last_name: event.owner_last_name,
+      });
+    });
   }, [userPresent]);
 
   if (isLoading) {
@@ -100,7 +94,7 @@ export default function Dashboard(props) {
       <Container fluid>
         <Col lg={{ span: 2, offset: 1 }} sm={6}>
           {loggedUser.id === event.owner_id ? (
-            "link to event"
+            <Link to={event.unique_key}>Invite your friends!</Link>
           ) : (
             <div className="guestTitle">
               <h4>

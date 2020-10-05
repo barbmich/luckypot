@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./MealItem.scss";
-import Search from "../Search/Search";
 import { Card, Button } from "react-bootstrap";
 
 export default function MealChosenNoRecipe(props) {

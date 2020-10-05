@@ -23,10 +23,10 @@ export default function MyPotlucks(props) {
     return <p>Loading...</p>;
   }
 
-  const userPotlucks = potlucksList.map((potluck) => {
+  const userPotlucks = potlucksList.map((potluck, i) => {
     if (potluck) {
       return (
-        <div>
+        <div key={i}>
           <h3>{potluck.event_name}</h3>
           <p>{moment(potluck.date).format("dddd, MMMM Do YYYY, h:mm a")}</p>
           <p>

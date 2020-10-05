@@ -30,9 +30,9 @@ export default function MyRecipes(props) {
     return <p>Loading...</p>;
   }
 
-  const recipeListCards = recipeList.map((recipe) => {
+  const recipeListCards = recipeList.map((recipe, i) => {
     return (
-      <ul>
+      <ul key={i}>
         <Card className="meal-unchosen">
           <Card.Title>{recipe.name}</Card.Title>
           <Card.Body>{recipe.potluck_name}</Card.Body>
@@ -41,9 +41,9 @@ export default function MyRecipes(props) {
     );
   });
 
-  const tastedListCards = tastedList.map((recipe) => {
+  const tastedListCards = tastedList.map((recipe, i) => {
     return (
-      <ul>
+      <ul key={i}>
         <Card className="meal-unchosen">
           <Card.Title>{recipe.name}</Card.Title>
           <Card.Body>{recipe.potluck_name}</Card.Body>

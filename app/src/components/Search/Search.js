@@ -10,13 +10,12 @@ import axios from "axios";
 
 export default function Search(props) {
   const location = useLocation();
-  const searchItem  = location.state ? location.state.searchItem : null;
-  const [searchInput, setSearchInput] = useState(searchItem || null);
+  const searchItem = location.state ? location.state.searchItem : null;
+  const [searchInput, setSearchInput] = useState(searchItem || "");
   const [searchResults, setSearchResults] = useState(null);
-  
+  const [error, setError] = useState("");
   // Event Id from location if coming from dashboard
   const eventInfo = location.state;
-
   
   const getSearchResults = (event) => {
     event.preventDefault();
@@ -24,16 +23,19 @@ export default function Search(props) {
     axios
       .get(`http://localhost:3003/recipes/search/${searchInput}`)
       .then((result) => {
-        setSearchResults(result.data);
-        // setLoading(false);
-        // console.log("result.data ")
+        console.log(result.data.results);
+        if (result.data.results.length === 0) {
+          setError("No results found.");
+        } else {
+          setSearchResults(result.data.results);
+        }
       })
       .catch((err) => console.log("Error on Recipe Search Response:", err));
   };
 
   const searchCards =
     searchResults &&
-    searchResults.results.map((result, i) => {
+    searchResults.map((result, i) => {
       return (
         <ul key={i}>
           <Card className="searchedMealSingle">
@@ -56,17 +58,21 @@ export default function Search(props) {
     <div>
       <div className="searchForm">
         <h1 className="pageTitle">Delicious Recipes Live Here</h1>
-        <Form inline>
-          <FormControl
-            onChange={(event) => setSearchInput(event.target.value)}
-            type="text"
-            placeholder="Search Recipes"
-            className="mr-sm-2"
-            value={searchInput}
-          />
-          <Button variant="outline-primary" onClick={getSearchResults}>
-            Search
-          </Button>
+        {error && <p>{error}</p>}
+        <Form>
+          <div style={{ display: "flex" }}>
+            <FormControl
+              style={{ marginRight: "1em" }}
+              onChange={(event) => setSearchInput(event.target.value)}
+              type="text"
+              placeholder="Search Recipes"
+              className="mr-sm-2"
+              value={searchInput}
+            />
+            <Button variant="outline-primary" onClick={getSearchResults}>
+              Search
+            </Button>
+          </div>
         </Form>
       </div>
       <div className="searchResults">{searchCards}</div>
