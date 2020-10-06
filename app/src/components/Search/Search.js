@@ -17,8 +17,7 @@ export default function Search(props) {
   // Event Id from location if coming from dashboard
   const eventInfo = location.state;
 
-  const getSearchResults = (event) => {
-    event.preventDefault();
+  const getSearchResults = () => {
     console.log("SEARCHED: ", searchInput); //Valid here
     axios
       .get(`http://localhost:3003/recipes/search/${searchInput}`)
@@ -62,6 +61,12 @@ export default function Search(props) {
             <FormControl
               style={{ marginRight: "1em" }}
               onChange={(event) => setSearchInput(event.target.value)}
+              onKeyDown={(e) => {
+                if (e && e.keyCode == 13) {
+                  e.preventDefault();
+                  getSearchResults();
+                }
+              }}
               type="text"
               placeholder="Search Recipes"
               className="mr-sm-2"
