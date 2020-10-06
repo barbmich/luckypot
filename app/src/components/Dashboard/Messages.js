@@ -15,7 +15,11 @@ export default function Messages(props) {
   const eventMessages = chatMessages
     // .sort((a, b) => a.timestamp < b.timestamp)
     .map((msg, i) => {
-      const user = users.find((user) => user.id === msg.user_id);
+      const user = users.find((user) => {
+        console.log("user found:", user);
+        console.log("from message:", msg.user_id);
+        return user.id === msg.user_id;
+      });
       return (
         <Media key={i} as="li">
           <ProfilePic
@@ -30,11 +34,11 @@ export default function Messages(props) {
       );
     });
 
-  const sendMessage = (message) => {
+  function sendMessage() {
     const eventMessage = {
       event_id: event.id,
       user_id: loggedUser.id,
-      message: message,
+      message: messageContent,
     };
     // console.log("obj sent to ws:", eventMessage);
     axios
@@ -77,27 +81,33 @@ export default function Messages(props) {
 
   return (
     <div>
-      <Card className="msgContainer">
-        <Card.Title className="mealsContainerTitle">Messages</Card.Title>
-        <Card className="msgContainer">
-          <Card.Body className=".pin-to-bottom">
-            {/* <Card.Header className="msgTitleContainer"></Card.Header> */}
+      <Card className="msgContainer" style={{display: "flex", flexDirection: "column",
+    alignItems: "center"}}>
+        <Card.Title className="mealsContainerTitle" style={{width: "99%"}}>Messages</Card.Title>
+        <Card className="msgContainer" style={{width: "95%"}}>
+          <Card.Body  >
+ 
             <ul className="list-unstyled">{eventMessages}</ul>
           </Card.Body>
         </Card>
-        <div className="msgInput">
+        <div className="msgInput" style={{width: "-webkit-fill-available", maxWidth: "95%", display: "flex", flexDirection: "column", alignItems: "stretch"}}>
           <Form className="msgForm">
             <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Label>Enter Message</Form.Label>
+              <Form.Label style={{marginTop: "1em"}}>Enter Message</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
                 value={messageContent}
                 onChange={(event) => setMessageContent(event.target.value)}
+                onKeyDown={(e) => {
+                  if (e && e.key == "Enter") {
+                    sendMessage();
+                  }
+                }}
               />
-              <Button
+              <Button style={{marginTop: "0.5em", width: "-webkit-fill-available"}}
                 className="msgBtn"
-                onClick={() => sendMessage(messageContent)}
+                onClick={() => sendMessage()}
                 variant="primary"
               >
                 Send

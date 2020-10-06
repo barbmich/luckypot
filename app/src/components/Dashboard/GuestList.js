@@ -8,8 +8,8 @@ export default function GuestList(props) {
   const { users, userPresent, loggedUser } = props;
 
   const usersArray = users
+    .sort((a, b) => b.present - a.present)
     .map((user, i) => {
-      // console.log(user.id, user.present);
       const presentStateClass = classnames("present-state", {
         "present-state-going": user.present === 2,
         "present-state-missing": user.present === 0,
@@ -30,17 +30,14 @@ export default function GuestList(props) {
           />
         </Media>
       );
-    })
-    .sort((a, b) => a.present > b.present);
+    });
 
   return (
     <div className="guestList">
       <Card.Header className="guestTitleContainer">
         <Card.Title className="guestContainerTitle">Guests</Card.Title>
       </Card.Header>
-      <div className="profilePicList">
-        {usersArray.sort((a, b) => a.present > b.present)}
-      </div>
+      <div className="profilePicList">{usersArray}</div>
     </div>
   );
 }

@@ -1,22 +1,16 @@
 import React from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Button,
-  Panel,
-  Glyphicon,
-  Grid,
-} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import AddButton from "./AddButton";
 import MealItem from "./MealItem";
 import "./MealsContainer.scss";
 import CardTest from "./CardTest";
+import axios from "axios";
 
 export default function MealsContainer(props) {
-  const { items, users, loggedUser, addMeal, userPresent } = props;
+  const {  items, users, loggedUser, userPresent, event } = props;
 
+  console.log("ITEMS LIST");
+  console.log(items);
 
   const itemsArray = items.map((item, i) => {
     const user = users.find((user) => {
@@ -26,13 +20,13 @@ export default function MealsContainer(props) {
       <CardTest
         key={i}
         userPresent={userPresent}
+        event={event}
         item={item}
         name={item.name}
         user={user}
         users={users}
         loggedUser={loggedUser}
       />
-      
     );
   });
 

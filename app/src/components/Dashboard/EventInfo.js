@@ -5,7 +5,8 @@ import moment from "moment";
 
 export default function EventInfo(props) {
   const { event, host } = props;
-  // console.log("EVT: ", event);
+  console.log("host in event info");
+  console.log(host);
   return (
     <Card className="text-center eventContainer">
       <Card.Header>{event.name}</Card.Header>

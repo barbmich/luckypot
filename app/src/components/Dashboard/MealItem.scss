@@ -7,6 +7,12 @@
 
 .recipeBtn {
   margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 12rem;
+
 }
 
 .meal-unchosen {
@@ -14,14 +20,6 @@
   align-items: center;
   width: 24rem;
   height: 20rem;
-  margin: 5px;
-  text-align: center;
-  background-color: #f7f7f7;
-}
-
-.meal-chosen {
-  display: flex;
-  align-items: center;
   margin: 5px;
   text-align: center;
   background-color: #f7f7f7;
