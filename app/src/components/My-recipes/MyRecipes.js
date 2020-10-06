@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./MyRecipes.scss";
 import Card from "react-bootstrap/Card";
@@ -21,10 +22,10 @@ export default function MyRecipes(props) {
       ),
     ]).then((all) => {
       const [myRecipes, tastedRecipes] = all;
-      console.log("MY RECIPES");
-      console.log(myRecipes.data);
-      console.log("TASTED RECIPES");
-      console.log(tastedRecipes.data);
+      // console.log("MY RECIPES");
+      // console.log(myRecipes.data);
+      // console.log("TASTED RECIPES");
+      // console.log(tastedRecipes.data);
       setRecipeList(myRecipes.data);
       setTastedList(tastedRecipes.data);
       setLoading(false);
@@ -37,7 +38,7 @@ export default function MyRecipes(props) {
     axios
       .post("http://localhost:3003/favorites/add", input)
       .then((response) => {
-        // console.log(response);
+        console.log("response from server on favs post:", response);
       })
       .catch((error) => {
         console.error("ERROR HERE", error.message);
@@ -49,13 +50,22 @@ export default function MyRecipes(props) {
   }
 
   const recipeListCards = recipeList.map((recipe, i) => {
+    console.log("HHHHH RECIPE :::", recipe);
     return (
       <ul key={i}>
         <Card className="meal-unchosen">
-          <Card.Img variant="top" src={recipe.meal_picture} />
+          {/* <Card.Img variant="top" src={recipe.image_url} /> */}
           <Card.Title>{recipe.name}</Card.Title>
           <Card.Body>{recipe.potluck_name}</Card.Body>
+
+          {recipe.url && (
+            <a href={recipe.url} targer="_blank">
+              <Button>View Full Recipe</Button>
+            </a>
+          )}
+
           <Button
+            className="favBtn"
             variant="secondary"
             onClick={() => addToFavorites(recipe.meal_id)}
           >
@@ -75,7 +85,16 @@ export default function MyRecipes(props) {
           <Card.Title>{recipe.name}</Card.Title>
           <Card.Body>{recipe.potluck_name}</Card.Body>
           <Card.Body>Provided by: {recipe.guest}</Card.Body>
-          <Button variant="secondary">
+          {recipe.url && (
+            <a href={recipe.url} targer="_blank">
+              <Button>View Full Recipe</Button>
+            </a>
+          )}
+          <Button
+            className="favBtn"
+            variant="secondary"
+            onClick={() => addToFavorites(recipe.meal_id)}
+          >
             <span role="img" aria-label="heart">
               🖤
             </span>
@@ -89,14 +108,10 @@ export default function MyRecipes(props) {
     <div>
       <h1 className="pageTitle">My Recipes</h1>
       <div className="recipeList">
-        <div>
-          <h3 className="listTitle">You've Brought</h3>
-          {recipeListCards}
-        </div>
-        <div>
-          <h3 className="listTitle">You've Tasted</h3>
-          {tastedListCards}
-        </div>
+        <h3 className="listTitle">You've Brought</h3>
+        <div className="eachList">{recipeListCards}</div>
+        <h3 className="listTitle">You've Tasted</h3>
+        <div className="eachList">{tastedListCards}</div>
       </div>
     </div>
   );

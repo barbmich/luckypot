@@ -1,6 +1,6 @@
 .recipeList {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   margin-top: 40px;
 }
@@ -9,4 +9,20 @@
   text-align: center;
   padding-left: 30px;
   margin-bottom: 15px;
+  font-size: x-large;
+}
+
+.meal-unchosen {
+  height: auto !important;
+  padding: 10px;
+}
+
+.favBtn {
+  margin-top: 3px;
+  padding-right: 12px;
+}
+
+.eachList {
+  display: flex;
+  flex-wrap: wrap;
 }

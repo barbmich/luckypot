@@ -33,7 +33,12 @@ export default function MyFavorites(props) {
             src={recipe.picture_url}
           />
           <Card.Body>{recipe.event_name}</Card.Body>
-          <Button variant="secondary">View Full Recipe</Button>
+
+          {recipe.url && (
+            <a href={recipe.url} targer="_blank">
+              <Button>View Full Recipe</Button>
+            </a>
+          )}
         </Card>
       </ul>
     );
