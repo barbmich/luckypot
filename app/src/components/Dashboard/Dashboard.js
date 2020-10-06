@@ -112,7 +112,7 @@ export default function Dashboard(props) {
             <AddButton items={items} addMeal={addMeal} />
             </div>
             </Row>
-        </Col>
+
         <Col sm={6} className={styles.col}>
           <Row className="row-meals">
             <MealsContainer
