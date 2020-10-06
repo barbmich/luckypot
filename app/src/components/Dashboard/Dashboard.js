@@ -52,6 +52,7 @@ export default function Dashboard(props) {
         setUsers(all[1].data);
       }
       setItems(all[2].data);
+      console.log("items FROM 53", all[2]);
       setMessages(all[3].data);
       setLoading(false);
       setHost({
@@ -60,6 +61,8 @@ export default function Dashboard(props) {
       });
     });
   }, [userPresent]);
+
+  console.log("THESE ARE THE ITEMS::: :)", items);
 
   const styles = {
     col: {
@@ -70,7 +73,6 @@ export default function Dashboard(props) {
   if (isLoading) {
     return <p>Loading...</p>;
   }
-
   return (
     <div className="mainDashboard">
       <Container fluid className="columnContainer">
@@ -117,9 +119,9 @@ export default function Dashboard(props) {
         </Col>
         <Row>
           <Col sm={6}>
-            <Card.Header className="msgTitleContainer">
+            {/* <Card.Header className="msgTitleContainer">
               <Card.Title className="mealsContainerTitle">Messages</Card.Title>
-            </Card.Header>
+            </Card.Header> */}
             <Messages
               messages={messages}
               users={users}
@@ -132,8 +134,6 @@ export default function Dashboard(props) {
           lg={{ span: 2 }}
           className="mealsContainer"
         >
-        </Col>
-        <Col className="messagesContainer">
         </Col> */}
       </Container>
     </div>
