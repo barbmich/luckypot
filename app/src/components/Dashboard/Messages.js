@@ -72,9 +72,9 @@ export default function Messages(props) {
   return (
     <Card className="msgContainer">
       <Card.Body>
-        {/* <Card.Header className="msgTitleContainer">
+        <Card.Header className="msgTitleContainer">
           <Card.Title className="mealsContainerTitle">Messages</Card.Title>
-        </Card.Header> */}
+        </Card.Header>
         <ul className="list-unstyled">{eventMessages}</ul>
         <div className="msgInput">
           <Form className="msgForm">
