@@ -11,6 +11,7 @@ export default function MyRecipes(props) {
   const [isLoading, setLoading] = useState(true);
   const [recipeList, setRecipeList] = useState([]);
   const [tastedList, setTastedList] = useState([]);
+  // const [favChosen, setFavChosen] = useState(null);
 
   useEffect(() => {
     Promise.all([
@@ -32,25 +33,29 @@ export default function MyRecipes(props) {
     });
   }, []);
 
-  const addToFavorites = (recipe_id) => {
-    const user_id = loggedUser.id;
-    const input = { user_id, recipe_id };
-    axios
-      .post("http://localhost:3003/favorites/add", input)
-      .then((response) => {
-        console.log("response from server on favs post:", response);
-      })
-      .catch((error) => {
-        console.error("ERROR HERE", error.message);
-      });
-  };
+  // Recipe is logging undefined. needs to be fixed. //
+
+  // const addToFavorites = (recipe) => {
+  //   // console.log("RECIPE ID INPUT", recipe);
+  //   const user_id = loggedUser.id;
+  //   const input = { user_id, recipe };
+  //   // console.log("POS 1", input);
+  //   axios
+  //     .post("http://localhost:3003/favorites/add", input)
+  //     .then((response) => {
+  //       console.log("response from server on favs post:", response);
+  //     })
+  //     .catch((error) => {
+  //       console.error("ERROR HERE", error.message);
+  //     });
+  // };
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
   const recipeListCards = recipeList.map((recipe, i) => {
-    console.log("HHHHH RECIPE :::", recipe);
+    console.log("HHHHH RECIPE :::", recipe.meal_id);
     return (
       <ul key={i}>
         <Card className="meal-unchosen">
@@ -67,7 +72,7 @@ export default function MyRecipes(props) {
           <Button
             className="favBtn"
             variant="secondary"
-            onClick={() => addToFavorites(recipe.meal_id)}
+            // onClick={() => addToFavorites(recipe.meal_id)}
           >
             <span role="img" aria-label="heart">
               🖤
@@ -93,7 +98,7 @@ export default function MyRecipes(props) {
           <Button
             className="favBtn"
             variant="secondary"
-            onClick={() => addToFavorites(recipe.meal_id)}
+            // onClick={() => addToFavorites(recipe.meal_id)}
           >
             <span role="img" aria-label="heart">
               🖤

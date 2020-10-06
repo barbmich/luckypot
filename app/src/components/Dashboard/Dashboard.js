@@ -63,13 +63,15 @@ export default function Dashboard(props) {
     });
   }, [userPresent]);
 
-  console.log("THESE ARE THE ITEMS::: :)", items);
+  // console.log("THESE ARE THE ITEMS::: :)", items);
 
   const styles = {
     col: {
       backgroundColor: "#C3DCE1",
     },
   };
+  const url = "http://localhost:3002/dashboard/" + unique_key;
+  const mailtoLink = `mailto:?subject=Please%20Join%20me%20for%20my%20Upcoming%20Potluck!&body=Dear%20Guest%2C%20%0D%0A%0D%0AI%20am%20hosting%20a%20Potluck%20and%20you%20are%20invited!%20Please%20copy%20this%20link%20-->%20${url}%20<--%20Paste%20it%20to%20your%20browser%20and%20you%20will%20be%20added%20to%20the%20guest%20list.%20`;
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -84,7 +86,7 @@ export default function Dashboard(props) {
             users={users}
           />
           {loggedUser.id === event.owner_id ? (
-            <Link to={event.unique_key}>Invite your friends!</Link>
+            <a href={mailtoLink}>Invite your Friends!</a>
           ) : (
               <div className="guestTitle">
                 <h4>
@@ -97,7 +99,6 @@ export default function Dashboard(props) {
                   loggedUser={loggedUser}
                 />
               </div>
-            // </Row>
           )}
           <Row>
             <EventInfo event={event} users={users} host={host} />
