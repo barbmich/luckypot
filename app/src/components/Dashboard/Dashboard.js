@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import axios from "axios";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import "./Dashboard.scss";
 import PresentButton from "./PresentButton";
 import EventInfo from "./EventInfo";
@@ -9,6 +9,9 @@ import GuestList from "./GuestList";
 import MealsContainer from "./MealsContainer";
 import Messages from "./Messages";
 import OthersContainer from "./OthersContainer";
+import CardTest from "./Card/CardTest";
+import AddButton from "./AddButton";
+import "./Messages.scss";
 
 export default function Dashboard(props) {
   const loggedUser = JSON.parse(localStorage.getItem("user"));
@@ -58,39 +61,49 @@ export default function Dashboard(props) {
     });
   }, [userPresent]);
 
+  const styles = {
+    col: {
+      backgroundColor: "#C3DCE1",
+    },
+  };
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
   return (
     <div className="mainDashboard">
-      <Container fluid>
-        <Col lg={{ span: 2, offset: 1 }} sm={6}>
+      <Container fluid className="columnContainer">
+        <Col lg={{ span: 2 }} sm={6} /*className="columns"*/>
+          <GuestList
+            loggedUser={loggedUser}
+            userPresent={userPresent}
+            users={users}
+          />
           {loggedUser.id === event.owner_id ? (
             <Link to={event.unique_key}>Invite your friends!</Link>
           ) : (
-            <div className="guestTitle">
-              <h4>
-                Let <strong>{host.first_name}</strong> know if you're going!
-              </h4>
-              <PresentButton
-                userPresent={userPresent}
-                setUserPresent={setUserPresent}
-                event={event}
-                loggedUser={loggedUser}
-              />
-            </div>
+            <Row>
+              <div className="guestTitle">
+                <h4>
+                  Let <strong>{host.first_name}</strong> know if you're going!
+                </h4>
+                <PresentButton
+                  userPresent={userPresent}
+                  setUserPresent={setUserPresent}
+                  event={event}
+                  loggedUser={loggedUser}
+                />
+              </div>
+            </Row>
           )}
           <Row>
-            <GuestList
-              loggedUser={loggedUser}
-              userPresent={userPresent}
-              users={users}
-            />
+            <EventInfo event={event} users={users} host={host} />
           </Row>
+          <Row>{/* <CardTest /> */}</Row>
         </Col>
-        <Col lg={{ span: 4, offset: 1 }} sm={6}>
-          <Row>
+        <Col sm={6} className={styles.col}>
+          <Row className="row-meals">
             <MealsContainer
               userPresent={userPresent}
               event={event}
@@ -99,20 +112,29 @@ export default function Dashboard(props) {
               loggedUser={loggedUser}
               addMeal={addMeal}
             />
-            {/* <OthersContainer /> */}
+            <AddButton items={items} addMeal={addMeal} />
           </Row>
         </Col>
-        <Col lg={{ span: 3, offset: 1 }} sm={6}>
-          <Row>
-            <EventInfo event={event} users={users} host={host} />
+        <Row>
+          <Col sm={6}>
+            <Card.Header className="msgTitleContainer">
+              <Card.Title className="mealsContainerTitle">Messages</Card.Title>
+            </Card.Header>
             <Messages
               messages={messages}
               users={users}
               loggedUser={loggedUser}
               event={event}
             />
-          </Row>
+          </Col>
+        </Row>
+        {/* <Col
+          lg={{ span: 2 }}
+          className="mealsContainer"
+        >
         </Col>
+        <Col className="messagesContainer">
+        </Col> */}
       </Container>
     </div>
   );

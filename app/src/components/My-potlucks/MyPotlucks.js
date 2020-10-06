@@ -16,6 +16,7 @@ export default function MyPotlucks(props) {
     axios
       .get(`http://localhost:3003/mypotlucks/${loggedUser.id}`)
       .then((result) => {
+        // console.log("this is result:", result.data);
         setPotlucksList(result.data);
         setLoading(false);
       });

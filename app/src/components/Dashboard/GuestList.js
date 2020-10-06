@@ -9,7 +9,7 @@ export default function GuestList(props) {
 
   const usersArray = users
     .map((user, i) => {
-      console.log(user.id, user.present);
+      // console.log(user.id, user.present);
       const presentStateClass = classnames("present-state", {
         "present-state-going": user.present === 2,
         "present-state-missing": user.present === 0,
@@ -38,7 +38,7 @@ export default function GuestList(props) {
       <Card.Header className="guestTitleContainer">
         <Card.Title className="guestContainerTitle">Guests</Card.Title>
       </Card.Header>
-      <div className="proofilePicList">
+      <div className="profilePicList">
         {usersArray.sort((a, b) => a.present > b.present)}
       </div>
     </div>

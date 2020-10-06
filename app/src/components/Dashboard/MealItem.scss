@@ -12,8 +12,12 @@
 .meal-unchosen {
   display: flex;
   align-items: center;
-  width: 18rem;
+  width: 24rem;
+  height: 20rem;
   margin: 5px;
   text-align: center;
   background-color: #f7f7f7;
+}
+
+.meal-chosen {
 }

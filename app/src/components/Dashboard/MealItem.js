@@ -48,7 +48,7 @@ export default function MealItem(props) {
           </>
         ) : (
           <Button onClick={() => setAssigned(loggedUser)}>
-            Click Here to bring <strong>{name}</strong>
+            Click to Bring
           </Button>
         )}
       </Card.Body>

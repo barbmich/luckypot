@@ -9,9 +9,9 @@ INSERT INTO users (first_name, last_name, password, email, avatar_url) VALUES
 
 
 INSERT INTO events (owner_id, name, date, address, post_code, city, province, tiny_url, unique_key) VALUES
-(1, 'My FIRST Potluck','2020-12-20 10:30:01', '30 Some Road', 'M3F6D4', 'Toronto', 'Ontario', 'https://tinyurl.com/y6tnkqam', 'z3sfpr2xdd'),
-(2, 'My SECOND Potluck','2020-11-25 06:30:01', '15 Any Court', 'F3Z7D5', 'Ottawa', 'Ontario', 'https://tinyurl.com/y5qok3ag', '603zs7066p'),
-(3, 'My THIRD Potluck','2020-11-25 06:30:01', '15 Any Court', 'F3Z7D5', 'Ottawa', 'Ontario', 'https://tinyurl.com/y5azzfw6', '8tspr0msfq');
+(1, 'Christmas Party 2020','2020-12-20 10:30:01', '30 Some Road', 'M3F6D4', 'Toronto', 'Ontario', 'https://tinyurl.com/y6tnkqam', 'z3sfpr2xdd'),
+(2, 'Canada Day BBQ','2021-07-01 06:30:01', '15 Any Court', 'F3Z7D5', 'Ottawa', 'Ontario', 'https://tinyurl.com/y5qok3ag', '603zs7066p'),
+(3, 'Thanksgiving Feast','2020-11-25 06:30:01', '54 Albert Street', 'H3Z7F7', 'Montreal', 'Ontario', 'https://tinyurl.com/y5azzfw6', '8tspr0msfq');
 
 INSERT INTO categories (name) VALUES
 ('Appetizer'),
@@ -33,7 +33,11 @@ INSERT INTO items (event_id, category_id, name, recipe_id) VALUES
 INSERT INTO guest_details (event_id, user_id, present) VALUES
 (1, 1, 2),
 (1, 2, 1),
-(1, 3, 1),
+(1, 3, 2),
+(1, 4, 1),
+(1, 5, 2),
+(1, 6, 1),
+(1, 7, 1),
 (2, 2, 2),
 (2, 4, 1),
 (2, 5, 1),

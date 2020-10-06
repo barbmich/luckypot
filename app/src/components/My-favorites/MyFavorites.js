@@ -13,7 +13,6 @@ export default function MyFavorites(props) {
     axios
       .get(`http://localhost:3003/favorites/${loggedUser.id}`)
       .then((result) => {
-        console.log("this is result:", result.data);
         setFavoritesList(result.data);
         setLoading(false);
       });
@@ -24,7 +23,6 @@ export default function MyFavorites(props) {
   }
 
   const favoriteCards = favoritesList.map((recipe) => {
-    console.log("RECIPE!!", recipe);
     return (
       <ul>
         <Card className="meal-unchosen">

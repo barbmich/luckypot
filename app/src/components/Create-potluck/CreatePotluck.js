@@ -59,7 +59,7 @@ export default function CreatePotluck(props) {
       city,
       province,
     };
-    console.log(newPotluck);
+    // console.log(newPotluck);
     axios
       .post("http://localhost:3003/mypotlucks/add", newPotluck)
       .then((result) => {
