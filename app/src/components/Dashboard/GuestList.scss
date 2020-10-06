@@ -5,9 +5,10 @@
   border-radius: 1%;
 }
 
-.proofilePicList {
+.profilePicList {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
   margin: 2px;
 }
@@ -19,6 +20,7 @@
   //   border-radius: 2%;
   text-align: center;
   //   display: list-item;
+  margin: 5px;
 }
 
 .guestRow:hover {

@@ -23,7 +23,7 @@ module.exports = (db) => {
     request(_RECIPES_API_URL, (error, response, body) => {
       if (!error && response.statusCode == 200) {
         res.send(body);
-        console.log("result of api call for RECIPE::", body);
+        // console.log("result of api call for RECIPE::", body);
       }
     });
   });

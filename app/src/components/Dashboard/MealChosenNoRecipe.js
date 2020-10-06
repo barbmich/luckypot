@@ -7,23 +7,27 @@ export default function MealChosenNoRecipe(props) {
   const { item } = props;
 
   return (
-    <Card className="meal-unchosen">
-      <Card.Body>
-        <span aria-label={"checkmark"} role={"img"}>
+    <div className="meal-chosen">
+      {/* <span aria-label={"checkmark"} role={"img"}>
           ✔️
         </span>{" "}
-        You have chosen <strong>{item && item.name}</strong>
-        <Link
-          to={{
-            pathname: "/search",
-            state: item ? { searchItem: item.name, itemId: item.id, eventId: item.event_id } : null,
-          }}
-        >
-          <Button className="recipeBtn" variant="primary">
-            Search among our recipes
-          </Button>
-        </Link>
-      </Card.Body>
-    </Card>
+        You have chosen <strong>{item && item.name}</strong> */}
+      <Link
+        to={{
+          pathname: "/search",
+          state: item
+            ? {
+                searchItem: item.name,
+                itemId: item.id,
+                eventId: item.event_id,
+              }
+            : null,
+        }}
+      >
+        <Button className="recipeBtn" variant="primary">
+          Search recipes
+        </Button>
+      </Link>
+    </div>
   );
 }

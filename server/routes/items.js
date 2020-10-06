@@ -12,15 +12,16 @@ module.exports = (db) => {
       UPDATE items SET assigned = $2 WHERE items.id = $1 RETURNING *;
       `,
       values
-    ).then((data) => {
-      res.send(data.rows);
-    })
-    .catch((err) => console.log(err))
+    )
+      .then((data) => {
+        res.send(data.rows);
+      })
+      .catch((err) => console.log(err));
   });
 
   router.post("/items/add", (req, res) => {
     const values = [];
-    console.log(req.body);
+    // console.log("Items", req.body);
     for (key in req.body) {
       values.push(req.body[key]);
     }
@@ -47,47 +48,49 @@ module.exports = (db) => {
     }
     console.log("UPDATE MEAL ~~~~~");
     console.log(values);
-      db.query(`
+    db.query(
+      `
         UPDATE items 
         SET name = $1,
-            recipe_id = $2
-        WHERE id = $3
+            recipe_id = $2,
+            url = $3,
+            image_url =$4
+        WHERE id = $5
         RETURNING *;
         `,
-          values
-      ).then((data) => {
+      values
+    )
+      .then((data) => {
         console.log("UPDATE MEAL DATA ~~~~~");
         console.log(data.rows);
         res.send(data.rows);
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
+  });
 
-    })
-      router.post("/items/add_search", (req, res) => {
-        const values = [];
-        console.log(req.body);
-        for (key in req.body) {
-          values.push(req.body[key]);
-        }
-        console.log("ADD FROM SEARCH~~~~~");
-        console.log(values);
-        db.query(
-          `
-          INSERT INTO items (event_id, category_id, name, recipe_id, assigned) VALUES
-          ($1, $2, $3, $4, $5) RETURNING *;
+  router.post("/items/add_search", (req, res) => {
+    const values = [];
+    console.log(req.body);
+    for (key in req.body) {
+      values.push(req.body[key]);
+    }
+    console.log("ADD FROM SEARCH~~~~~");
+    console.log(values);
+    db.query(
+      `
+          INSERT INTO items (event_id, category_id, name, recipe_id, assigned, image_url, url) VALUES
+          ($1, $2, $3, $4, $5, $6, $7) RETURNING *;
         `,
-          values
-        )
-          .then((data) => {
-            console.log("ITEM ADDED AND USER ASSIGNED!:");
-            console.log(data.rows[0]);
-            res.send(data.rows[0]);
-          })
-          .catch((err) => console.log(err));
-      });
-        
-  
-  
+      values
+    )
+      .then((data) => {
+        console.log("ITEM ADDED AND USER ASSIGNED!:");
+        console.log(data.rows[0]);
+        res.send(data.rows[0]);
+      })
+      .catch((err) => console.log(err));
+  });
+
   return router;
 };
 

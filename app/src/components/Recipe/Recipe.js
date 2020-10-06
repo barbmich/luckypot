@@ -28,12 +28,12 @@ export default function Recipe(props) {
       setLoading(false);
     });
   }
-
+  console.log("RECIPE: ", recipe);
   useEffect(() => {
     axios
       .get(`http://localhost:3003/mypotlucks/${loggedUser.id}`)
       .then((result) => {
-        console.log("USE EFFECT", result.data);
+        // console.log("USE EFFECT", result.data);
         const potlucksList = result.data;
         // Filter for specific event if coming from dashboard
         if (eventId) {
@@ -87,6 +87,8 @@ export default function Recipe(props) {
       const input = {
         name: recipe_name,
         recipe_id: recipe.id,
+        url: recipe.sourceUrl,
+        image_url: recipe.image,
         id: itemId,
       };
       console.log("IF INPUT ~~~~");
@@ -94,8 +96,8 @@ export default function Recipe(props) {
       axios
         .put("http://localhost:3003/items/update_meal", input)
         .then((response) => {
-          console.log("IF RESPONSE ~~~~");
-          console.log(response.data);
+          // console.log("IF RESPONSE ~~~~");
+          console.log("Result of Put:::", response.data);
         });
     } else {
       const input = {
@@ -104,14 +106,16 @@ export default function Recipe(props) {
         name: recipe_name,
         recipe_id: recipe.id,
         assigned: loggedUser.id,
+        image_url: recipe.image,
+        url: recipe.sourceUrl,
       };
-      console.log("ELSE INPUT~~~~");
-      console.log(input);
+      // console.log("ELSE INPUT~~~~");
+      // console.log(input);
       axios
         .post("http://localhost:3003/items/add_search", input)
         .then((response) => {
-          console.log("ELSE RESPONSE~~~~");
-          console.log(response.data);
+          // console.log("ELSE RESPONSE~~~~");
+          // console.log(response.data);
         });
     }
   }

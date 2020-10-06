@@ -36,11 +36,11 @@ export default function Messages(props) {
       user_id: loggedUser.id,
       message: message,
     };
-    console.log("obj sent to ws:", eventMessage);
+    // console.log("obj sent to ws:", eventMessage);
     axios
       .post("http://localhost:3003/messages/add", eventMessage)
       .then((response) => {
-        console.log(typeof response);
+        // console.log(typeof response);
         ws.current.send(JSON.stringify(response));
         setMessageContent("");
       })
@@ -59,7 +59,7 @@ export default function Messages(props) {
     //     ));
     ws.current.onmessage = (message) => {
       const newMessage = JSON.parse(message.data);
-      console.log("from websocket:", newMessage.data);
+      // console.log("from websocket:", newMessage.data);
       if (newMessage.data.event_id === event.id) {
         setChatMessages([...chatMessages, newMessage.data]);
       }
@@ -70,14 +70,14 @@ export default function Messages(props) {
   }, [chatMessages]);
 
   return (
-    <Card bg="dark" text="light" className="msgContainer">
+    <Card className="msgContainer">
       <Card.Body>
-        <Card.Header className="msgTitleContainer">
+        {/* <Card.Header className="msgTitleContainer">
           <Card.Title className="mealsContainerTitle">Messages</Card.Title>
-        </Card.Header>
+        </Card.Header> */}
         <ul className="list-unstyled">{eventMessages}</ul>
         <div className="msgInput">
-          <Form>
+          <Form className="msgForm">
             <Form.Group controlId="exampleForm.ControlTextarea1">
               <Form.Label>Enter Message</Form.Label>
               <Form.Control

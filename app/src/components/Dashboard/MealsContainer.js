@@ -1,5 +1,6 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+// import { Card } from "react-bootstrap/card";
+import Container from "react-bootstrap/container";
 import AddButton from "./AddButton";
 import MealItem from "./MealItem";
 import "./MealsContainer.scss";
@@ -25,9 +26,9 @@ export default function MealsContainer(props) {
   });
 
   return (
-    <Card className="mealsContainer">
+    <Container className="mealsContainer">
       {itemsArray}
-      <AddButton items={items} addMeal={addMeal} />
-    </Card>
+      {/* <AddButton items={items} addMeal={addMeal} /> */}
+    </Container>
   );
 }

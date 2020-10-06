@@ -1,10 +1,12 @@
 .mealsContainer {
-  width: 79rem;
-  height: 25rem;
+  width: auto;
+  height: 50rem;
+  height: auto;
   text-align: center;
   overflow: auto;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
   margin: 8px;
 }

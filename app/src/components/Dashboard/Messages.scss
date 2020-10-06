@@ -3,9 +3,14 @@
   height: 39rem;
   text-align: center;
   overflow: auto;
+  // display: flex;
+  // flex-direction: column;
+  background-color: #f7f7f7;
+  margin: 8px;
+
+  overflow: auto;
   display: flex;
   flex-direction: column;
-  margin: 8px;
 }
 
 .mealsContainerTitle {
@@ -33,3 +38,8 @@
   border: solid grey 0.2em;
   border-radius: 20%;
 }
+
+// .msgForm {
+//   display: flex;
+//   flex-direction: column-reverse;
+// }

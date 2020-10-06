@@ -24,7 +24,7 @@ module.exports = (db) => {
       values
     )
       .then((data) => {
-        console.log(data.rows);
+        // console.log(data.rows);
         let event = data.rows;
         res.json(event);
       })
@@ -57,7 +57,7 @@ module.exports = (db) => {
     )
       .then((data) => {
         const guests = data.rows;
-        console.log(data.rows);
+        // console.log(data.rows);
         res.json(guests);
       })
       .catch((err) => {
@@ -107,7 +107,7 @@ module.exports = (db) => {
     )
       .then((data) => {
         const event_messages = data.rows;
-        console.log(data.rows);
+        // console.log(data.rows);
         res.json(event_messages);
       })
       .catch((err) => {
@@ -137,11 +137,11 @@ module.exports = (db) => {
 
   router.post("/dashboard/addguest", (req, res) => {
     const values = [];
-    console.log(req.body);
+    // console.log(req.body);
     for (key in req.body) {
       values.push(req.body[key]);
     }
-    console.log(values);
+    // console.log(values);
     db.query(
       `
       INSERT INTO guest_details (event_id, user_id) VALUES
@@ -167,18 +167,17 @@ module.exports = (db) => {
       values
     )
       .then((data) => {
-        console.log("DATA FROM SERVER", data);
+        // console.log("DATA FROM SERVER", data);
         res.json(data.rows);
       })
       .catch((err) => {
         console.log(err);
         res.send(err);
       });
-
-  })
-            // check if user is in potluck
-  router.get("/dashboard/check/:unique_key/:user_id",(req, res) =>{
-    const values = [req.params.unique_key, req.params.user_id];    
+  });
+  // check if user is in potluck
+  router.get("/dashboard/check/:unique_key/:user_id", (req, res) => {
+    const values = [req.params.unique_key, req.params.user_id];
     db.query(
       `
       SELECT * FROM guest_details 
