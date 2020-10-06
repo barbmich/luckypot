@@ -82,7 +82,7 @@ export default function Dashboard(props) {
           {loggedUser.id === event.owner_id ? (
             <Link to={event.unique_key}>Invite your friends!</Link>
           ) : (
-            <Row>
+            // <Row>
               <div className="guestTitle">
                 <h4>
                   Let <strong>{host.first_name}</strong> know if you're going!
@@ -94,7 +94,7 @@ export default function Dashboard(props) {
                   loggedUser={loggedUser}
                 />
               </div>
-            </Row>
+            // </Row>
           )}
           <Row>
             <EventInfo event={event} users={users} host={host} />
