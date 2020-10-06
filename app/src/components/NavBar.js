@@ -53,14 +53,14 @@ export default function NavBar(props) {
             )}
             <div className="link-nav-dropdown">
               <NavDropdown title="My Features" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/mypotlucks">
-                  My Potlucks
+                <NavDropdown.Item>
+                  <Link to="/mypotlucks">My Potlucks</Link>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/myrecipes">
-                  My Recipes
+                <NavDropdown.Item>
+                  <Link to="/myrecipes">My Recipes</Link>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/myfavorites">
-                  My Favorites
+                <NavDropdown.Item>
+                  <Link to="/myfavorites">My Favorites</Link>
                 </NavDropdown.Item>
               </NavDropdown>
             </div>
