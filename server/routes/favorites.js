@@ -31,7 +31,7 @@ module.exports = (db) => {
     const values = [req.params.userId];
     db.query(
       `
-      SELECT favorites.user_id as user_id, favorites.recipe_id AS recipe_id, custom_recipes.name AS recipe_name, event_id, events.name AS event_name, custom_recipes.picture_url AS picture_url
+      SELECT favorites.user_id as user_id, favorites.recipe_id AS recipe_id, custom_recipes.name AS recipe_name, event_id, events.name AS event_name, custom_recipes.picture_url AS picture_url, items.url AS url
       FROM favorites
       JOIN items ON favorites.recipe_id = items.recipe_id
       JOIN custom_recipes ON favorites.recipe_id = custom_recipes.id

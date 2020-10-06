@@ -56,7 +56,7 @@ module.exports = (db) => {
   router.get("/myrecipes/:userId", (req, res) => {
     const values = [req.params.userId];
     db.query(
-      `SELECT events.id AS event_id, events.name AS potluck_name, events.date, CONCAT(USERS.first_name, ' ', USERS.last_name) AS guest, items.name, items.id as meal_id
+      `SELECT events.id AS event_id, events.name AS potluck_name, events.date, CONCAT(USERS.first_name, ' ', USERS.last_name) AS guest, items.name, items.id as meal_id, items.url AS url, items.image_url AS image_url
      FROM (SELECT *
      FROM guest_details
      WHERE user_id = $1) AS test
@@ -78,7 +78,7 @@ module.exports = (db) => {
     const values = [req.params.userId];
     db.query(
       `
-      SELECT events.id AS event_id, events.name AS potluck_name, events.date, CONCAT(USERS.first_name, ' ', USERS.last_name) AS guest, items.name
+      SELECT events.id AS event_id, events.name AS potluck_name, events.date, CONCAT(USERS.first_name, ' ', USERS.last_name) AS guest, items.name, items.url AS url, items.image_url AS image_url
       FROM guest_details
       JOIN events ON events.id = guest_details.event_id
       JOIN items ON events.id = items.event_id
