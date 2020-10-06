@@ -23,8 +23,6 @@ export default function Dashboard(props) {
   const [userPresent, setUserPresent] = useState(null);
   const [host, setHost] = useState({});
 
-  console.log("this is host:", host);
-
   function addMeal(item) {
     const input = {
       event_id: event.id,
@@ -35,11 +33,6 @@ export default function Dashboard(props) {
     axios.post("http://localhost:3003/items/add", input).then((response) => {
       setItems([...items, response.data]);
     });
-  }
-
-  function deleteItem(id) {
-    const newItems = items.filter((i) => (i.id === id ? false : true));
-    setItems(newItems);
   }
 
   useEffect(() => {
@@ -56,13 +49,12 @@ export default function Dashboard(props) {
         setUsers(all[1].data);
       }
       setItems(all[2].data);
+      console.log("items FROM 53", all[2]);
       setMessages(all[3].data);
       setLoading(false);
-      console.log("EVENT INFO ~~~~~~~~~~~");
-      console.log(all[0].data[0]);
       setHost({
-        first_name: all[0].data[0].owner_first_name,
-        last_name: all[0].data[0].owner_last_name,
+        first_name: event.owner_first_name,
+        last_name: event.owner_last_name,
       });
     });
   }, [userPresent]);
@@ -78,7 +70,6 @@ export default function Dashboard(props) {
   if (isLoading) {
     return <p>Loading...</p>;
   }
-
   return (
     <div className="mainDashboard">
       <Container fluid className="columnContainer">
@@ -92,17 +83,17 @@ export default function Dashboard(props) {
             <Link to={event.unique_key}>Invite your friends!</Link>
           ) : (
             // <Row>
-            <div className="guestTitle">
-              <h4>
-                Let <strong>{host.first_name}</strong> know if you're going!
-              </h4>
-              <PresentButton
-                userPresent={userPresent}
-                setUserPresent={setUserPresent}
-                event={event}
-                loggedUser={loggedUser}
-              />
-            </div>
+              <div className="guestTitle">
+                <h4>
+                  Let <strong>{host.first_name}</strong> know if you're going!
+                </h4>
+                <PresentButton
+                  userPresent={userPresent}
+                  setUserPresent={setUserPresent}
+                  event={event}
+                  loggedUser={loggedUser}
+                />
+              </div>
             // </Row>
           )}
           <Row>
@@ -113,15 +104,15 @@ export default function Dashboard(props) {
         <Col sm={6} className={styles.col}>
           <Row className="row-meals">
             <MealsContainer
-              deleteItem={deleteItem}
               userPresent={userPresent}
               event={event}
               items={items}
               users={users}
               loggedUser={loggedUser}
               addMeal={addMeal}
-            />
+            >
             <AddButton items={items} addMeal={addMeal} />
+            </MealsContainer>
           </Row>
         </Col>
         <Row>

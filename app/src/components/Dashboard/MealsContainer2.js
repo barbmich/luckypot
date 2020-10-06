@@ -7,7 +7,7 @@ import CardTest from "./CardTest";
 import axios from "axios";
 
 export default function MealsContainer(props) {
-  const { deleteItem, items, users, loggedUser, userPresent, event } = props;
+  const {  items, users, loggedUser, userPresent, event } = props;
 
   console.log("ITEMS LIST");
   console.log(items);
@@ -18,7 +18,6 @@ export default function MealsContainer(props) {
     });
     return (
       <CardTest
-        deleteItem={deleteItem}
         key={i}
         userPresent={userPresent}
         event={event}

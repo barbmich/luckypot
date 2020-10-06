@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  React , { useState } from "react";
 import {
   Container,
   Row,
@@ -14,22 +14,16 @@ import "./MealItem.scss";
 import ProfilePic from "./ProfilePicture/ProfilePic";
 import axios from "axios";
 import MealChosenNoRecipe from "./MealChosenNoRecipe";
-
+// Card
+// Card.Image
+// Card.Fab
+// Card.Content
+// Card.Title
+// Card.Description
 export default function Card_test(props) {
-  const { deleteItem, item, user, loggedUser, event } = props;
+  const { item, name, user, loggedUser } = props
 
   const [userAssigned, setUserAssigned] = useState(user || null);
-
-  console.log("from Cardtest");
-  console.log(loggedUser.id);
-  console.log(event.owner_id);
-
-  function removeItem(id) {
-    console.log("removeItem:", id);
-    axios
-      .delete(`http://localhost:3003/items/remove/${id}`)
-      .then(() => deleteItem(id));
-  }
 
   function removeYourself() {
     axios
@@ -53,8 +47,9 @@ export default function Card_test(props) {
       });
   }
 
+  
   // function Card(props) {
-  //   return <div className="card">{props.children}</div>;
+  //   return <div className="card-meal">{props.children}</div>;
   // }
 
   function Image(props) {
@@ -90,47 +85,34 @@ export default function Card_test(props) {
   // function Description(props) {
   //   return <p className="card-description">{props.text}</p>;
   // }
-  const style = {
-    width: "20rem",
-    marginBottom: "5px",
-  };
+const style = {
+  width: "20rem",
+  marginBottom: "5px",
+  
+}
 
-  console.log("ITEM", item);
+console.log("ITEM", item);
 
   return (
     <Card style={style}>
-      {loggedUser.id === event.owner_id ? (
-        <div
-          className="testing"
-          style={{
-            border: "solid",
-            position: "relative",
-            height: "2em",
-            width: "2em",
-            top: "1em",
-            left: "1em",
-            zIndex: 4,
-          }}
-          onClick={() => removeItem(item.id)}
-        >
-          X
-        </div>
-      ) : null}
       <Card.Img
         style={{
-          height: "150px",
-          objectFit: "cover",
+          height:"150px",
+          objectFit:"cover",
+
         }}
         variant="top"
-        src={
-          item.image_url
-            ? item.image_url
-            : "https://semantic-ui.com/images/wireframe/image.png"
-        }
+        src={item.image_url ? item.image_url : 'https://semantic-ui.com/images/wireframe/image.png'}
       />
-      <Card.Title>{item.name}</Card.Title>
-      <div className="test">
-        {userAssigned ? (
+            <Card.Title>
+              {item.name}
+            </Card.Title>
+        <div className="test"
+           style={{
+             display:"flex",
+             
+           }}>
+              {userAssigned ? (
           <>
             <ProfilePic avatar_url={userAssigned.avatar_url} />
             {userAssigned.id === loggedUser.id ? (
