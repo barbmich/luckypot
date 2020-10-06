@@ -48,9 +48,10 @@ export default function Card_test(props) {
   }
 
   
-  function Card(props) {
-    return <div className="card">{props.children}</div>;
-  }
+  // function Card(props) {
+  //   return <div className="card-meal">{props.children}</div>;
+  // }
+
   function Image(props) {
     return (
       <div className="card-image">
@@ -68,29 +69,45 @@ export default function Card_test(props) {
     );
   }
 
-  function Content(props) {
-    return (
-      <div className="card-content">
-        <Title text={item.name} />
-        <Description text={props.description} />
-      </div>
-    );
-  }
+  // function Content(props) {
+  //   return (
+  //     <div className="card-content">
+  //       <Title text={item.name} />
+  //       {/* <Description text={props.description} /> */}
+  //     </div>
+  //   );
+  // }
 
   function Title(props) {
     return <span className="card-title">{props.text}</span>;
   }
 
-  function Description(props) {
-    return <p className="card-description">{props.text}</p>;
-  }
+  // function Description(props) {
+  //   return <p className="card-description">{props.text}</p>;
+  // }
+const style = {
+  width: "20rem",
+  marginBottom: "5px",
+  
+}
+
+console.log("ITEM", item);
 
   return (
-    <Card className="meal-unchosen">
-      <Image
-        src={`https://materializecss.com/images/sample-1.jpg`}
-        icon={`glyphicon glyphicon-search`}
+    <Card style={style}>
+      <Card.Img
+        style={{
+          height:"150px",
+          objectFit:"cover",
+
+        }}
+        variant="top"
+        src={item.image_url ? item.image_url : 'https://semantic-ui.com/images/wireframe/image.png'}
       />
+            <Card.Title>
+              {item.name}
+            </Card.Title>
+        <div className="test">
               {userAssigned ? (
           <>
             <ProfilePic avatar_url={userAssigned.avatar_url} />
@@ -106,10 +123,7 @@ export default function Card_test(props) {
             Click to Bring
           </Button>
         )}
-      <Content
-        title="Card Title"
-        description="I am a very simple card. I am good at containing small bits of information. I am convenient because I                  require little markup to use effectively."
-      />
+      </div>
     </Card>
   );
 }

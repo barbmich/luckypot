@@ -1,4 +1,4 @@
-.card {
+.card-meal {
   position: relative;
   margin: 0.5rem 0 1rem 0;
   background-color: #fff;
@@ -7,13 +7,18 @@
   transition: box-shadow 0.25s;
   transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
   border-radius: 2px;
+  padding: 0px 5px 5px 5px;
+  border: 1px solid blue;
+  height:400px;
+
 }
+
 .card-image {
   position: relative;
 }
 
 .card-image img {
-  height: 50%;
+  height: 20em;
   display: block;
   border-radius: 2px 2px 0 0;
   position: relative;
@@ -34,14 +39,6 @@ img {
 }
 .card-description {
   margin: 0;
-}
-
-.card-title {
-  display: block;
-  line-height: 32px;
-  margin-bottom: 8px;
-  font-size: 24px;
-  font-weight: 300;
 }
 
 .btn-floating.btn-large.halfway-fab {
