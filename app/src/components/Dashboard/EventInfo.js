@@ -8,7 +8,7 @@ export default function EventInfo(props) {
   // console.log("EVT: ", event);
   return (
     <Card className="text-center eventContainer">
-      <Card.Header>Event Details</Card.Header>
+      <Card.Header>{event.name}</Card.Header>
       <Card.Body>
         <Card.Title>{event.name}</Card.Title>
         <p>
