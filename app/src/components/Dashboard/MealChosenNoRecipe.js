@@ -6,11 +6,20 @@ import { Card, Button } from "react-bootstrap";
 export default function MealChosenNoRecipe(props) {
   const { item, userAssigned } = props;
 
+  const recipeBtn = {
+    marginTop:"5px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "20px",
+    width:"12rem"
+  }
+
   return (
     <div className="meal-chosen">
   {item.url &&  
     (<a href={item.url} target="_blank">
-      <Button className="recipeBtn" variant="primary">
+      <Button variant="primary" style={recipeBtn}>
           View Recipe
       </Button>
     </a>)}
@@ -26,10 +35,12 @@ export default function MealChosenNoRecipe(props) {
             : null,
         }}
       >       
-        <Button className="recipeBtn" variant="primary">
-        {!item.url ? "Search recipes" : "Switch recipe"}
+        <Button  style={recipeBtn} variant="primary">
+        {!item.url ? "Search Recipes" : "Switch Recipe"}
         </Button>
       </Link>
     </div>
   );
 }
+
+

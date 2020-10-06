@@ -45,7 +45,7 @@ export default function MealItem(props) {
             <ProfilePic avatar_url={userAssigned.avatar_url} />
             {userAssigned.id === loggedUser.id ? (
               <>
-                <Button onClick={() => removeYourself()}>X</Button>
+                <Button onClick={() => removeYourself()}>Bring something else?</Button>
                 <MealChosenNoRecipe item={item} />
               </>
             ) : null}

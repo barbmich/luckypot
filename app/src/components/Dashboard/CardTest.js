@@ -25,6 +25,15 @@ export default function Card_test(props) {
 
   const [userAssigned, setUserAssigned] = useState(user || null);
 
+  const recipeBtn = {
+    marginTop:"5px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "20px",
+    width:"12rem"
+  }
+
   function removeYourself() {
     axios
       .put(`http://localhost:3003/items/update`, {
@@ -88,7 +97,7 @@ export default function Card_test(props) {
 const style = {
   width: "20rem",
   marginBottom: "5px",
-  
+  height: "35rem" 
 }
 
 console.log("ITEM", item);
@@ -102,14 +111,16 @@ console.log("ITEM", item);
 
         }}
         variant="top"
-        src={item.image_url ? item.image_url : 'https://semantic-ui.com/images/wireframe/image.png'}
+        src={item.image_url ? item.image_url : 'https://i.ibb.co/VtKzBZt/unassigned14.png'}
       />
             <Card.Title>
               {item.name}
             </Card.Title>
         <div className="test"
            style={{
-             display:"flex",
+             display: "flex",
+             flexDirection: "column",
+             alignItems: "center",
              
            }}>
               {userAssigned ? (
@@ -117,8 +128,8 @@ console.log("ITEM", item);
             <ProfilePic avatar_url={userAssigned.avatar_url} />
             {userAssigned.id === loggedUser.id ? (
               <>
-                <Button onClick={() => removeYourself()}>X</Button>
                 <MealChosenNoRecipe item={item} />
+                <Button  style={recipeBtn} onClick={() => removeYourself()}>Cancel</Button>
               </>
             ) : null}
           </>

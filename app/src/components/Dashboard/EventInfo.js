@@ -7,7 +7,6 @@ export default function EventInfo(props) {
   const { event, host } = props;
   console.log("host in event info");
   console.log(host);
-  // console.log("EVT: ", event);
   return (
     <Card className="text-center eventContainer">
       <Card.Header>{event.name}</Card.Header>
