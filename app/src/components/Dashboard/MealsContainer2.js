@@ -1,5 +1,14 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Panel,
+  Glyphicon,
+  Grid,
+} from "react-bootstrap";
 import AddButton from "./AddButton";
 import MealItem from "./MealItem";
 import "./MealsContainer.scss";
@@ -8,12 +17,13 @@ import CardTest from "./CardTest";
 export default function MealsContainer(props) {
   const { items, users, loggedUser, addMeal, userPresent } = props;
 
+
   const itemsArray = items.map((item, i) => {
     const user = users.find((user) => {
       return item.assigned === user.id;
     });
     return (
-      <MealItem
+      <CardTest
         key={i}
         userPresent={userPresent}
         item={item}

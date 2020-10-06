@@ -4,15 +4,17 @@ import "./MealItem.scss";
 import { Card, Button } from "react-bootstrap";
 
 export default function MealChosenNoRecipe(props) {
-  const { item } = props;
+  const { item, userAssigned } = props;
 
   return (
     <div className="meal-chosen">
-      {/* <span aria-label={"checkmark"} role={"img"}>
-          ✔️
-        </span>{" "}
-        You have chosen <strong>{item && item.name}</strong> */}
-      <Link
+  {item.url &&  
+    (<a href={item.url} target="_blank">
+      <Button className="recipeBtn" variant="primary">
+          View Recipe
+      </Button>
+    </a>)}
+  <Link
         to={{
           pathname: "/search",
           state: item
@@ -23,9 +25,9 @@ export default function MealChosenNoRecipe(props) {
               }
             : null,
         }}
-      >
+      >       
         <Button className="recipeBtn" variant="primary">
-          Search recipes
+        {!item.url ? "Search recipes" : "Switch recipe"}
         </Button>
       </Link>
     </div>

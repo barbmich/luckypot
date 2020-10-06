@@ -18,16 +18,16 @@ INSERT INTO categories (name) VALUES
 ('Main'),
 ('Dessert');
 
-INSERT INTO items (event_id, category_id, name, recipe_id) VALUES
-(1, 1, 'Nuts', 1),
-(1, 2, 'Pie', 2),
-(1, 3, 'Chicken', 3),
-(2, 1, 'Salad', 4),
-(2, 2, 'Burgers', 5),
-(2, 3, 'Chocolate cookies', 6),
-(3, 1, 'Dessert', 7),
-(3, 2, 'Lasagna', 8),
-(3, 3, 'Petit gateau', 9);
+INSERT INTO items (event_id, category_id, name, recipe_id, image_url) VALUES
+(1, 1, 'Nuts', 1, 'https://i.imgur.com/6RpiqFZ.jpeg'),
+(1, 2, 'Pie', 2, 'https://i.imgur.com/R1FZ54b.jpeg'),
+(1, 3, 'Chicken', 3, 'https://natashaskitchen.com/wp-content/uploads/2020/03/Cheeseburger-Sliders-4-728x1092.jpg'),
+(2, 1, 'Salad', 4, 'https://natashaskitchen.com/wp-content/uploads/2020/03/Cheeseburger-Sliders-4-728x1092.jpg'),
+(2, 2, 'Burgers', 5, 'https://natashaskitchen.com/wp-content/uploads/2020/03/Cheeseburger-Sliders-4-728x1092.jpg'),
+(2, 3, 'Chocolate cookies', 6, 'https://natashaskitchen.com/wp-content/uploads/2020/03/Cheeseburger-Sliders-4-728x1092.jpg'),
+(3, 1, 'Dessert', 7, 'https://natashaskitchen.com/wp-content/uploads/2020/03/Cheeseburger-Sliders-4-728x1092.jpg'),
+(3, 2, 'Lasagna', 8, 'https://natashaskitchen.com/wp-content/uploads/2020/03/Cheeseburger-Sliders-4-728x1092.jpg'),
+(3, 3, 'Petit gateau', 9, 'https://natashaskitchen.com/wp-content/uploads/2020/03/Cheeseburger-Sliders-4-728x1092.jpg');
 
 
 INSERT INTO guest_details (event_id, user_id, present) VALUES

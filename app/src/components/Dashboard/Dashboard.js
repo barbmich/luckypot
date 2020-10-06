@@ -6,9 +6,8 @@ import "./Dashboard.scss";
 import PresentButton from "./PresentButton";
 import EventInfo from "./EventInfo";
 import GuestList from "./GuestList";
-import MealsContainer from "./MealsContainer";
+import MealsContainer from "./MealsContainer2"; //Remove "2" to return to previous layout
 import Messages from "./Messages";
-import CardTest from "./Card/CardTest";
 import AddButton from "./AddButton";
 import "./Messages.scss";
 
