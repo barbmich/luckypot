@@ -68,15 +68,14 @@ export default function Recipe(props) {
   const potlucks = myPotlucksList.map((each, i) => {
     return (
       <div key={i}>
-        <Dropdown.Item eventKey="1">
-          <Link
-            to={`/dashboard/${each.unique_key}/`}
-            onClick={() => {
-              addMeal(each.id, recipe.title);
-            }}
-          >
-            {each.event_name}
-          </Link>
+        <Dropdown.Item
+          eventKey="1"
+          href={`/dashboard/${each.unique_key}`}
+          onClick={() => {
+            addMeal(each.id, recipe.title);
+          }}
+        >
+          {each.event_name}
         </Dropdown.Item>
       </div>
     );

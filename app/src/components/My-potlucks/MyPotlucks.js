@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import moment from "moment";
 import { Card, Button } from "react-bootstrap";
 import "./MyPotlucks.scss";
@@ -55,15 +55,6 @@ export default function MyPotlucks(props) {
             <span>{moment(potluck.date).fromNow()}</span>
           </Card.Footer>
         </Card>
-
-        // <div key={i}>
-        //   <h3>{potluck.event_name}</h3>
-        //   <p>{moment(potluck.date).format("dddd, MMMM Do YYYY, h:mm a")}</p>
-        //   <p>
-        //     <Link to={`/dashboard/${potluck.unique_key}`}>Get details</Link>
-        //   </p>
-        //   <a href={potluck.tiny_url}>Invite your friends!</a>
-        // </div>
       );
     } else {
       return (

@@ -59,7 +59,9 @@ export default function MyRecipes(props) {
             variant="secondary"
             onClick={() => addToFavorites(recipe.meal_id)}
           >
-            🖤
+            <span role="img" aria-label="heart">
+              🖤
+            </span>
           </Button>
         </Card>
       </ul>
@@ -73,7 +75,11 @@ export default function MyRecipes(props) {
           <Card.Title>{recipe.name}</Card.Title>
           <Card.Body>{recipe.potluck_name}</Card.Body>
           <Card.Body>Provided by: {recipe.guest}</Card.Body>
-          <Button variant="secondary">🖤</Button>
+          <Button variant="secondary">
+            <span role="img" aria-label="heart">
+              🖤
+            </span>
+          </Button>
         </Card>
       </ul>
     );

@@ -37,6 +37,11 @@
   }
 }
 
+.page-not-found {
+  padding: 200px;
+  text-align: center;
+}
+
 .pageTitle {
   font-family: "Lobster Two", cursive;
   text-align: center;

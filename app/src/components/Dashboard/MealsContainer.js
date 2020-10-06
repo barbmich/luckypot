@@ -1,6 +1,5 @@
 import React from "react";
-// import { Card } from "react-bootstrap/card";
-import Container from "react-bootstrap/container";
+import Container from "react-bootstrap/Container";
 import AddButton from "./AddButton";
 import MealItem from "./MealItem";
 import "./MealsContainer.scss";

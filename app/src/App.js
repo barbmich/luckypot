@@ -118,13 +118,7 @@ export default function App() {
               }
             />
             <Route path="*">
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <div>404 Page Not Found</div>
+              <h3 className="page-not-found">404 Page Not Found</h3>
             </Route>
           </Switch>
         </section>

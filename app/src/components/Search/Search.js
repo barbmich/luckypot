@@ -38,9 +38,17 @@ export default function Search(props) {
       return (
         <ul key={i}>
           <Card className="searchedMealSingle">
-            <Card.Title className="mealTitle">{result.title}</Card.Title>
+            <Card.Title className="mealTitle">
+              {result && result.title.length > 30
+                ? result.title.slice(0, 30) + "..."
+                : result.title}
+            </Card.Title>
             <Card.Body>
-              <Figure.Image className="recipePic" src={result.image} />
+              <Figure.Image
+                className="recipePic"
+                src={result.image}
+                style={{ maxHeight: "150px" }}
+              />
               <br />
               <Link to={{ pathname: `/recipe/${result.id}`, state: eventInfo }}>
                 <Button variant="primary">View Full Recipe</Button>
@@ -53,11 +61,11 @@ export default function Search(props) {
 
   return (
     <div>
-      <div className="searchForm">
+      <div className="search-recipe-div">
         <h1 className="pageTitle">Delicious Recipes Live Here</h1>
         {error && <p>{error}</p>}
         <Form>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
             <FormControl
               style={{ marginRight: "1em" }}
               onChange={(event) => setSearchInput(event.target.value)}

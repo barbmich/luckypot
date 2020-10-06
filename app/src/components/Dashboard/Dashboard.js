@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import "./Dashboard.scss";
@@ -8,7 +8,6 @@ import EventInfo from "./EventInfo";
 import GuestList from "./GuestList";
 import MealsContainer from "./MealsContainer";
 import Messages from "./Messages";
-import OthersContainer from "./OthersContainer";
 import CardTest from "./Card/CardTest";
 import AddButton from "./AddButton";
 import "./Messages.scss";
@@ -16,7 +15,6 @@ import "./Messages.scss";
 export default function Dashboard(props) {
   const loggedUser = JSON.parse(localStorage.getItem("user"));
   const { unique_key } = useParams();
-  let history = useHistory();
 
   const [isLoading, setLoading] = useState(true);
   const [event, setEvent] = useState({});
