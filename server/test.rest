@@ -100,18 +100,6 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3003/items/add
-Content-Type: application/json
-
-{
-  "event_id": 2,
-  "recipe_id": 648652,
-  "name": "Jumbo Size Yogurt Marble Cupcakes",
-  "category_id": 1
-}
-
-###
-
 #DASHBOARD
 
 GET http://localhost:3003/dashboard/events/z3sfpr2xdd/
@@ -192,4 +180,25 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3003/myrecipes/1
+
+###
+
+POST http://localhost:3003/items/add
+Content-Type: application/json
+
+{
+  "event_id": 2,
+  "recipe_id": 648652,
+  "name": "Jumbo Size Yogurt Marble Cupcakes",
+  "category_id": 1
+}
+
+###
+
+DELETE http://localhost:3003/items/remove
+Content-Type: application/json
+
+{
+  "item_id": 14
+}
 

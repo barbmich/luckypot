@@ -15,7 +15,11 @@ export default function Messages(props) {
   const eventMessages = chatMessages
     // .sort((a, b) => a.timestamp < b.timestamp)
     .map((msg, i) => {
-      const user = users.find((user) => user.id === msg.user_id);
+      const user = users.find((user) => {
+        console.log("user found:", user);
+        console.log("from message:", msg.user_id);
+        return user.id === msg.user_id;
+      });
       return (
         <Media key={i} as="li">
           <ProfilePic
