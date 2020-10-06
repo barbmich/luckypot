@@ -1,4 +1,4 @@
-import  React , { useState } from "react";
+import React, { useState } from "react";
 import {
   Container,
   Row,
@@ -14,16 +14,22 @@ import "./MealItem.scss";
 import ProfilePic from "./ProfilePicture/ProfilePic";
 import axios from "axios";
 import MealChosenNoRecipe from "./MealChosenNoRecipe";
-// Card
-// Card.Image
-// Card.Fab
-// Card.Content
-// Card.Title
-// Card.Description
+
 export default function Card_test(props) {
-  const { item, name, user, loggedUser } = props
+  const { deleteItem, item, user, loggedUser, event } = props;
 
   const [userAssigned, setUserAssigned] = useState(user || null);
+
+  console.log("from Cardtest");
+  console.log(loggedUser.id);
+  console.log(event.owner_id);
+
+  function removeItem(id) {
+    console.log("removeItem:", id);
+    axios
+      .delete(`http://localhost:3003/items/remove/${id}`)
+      .then(() => deleteItem(id));
+  }
 
   function removeYourself() {
     axios
@@ -47,10 +53,10 @@ export default function Card_test(props) {
       });
   }
 
-  
   function Card(props) {
     return <div className="card">{props.children}</div>;
   }
+
   function Image(props) {
     return (
       <div className="card-image">
@@ -87,29 +93,38 @@ export default function Card_test(props) {
 
   return (
     <Card className="meal-unchosen">
-      <Image
-        src={`https://materializecss.com/images/sample-1.jpg`}
-        icon={`glyphicon glyphicon-search`}
-      />
-              {userAssigned ? (
-          <>
-            <ProfilePic avatar_url={userAssigned.avatar_url} />
-            {userAssigned.id === loggedUser.id ? (
-              <>
-                <Button onClick={() => removeYourself()}>X</Button>
-                <MealChosenNoRecipe item={item} />
-              </>
-            ) : null}
-          </>
-        ) : (
-          <Button onClick={() => setAssigned(loggedUser)}>
-            Click to Bring
-          </Button>
-        )}
-      <Content
-        title="Card Title"
-        description="I am a very simple card. I am good at containing small bits of information. I am convenient because I                  require little markup to use effectively."
-      />
+      {loggedUser.id === event.owner_id ? (
+        <div
+          className="testing"
+          style={{
+            border: "solid",
+            position: "relative",
+            height: "2em",
+            width: "2em",
+            top: "1em",
+            left: "1em",
+            zIndex: 4,
+          }}
+          onClick={() => removeItem(item.id)}
+        >
+          X
+        </div>
+      ) : null}
+      <Image />
+      {userAssigned ? (
+        <>
+          <ProfilePic avatar_url={userAssigned.avatar_url} />
+          {userAssigned.id === loggedUser.id ? (
+            <>
+              <Button onClick={() => removeYourself()}>X</Button>
+              <MealChosenNoRecipe item={item} />
+            </>
+          ) : null}
+        </>
+      ) : (
+        <Button onClick={() => setAssigned(loggedUser)}>Click to Bring</Button>
+      )}
+      <Content />
     </Card>
   );
 }

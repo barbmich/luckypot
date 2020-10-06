@@ -91,6 +91,28 @@ module.exports = (db) => {
       .catch((err) => console.log(err));
   });
 
+  router.delete("/items/remove/:id", (req, res) => {
+    console.log(req.params);
+    values = [req.params.id];
+    console.log(values);
+    db.query(
+      `
+      DELETE FROM items WHERE items.id = $1 RETURNING *;
+      `,
+      values
+    )
+      .then((data) => {
+        console.log(`ITEM DELETED:`);
+        console.log(data.rows[0]);
+        if (req.params.id == data.rows[0].id) {
+          res.send(data.rows[0]);
+        } else {
+          console.log("something broke");
+        }
+      })
+      .catch((err) => console.log(err));
+  });
+
   return router;
 };
 

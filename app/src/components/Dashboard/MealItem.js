@@ -22,7 +22,7 @@ export default function MealItem(props) {
       });
   }
 
-  function setAssigned(user) {
+  function setAssigned() {
     axios
       .put(`http://localhost:3003/items/update`, {
         item: item.id,
@@ -51,9 +51,7 @@ export default function MealItem(props) {
             ) : null}
           </>
         ) : (
-          <Button onClick={() => setAssigned(loggedUser)}>
-            Click to Bring
-          </Button>
+          <Button onClick={() => setAssigned()}>Click to Bring</Button>
         )}
       </Card.Body>
     </Card>

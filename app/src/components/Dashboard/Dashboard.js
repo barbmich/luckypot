@@ -23,6 +23,8 @@ export default function Dashboard(props) {
   const [userPresent, setUserPresent] = useState(null);
   const [host, setHost] = useState({});
 
+  console.log("this is host:", host);
+
   function addMeal(item) {
     const input = {
       event_id: event.id,
@@ -33,6 +35,11 @@ export default function Dashboard(props) {
     axios.post("http://localhost:3003/items/add", input).then((response) => {
       setItems([...items, response.data]);
     });
+  }
+
+  function deleteItem(id) {
+    const newItems = items.filter((i) => (i.id === id ? false : true));
+    setItems(newItems);
   }
 
   useEffect(() => {
@@ -104,6 +111,7 @@ export default function Dashboard(props) {
         <Col sm={6} className={styles.col}>
           <Row className="row-meals">
             <MealsContainer
+              deleteItem={deleteItem}
               userPresent={userPresent}
               event={event}
               items={items}
