@@ -69,13 +69,22 @@ export default function Messages(props) {
     return () => ws.current.close();
   }, [chatMessages]);
 
+  window.onload = function () {
+    var objDiv = document.getElementsByClassName("msgContainer");
+
+    objDiv.scrollTop = objDiv.scrollHeight;
+  };
+
   return (
-    <Card className="msgContainer">
-      <Card.Body>
-        <Card.Header className="msgTitleContainer">
-          <Card.Title className="mealsContainerTitle">Messages</Card.Title>
-        </Card.Header>
-        <ul className="list-unstyled">{eventMessages}</ul>
+    <div>
+      <Card className="msgContainer">
+        <Card.Title className="mealsContainerTitle">Messages</Card.Title>
+        <Card className="msgContainer">
+          <Card.Body className=".pin-to-bottom">
+            {/* <Card.Header className="msgTitleContainer"></Card.Header> */}
+            <ul className="list-unstyled">{eventMessages}</ul>
+          </Card.Body>
+        </Card>
         <div className="msgInput">
           <Form className="msgForm">
             <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -96,7 +105,7 @@ export default function Messages(props) {
             </Form.Group>
           </Form>
         </div>
-      </Card.Body>
-    </Card>
+      </Card>
+    </div>
   );
 }
