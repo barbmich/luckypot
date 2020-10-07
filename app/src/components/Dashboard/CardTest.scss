@@ -8,7 +8,6 @@
   transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
   border-radius: 2px;
   padding: 0px 5px 5px 5px;
-  border: 1px solid blue;
   height:400px;
 
 }
@@ -74,7 +73,7 @@ img {
   height: 40px;
   line-height: 40px;
   padding: 0;
-  background-color: #26a69a;
+  background-color: #212529;
   border-radius: 50%;
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
@@ -85,9 +84,10 @@ img {
 .btn,
 .btn-large,
 .btn-small {
+  border-color: #c8ac59;
   text-decoration: none;
   color: #fff;
-  background-color: #26a69a;
+  background-color: #212529;
   text-align: center;
   letter-spacing: 0.5px;
   -webkit-transition: background-color 0.2s ease-out;

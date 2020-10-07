@@ -69,6 +69,11 @@ export default function MyPotlucks(props) {
     <div className="myPotlucks">
       <h1 className="pageTitle">My Potlucks</h1>
       {userPotlucks}
+      {/* {userPotlucks.length > 0 ? userPotlucks : 
+      <div style={{padding: "250px", textAlign: "center"}}><p>You're not host nor guest of any potluck</p>
+      <Link to="/create" className="link-nav">
+                Create one now!
+              </Link><div/>} */}
     </div>
   );
 }

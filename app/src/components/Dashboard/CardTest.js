@@ -96,8 +96,9 @@ export default function Card_test(props) {
   // }
 const style = {
   width: "20rem",
-  marginBottom: "5px",
-  height: "35rem" 
+  margin: "5px",
+  height: "35rem"
+  
 }
 
 console.log("ITEM", item);
