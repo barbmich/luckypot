@@ -57,54 +57,70 @@ export default function MyRecipes(props) {
   const recipeListCards = recipeList.map((recipe, i) => {
     console.log("HHHHH RECIPE :::", recipe.meal_id);
     return (
-      <ul key={i}>
-        <Card className="meal-unchosen">
+      <ul key={i} style={{paddingLeft:"0px"}}>
+        <div className="scene">
+          <Card className="meal-unchosen">
           {/* <Card.Img variant="top" src={recipe.image_url} /> */}
-          <Card.Title>{recipe.name}</Card.Title>
-          <Card.Body>{recipe.potluck_name}</Card.Body>
+           <div className="face front">
+            <Card.Title>{recipe.name}</Card.Title>
+          </div>
+          <div className="face back">
+            <Card.Title>{recipe.potluck_name}</Card.Title>
 
-          {recipe.url && (
-            <a href={recipe.url} targer="_blank">
-              <Button>View Full Recipe</Button>
-            </a>
-          )}
+            {recipe.url && (
+             <a href={recipe.url} targer="_blank">
+                <Button>View Full Recipe</Button>
+              </a>
+            )}
 
-          <Button
-            className="favBtn"
-            variant="secondary"
+            <Button
+             className="favBtn"
+              variant="secondary"
             // onClick={() => addToFavorites(recipe.meal_id)}
-          >
-            <span role="img" aria-label="heart">
-              🖤
-            </span>
-          </Button>
+            >
+              <span role="img" aria-label="heart">
+                🖤
+              </span>
+            </Button>
+          </div>
         </Card>
+        </div>
       </ul>
     );
   });
 
   const tastedListCards = tastedList.map((recipe, i) => {
     return (
-      <ul key={i}>
-        <Card className="meal-unchosen">
-          <Card.Title>{recipe.name}</Card.Title>
-          <Card.Body>{recipe.potluck_name}</Card.Body>
-          <Card.Body>Provided by: {recipe.guest}</Card.Body>
-          {recipe.url && (
-            <a href={recipe.url} targer="_blank">
-              <Button>View Full Recipe</Button>
-            </a>
-          )}
-          <Button
-            className="favBtn"
-            variant="secondary"
+      <ul key={i} style={{paddingLeft:"0px"}}>
+        <div className="scene">
+          <Card className="meal-unchosen">
+            <div className="face front">
+              <Card.Title>{recipe.name}</Card.Title>
+            </div>
+            <div className="face back">
+                <Card.Title>{recipe.potluck_name}</Card.Title>
+                <Card.Title style={{fontSize:"1rem"}}> 
+                  Provided by :{recipe.guest}
+                </Card.Title>
+                {/* <Card.Body>Provided by: {recipe.guest} */}
+              {recipe.url && (
+              <a href={recipe.url} targer="_blank">
+                <Button>View Full Recipe</Button>
+              </a>
+             )}
+              <Button
+                className="favBtn"
+                variant="secondary"
             // onClick={() => addToFavorites(recipe.meal_id)}
-          >
-            <span role="img" aria-label="heart">
-              🖤
-            </span>
-          </Button>
-        </Card>
+            >
+              <span role="img" aria-label="heart">
+                🖤
+              </span>
+             </Button>
+             {/* </Card.Body> */}
+            </div>
+          </Card>
+        </div>
       </ul>
     );
   });

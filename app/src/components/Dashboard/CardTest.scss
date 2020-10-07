@@ -106,6 +106,18 @@ img {
   outline: 0;
 }
 
+.btn :hover,
+.btn-large :hover,
+.btn-small :hover,
+.btn-floating :hover,
+.btn-large :hover,
+.btn-small :hover,
+.btn-flat :hover {
+  background-color:  #c8ac59;
+}
+
+
+
 .z-depth-1,
 nav,
 .card-panel,
