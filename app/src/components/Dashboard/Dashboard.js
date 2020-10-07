@@ -23,8 +23,8 @@ export default function Dashboard(props) {
   const [userPresent, setUserPresent] = useState(null);
   const [host, setHost] = useState({});
 
-  console.log("HOST RIGHT HERE")
-  console.log(host)
+  console.log("HOST RIGHT HERE");
+  console.log(host);
 
   function addMeal(item) {
     const input = {
@@ -52,8 +52,8 @@ export default function Dashboard(props) {
         setUsers(all[1].data);
       }
       setItems(all[2].data);
-      console.log("all0data0")
-      console.log(all[0].data[0])
+      console.log("all0data0");
+      console.log(all[0].data[0]);
       setMessages(all[3].data);
       setLoading(false);
       setHost({
@@ -79,7 +79,7 @@ export default function Dashboard(props) {
   return (
     <div className="mainDashboard">
       <Container fluid className="columnContainer">
-        <Col lg={{ span: 2 }} sm={6} />
+        <Col lg={{ span: 2 }} sm={6}>
           <GuestList
             loggedUser={loggedUser}
             userPresent={userPresent}
@@ -88,32 +88,34 @@ export default function Dashboard(props) {
           {loggedUser.id === event.owner_id ? (
             <a href={mailtoLink}>Invite your Friends!</a>
           ) : (
-              <div className="guestTitle">
-                <h4>
-                  Let <strong>{host.first_name}</strong> know if you're going!
-                </h4>
-                <PresentButton
-                  userPresent={userPresent}
-                  setUserPresent={setUserPresent}
-                  event={event}
-                  loggedUser={loggedUser}
-                />
-              </div>
+            <div className="guestTitle">
+              <h4>
+                Let <strong>{host.first_name}</strong> know if you're going!
+              </h4>
+              <PresentButton
+                userPresent={userPresent}
+                setUserPresent={setUserPresent}
+                event={event}
+                loggedUser={loggedUser}
+              />
+            </div>
           )}
           <Row>
             <EventInfo event={event} users={users} host={host} />
           </Row>
-          <Row style={{
-            display:"flex",
-            alignItems: "center",
-            justifyContent:"center"
-          }}>
-            <div style={{marginTop: "3em"}}>
-            <h3>Add a meal to the table!</h3>
-            <AddButton items={items} addMeal={addMeal} />
+          <Row
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div style={{ marginTop: "3em" }}>
+              <h3>Add a meal to the table!</h3>
+              <AddButton items={items} addMeal={addMeal} />
             </div>
-            </Row>
-
+          </Row>
+        </Col>
         <Col sm={6} className={styles.col}>
           <Row className="row-meals">
             <MealsContainer
@@ -123,7 +125,7 @@ export default function Dashboard(props) {
               users={users}
               loggedUser={loggedUser}
               addMeal={addMeal}
-              />
+            />
           </Row>
         </Col>
         <Row>
