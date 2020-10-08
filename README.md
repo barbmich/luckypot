@@ -22,8 +22,12 @@ This is the collaborative final project for the Lighthouse Labs July cohort.
 
 
 ### Screenshots
+
 Home
+![Home](https://github.com/barbmich/luckypot/blob/master/app/doc/Home.png)
 
 Dashboard
+![Dashboard](https://github.com/barbmich/luckypot/blob/master/app/doc/Dashboard.png)
 
 Recipes search
+![Recipes-search](https://github.com/barbmich/luckypot/blob/master/app/doc/Recipe-search.png)

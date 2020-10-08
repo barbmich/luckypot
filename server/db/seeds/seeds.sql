@@ -19,14 +19,15 @@ INSERT INTO categories (name) VALUES
 ('Main'),
 ('Dessert');
 
-INSERT INTO items (event_id, category_id, name, recipe_id, assigned, image_url) VALUES
-(1, 1, 'True Canadian Turkey', 645044, 1, 'https://www.makeitgrateful.com/wp-content/uploads/2018/09/5D4B5461-Easy-No-fuss-Thanksgiving-Turkey-turkey-on-a-plate-with-lemon-slices.jpg'),
-(1, 1, 'Autumn Apple Pie', 633089, 3, 'http://cloud.foodista.com/content/images/c6e5ef805c78f4e08c9db8f6d52f01f10b001f37_607x400.jpg'),
-(1, 2, 'Summer Berry Salad', 715540, 3, 'https://spoonacular.com/recipeImages/715540-556x370.jpg'),
-(1, 1, 'Roasted carrot ginger soup', 658531, 5, 'https://www.foodista.com/sites/default/files/styles/recype/public/DSC_3358.jpg'),
-(1, 1, 'The Best Baked Beans', 1464299, 6, 'https://spoonacular.com/recipeImages/1464299-556x370.jpg'),
-(1, 1, 'Carrot-sesame seed bread', 637243, 1, 'https://spoonacular.com/recipeImages/637243-556x370.jpg'),
-(1, 1, 'Carrot-sesame seed bread', 642085, 5, 'https://spoonacular.com/recipeImages/642085-556x370.jpg');
+INSERT INTO items (event_id, category_id, name, recipe_id, assigned, url, image_url) VALUES
+(1, 1, 'True Canadian Turkey', 645044, 1, 'https://www.foodista.com/recipe/D5Q5VKMM/good-eats-roast-turkey','https://www.makeitgrateful.com/wp-content/uploads/2018/09/5D4B5461-Easy-No-fuss-Thanksgiving-Turkey-turkey-on-a-plate-with-lemon-slices.jpg'),
+(1, 1, 'Autumn Apple Pie', 633089, 3, 'https://www.foodista.com/recipe/PPR5SMZ3/autumn-apple-pie','http://cloud.foodista.com/content/images/c6e5ef805c78f4e08c9db8f6d52f01f10b001f37_607x400.jpg'),
+(1, 2, 'Summer Berry Salad', 715540, 3, 'http://www.pinkwhen.com/summer-berry-salad/','https://spoonacular.com/recipeImages/715540-556x370.jpg'),
+(1, 1, 'Roasted carrot ginger soup', 658531, 5, 'https://www.foodista.com/recipe/V7LJ2GQH/roasted-carrot-ginger-soup', 'https://www.foodista.com/sites/default/files/styles/recype/public/DSC_3358.jpg'),
+(1, 1, 'The Best Baked Beans', 1464299, 6, 'https://www.pinkwhen.com/the-best-baked-beans-recipe/','https://spoonacular.com/recipeImages/1464299-556x370.jpg'),
+(1, 1, 'Carrot-sesame seed bread', 637243, 1,'http://www.foodista.com/recipe/DZW6HJ3M/carrot-sesame-seed-bread', 'https://spoonacular.com/recipeImages/637243-556x370.jpg'),
+(1, 1, 'Carrot-sesame seed bread', 1095892, 5,'https://www.foodista.com/recipe/2M3K34BV/green-bean-casserole-vegan', 'https://spoonacular.com/recipeImages/1095892-556x370.jpg');
+
 
 INSERT INTO guest_details (event_id, user_id, present) VALUES
 (1, 1, 2),
@@ -54,7 +55,7 @@ INSERT INTO guest_items (item_id, guest_id) VALUES
 -- (9, 7);
 
 INSERT INTO event_messages (event_id, user_id, message) VALUES
-(1, 1, '! Only a few days to this... I can''t wait!'),
+(1, 1, 'Only a few days to this... I can''t wait!'),
 (1, 3, 'Hey Daniel! Same here, it''s going to be lit. Do you know if Michele is coming?'),
 (2, 2, 'This is MESSAGE 1 for EVENT 2 !'),
 (3, 3, 'This is MESSAGE 1 for EVENT 3 !');
