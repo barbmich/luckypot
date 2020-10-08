@@ -3,17 +3,20 @@
   height: 1000px;
   margin-top: 0px;
   background-image: url("https://images.unsplash.com/photo-1549590143-d5855148a9d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80");
+  // background-image: url("https://wavemag.ca/gfx/articles/2018/05/unlock-the-potential-of-food-headline.png");
+// background-image: url("https://images.unsplash.com/photo-1576867757603-05b134ebc379?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: cover;
   background-position: center;
   color: white;
+
 }
 
 .homeTitle {
   font-family: "Lobster Two", cursive;
   text-align: center;
   margin-bottom: 15px;
-  padding-top: 150px;
+  padding-top: 200px;
   color: white;
   font-size: xxx-large;
 }

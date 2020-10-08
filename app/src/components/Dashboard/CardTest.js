@@ -101,6 +101,12 @@ const style = {
   
 }
 
+const cancelStyle = {
+  width: "20rem",
+  margin: "5px",
+  height: "35rem"
+}
+
 console.log("ITEM", item);
 
   return (

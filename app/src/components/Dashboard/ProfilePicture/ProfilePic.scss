@@ -1,13 +1,15 @@
 .main-profile-pic {
   width: 5em;
   height: 5em;
-  border: solid black 1.5px;
+  // border: solid black 1.5px;
   margin: 0.5em;
-  border-radius: 20%;
+  // border-radius: 20%;
+  border-radius: 50%;
 }
 
-// width={171}
-// height={180}
+#pic {
+  margin-bottom: 0px;
+}
 
 .name {
   color: black;
@@ -23,7 +25,7 @@
 
 .present-state-going {
   // background-color: #92d76f;
-  background-color: #9dc589;
+  background-color: #99b889;
   // width: 100%;
   border-radius: 15%;
   margin-bottom: 0px;

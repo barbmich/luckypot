@@ -1,6 +1,6 @@
 INSERT INTO users (first_name, last_name, password, email, avatar_url) VALUES
 ('Daniel', 'Nascimento', '1', 'daniel@email.com', 'https://res.cloudinary.com/barbmich/image/upload/v1602039105/luckypot/compass_o6pdrk.png'),
-('Michele', 'Barbiero', '1','michele@email.com', 'https://res.cloudinary.com/barbmich/image/upload/v1601779428/luckypot/test25%40test.jpg'),
+('Michele', 'Barbiero', '1','michele@email.com', 'https://res.cloudinary.com/barbmich/image/upload/v1602093278/luckypot/PNG_image_nhffmp.png'),
 ('Devin', 'Coughlin', '1', 'devin@email.com', 'https://res.cloudinary.com/barbmich/image/upload/v1602039113/luckypot/headshot_zv7spf.jpg'),
 ('Donald', 'Chavez', '1', 'donald@email.com', 'https://randomuser.me/api/portraits/men/61.jpg'),
 ('Crazy', 'Dude', '1', 'crazy@email.com', 'https://images.unsplash.com/photo-1502980426475-b83966705988?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=ddcb7ec744fc63472f2d9e19362aa387'),
@@ -19,15 +19,14 @@ INSERT INTO categories (name) VALUES
 ('Main'),
 ('Dessert');
 
-INSERT INTO items (event_id, category_id, name, recipe_id, assigned) VALUES
-(1, 1, 'Turkey', 645044, 1);
-
-
-INSERT INTO items (event_id, category_id, name) VALUES
-(1, 1, 'Salad'),
-(1, 1, 'Apple pie'),
-(1, 1, 'Mashed potatoes');
-
+INSERT INTO items (event_id, category_id, name, recipe_id, assigned, image_url) VALUES
+(1, 1, 'True Canadian Turkey', 645044, 1, 'https://www.makeitgrateful.com/wp-content/uploads/2018/09/5D4B5461-Easy-No-fuss-Thanksgiving-Turkey-turkey-on-a-plate-with-lemon-slices.jpg'),
+(1, 1, 'Autumn Apple Pie', 633089, 3, 'http://cloud.foodista.com/content/images/c6e5ef805c78f4e08c9db8f6d52f01f10b001f37_607x400.jpg'),
+(1, 2, 'Summer Berry Salad', 715540, 3, 'https://spoonacular.com/recipeImages/715540-556x370.jpg'),
+(1, 1, 'Roasted carrot ginger soup', 658531, 5, 'https://www.foodista.com/sites/default/files/styles/recype/public/DSC_3358.jpg'),
+(1, 1, 'The Best Baked Beans', 1464299, 6, 'https://spoonacular.com/recipeImages/1464299-556x370.jpg'),
+(1, 1, 'Carrot-sesame seed bread', 637243, 1, 'https://spoonacular.com/recipeImages/637243-556x370.jpg'),
+(1, 1, 'Carrot-sesame seed bread', 642085, 5, 'https://spoonacular.com/recipeImages/642085-556x370.jpg');
 
 INSERT INTO guest_details (event_id, user_id, present) VALUES
 (1, 1, 2),
@@ -55,7 +54,7 @@ INSERT INTO guest_items (item_id, guest_id) VALUES
 -- (9, 7);
 
 INSERT INTO event_messages (event_id, user_id, message) VALUES
-(1, 1, 'Hey people! Only a few days to this... I can''t wait!'),
+(1, 1, '! Only a few days to this... I can''t wait!'),
 (1, 3, 'Hey Daniel! Same here, it''s going to be lit. Do you know if Michele is coming?'),
 (2, 2, 'This is MESSAGE 1 for EVENT 2 !'),
 (3, 3, 'This is MESSAGE 1 for EVENT 3 !');

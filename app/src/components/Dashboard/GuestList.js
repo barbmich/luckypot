@@ -33,11 +33,13 @@ export default function GuestList(props) {
     });
 
   return (
+    <Card>
     <div className="guestList">
       <Card.Header className="guestTitleContainer">
         <Card.Title className="guestContainerTitle">Guests</Card.Title>
       </Card.Header>
       <div className="profilePicList">{usersArray}</div>
     </div>
+    </Card>
   );
 }

@@ -106,15 +106,6 @@ img {
   outline: 0;
 }
 
-.btn :hover,
-.btn-large :hover,
-.btn-small :hover,
-.btn-floating :hover,
-.btn-large :hover,
-.btn-small :hover,
-.btn-flat :hover {
-  background-color:  #c8ac59;
-}
 
 
 
@@ -155,4 +146,15 @@ nav,
   color: #fff;
   font-size: 1.6rem;
   line-height: 40px;
+}/*  */
+
+.btn-primary:hover {
+  background-color: #696666;
+  border-color: #696666;
 }
+
+#button a:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+

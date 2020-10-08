@@ -14,7 +14,7 @@ export default function ProfilePic(props) {
   } = props;
 
   return (
-    <Figure className={customStyle}>
+    <Figure id="pic" className={customStyle}>
       <Figure.Image
         alt="171x180"
         src={avatar_url}

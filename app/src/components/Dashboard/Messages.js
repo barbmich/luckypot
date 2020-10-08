@@ -82,7 +82,7 @@ export default function Messages(props) {
   return (
     <div>
       <Card className="msgContainer" style={{display: "flex", flexDirection: "column",
-    alignItems: "center"}}>
+    alignItems: "center", height: "723px"}}>
         <Card.Title className="mealsContainerTitle" style={{width: "99%"}}>Messages</Card.Title>
         <Card className="msgContainer" style={{width: "95%"}}>
           <Card.Body  >

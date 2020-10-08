@@ -62,13 +62,25 @@ export default function MyRecipes(props) {
           <Card className="meal-unchosen">
           {/* <Card.Img variant="top" src={recipe.image_url} /> */}
            <div className="face front">
-            <Card.Title>{recipe.name}</Card.Title>
+             <Card.Title>{recipe.name}</Card.Title>
+              {recipe.image_url && (
+             <Card.Img
+              style={{
+                height:"120px",
+                objectFit:"cover",
+          
+              }}
+              variant="top"
+              src={recipe.image_url}
+              />
+              )}
+          
           </div>
           <div className="face back">
             <Card.Title>{recipe.potluck_name}</Card.Title>
 
             {recipe.url && (
-             <a href={recipe.url} targer="_blank">
+             <a href={recipe.url} target="_blank" >
                 <Button>View Full Recipe</Button>
               </a>
             )}
@@ -104,7 +116,7 @@ export default function MyRecipes(props) {
                 </Card.Title>
                 {/* <Card.Body>Provided by: {recipe.guest} */}
               {recipe.url && (
-              <a href={recipe.url} targer="_blank">
+              <a href={recipe.url} target="_blank">
                 <Button>View Full Recipe</Button>
               </a>
              )}
@@ -129,10 +141,10 @@ export default function MyRecipes(props) {
     <div>
       <h1 className="pageTitle">My Recipes</h1>
       <div className="recipeList">
-        <h3 className="listTitle">You've Brought</h3>
-        <div className="eachList">{recipeListCards}</div>
+        {/* <h3 className="listTitle">You've Brought</h3> */}
         <h3 className="listTitle">You've Tasted</h3>
-        <div className="eachList">{tastedListCards}</div>
+        <div className="eachList">{recipeListCards}</div>
+        {/* <div className="eachList">{tastedListCards}</div> */}
       </div>
     </div>
   );

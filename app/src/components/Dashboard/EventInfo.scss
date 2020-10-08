@@ -1,10 +1,20 @@
 .eventContainer {
   width: 30rem;
   margin: 8px;
-  margin-top: 40px;
+  margin-top: 20px;
   // padding: 0px !important;
 }
 
 .eventContainer {
   text-align: center;
+}
+
+.eventTitleContainer {
+  background-color: #c8ac59;
+  border-radius: 4px !important;
+  border: solid grey 2px;
+  border-radius: 80%;
+  width: 100%;
+  color: #1e252c;
+  font-family: "Lobster Two", cursive;
 }
