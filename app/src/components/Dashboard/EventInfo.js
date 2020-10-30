@@ -9,9 +9,13 @@ export default function EventInfo(props) {
   console.log(host);
   return (
     <Card className="text-center eventContainer">
-      <Card.Header className="eventTitleContainer" style={{fontSize:"1.5em"}}>{event.name}</Card.Header>
+      <Card.Header
+        className="eventTitleContainer"
+        style={{ fontSize: "1.5em" }}
+      >
+        {event.name}
+      </Card.Header>
       <Card.Body>
-        {/* <Card.Title>{event.name}</Card.Title> */}
         <p>
           Hosted by: {host.first_name} {host.last_name}
         </p>

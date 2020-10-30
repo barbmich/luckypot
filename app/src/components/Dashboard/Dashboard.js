@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "./Dashboard.scss";
 import PresentButton from "./PresentButton";
 import EventInfo from "./EventInfo";
 import GuestList from "./GuestList";
 import MealsContainer from "./MealsContainer2"; //Remove "2" to return to previous layout
 import Messages from "./Messages";
-import AddButton from "./AddButton";
 import MealForm from "./MealForm";
 import "./Messages.scss";
 
@@ -23,9 +22,6 @@ export default function Dashboard(props) {
   const [messages, setMessages] = useState([]);
   const [userPresent, setUserPresent] = useState(null);
   const [host, setHost] = useState({});
-
-  console.log("HOST RIGHT HERE");
-  console.log(host);
 
   function addMeal(item) {
     const input = {
@@ -64,8 +60,6 @@ export default function Dashboard(props) {
     });
   }, [userPresent]);
 
-  // console.log("THESE ARE THE ITEMS::: :)", items);
-
   const styles = {
     col: {
       backgroundColor: "#C3DCE1",
@@ -89,12 +83,24 @@ export default function Dashboard(props) {
           {loggedUser.id === event.owner_id ? (
             <div className="invite">
               <a href={mailtoLink}>
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M40 41H8C5.8 41 4 39.2 4 37V16.1C4 14.8 4.6 13.6 5.7 12.8L24 0L42.3 12.8C43.4 13.5 44 14.8 44 16.1V37C44 39.2 42.2 41 40 41Z" fill="#78909C"/>
-                <path d="M12 11H36V33H12V11Z" fill="white"/>
-                <path d="M40 41H8C5.8 41 4 39.2 4 37V17L24 30L44 17V37C44 39.2 42.2 41 40 41Z" fill="#FAD76E"/>
-                <path d="M22 14H26V26H22V14Z" fill="#212529"/>
-                <path d="M18 18H30V22H18V18Z" fill="#212529"/>
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M40 41H8C5.8 41 4 39.2 4 37V16.1C4 14.8 4.6 13.6 5.7 12.8L24 0L42.3 12.8C43.4 13.5 44 14.8 44 16.1V37C44 39.2 42.2 41 40 41Z"
+                    fill="#78909C"
+                  />
+                  <path d="M12 11H36V33H12V11Z" fill="white" />
+                  <path
+                    d="M40 41H8C5.8 41 4 39.2 4 37V17L24 30L44 17V37C44 39.2 42.2 41 40 41Z"
+                    fill="#FAD76E"
+                  />
+                  <path d="M22 14H26V26H22V14Z" fill="#212529" />
+                  <path d="M18 18H30V22H18V18Z" fill="#212529" />
                 </svg>
                 Invite your Friends!
               </a>
@@ -141,9 +147,6 @@ export default function Dashboard(props) {
         </Col>
         <Row>
           <Col sm={6}>
-            {/* <Card.Header className="msgTitleContainer">
-              <Card.Title className="mealsContainerTitle">Messages</Card.Title>
-            </Card.Header> */}
             <Messages
               messages={messages}
               users={users}
@@ -152,11 +155,6 @@ export default function Dashboard(props) {
             />
           </Col>
         </Row>
-        {/* <Col
-          lg={{ span: 2 }}
-          className="mealsContainer"
-        >
-        </Col> */}
       </Container>
     </div>
   );

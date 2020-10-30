@@ -1,13 +1,10 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import AddButton from "./AddButton";
-import MealItem from "./MealItem";
 import "./MealsContainer.scss";
 import CardTest from "./CardTest";
-import axios from "axios";
 
 export default function MealsContainer(props) {
-  const {  items, users, loggedUser, userPresent, event } = props;
+  const { items, users, loggedUser, userPresent, event } = props;
 
   console.log("ITEMS LIST");
   console.log(items);
@@ -30,10 +27,5 @@ export default function MealsContainer(props) {
     );
   });
 
-  return (
-    <Container className="mealsContainer">
-      {itemsArray}
-      {/* <AddButton items={items} addMeal={addMeal} /> */}
-    </Container>
-  );
+  return <Container className="mealsContainer">{itemsArray}</Container>;
 }

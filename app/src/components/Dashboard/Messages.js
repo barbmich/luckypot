@@ -17,6 +17,7 @@ export default function Messages(props) {
     .map((msg, i) => {
       const user = users.find((user) => {
         console.log("user found:", user);
+        console.log("msg:", msg);
         console.log("from message:", msg.user_id);
         return user.id === msg.user_id;
       });
@@ -51,7 +52,7 @@ export default function Messages(props) {
       .catch((err) => {
         console.log(err);
       });
-  };
+  }
 
   useEffect(() => {
     ws.current = new WebSocket("ws://localhost:3003");
@@ -81,19 +82,38 @@ export default function Messages(props) {
 
   return (
     <div>
-      <Card className="msgContainer" style={{display: "flex", flexDirection: "column",
-    alignItems: "center", height: "723px"}}>
-        <Card.Title className="mealsContainerTitle" style={{width: "99%"}}>Messages</Card.Title>
-        <Card className="msgContainer" style={{width: "95%"}}>
-          <Card.Body  >
- 
+      <Card
+        className="msgContainer"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          height: "723px",
+        }}
+      >
+        <Card.Title className="mealsContainerTitle" style={{ width: "99%" }}>
+          Messages
+        </Card.Title>
+        <Card className="msgContainer" style={{ width: "95%" }}>
+          <Card.Body>
             <ul className="list-unstyled">{eventMessages}</ul>
           </Card.Body>
         </Card>
-        <div className="msgInput" style={{width: "-webkit-fill-available", maxWidth: "95%", display: "flex", flexDirection: "column", alignItems: "stretch"}}>
+        <div
+          className="msgInput"
+          style={{
+            width: "-webkit-fill-available",
+            maxWidth: "95%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "stretch",
+          }}
+        >
           <Form className="msgForm">
             <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Label style={{marginTop: "1em"}}>Enter Message</Form.Label>
+              <Form.Label style={{ marginTop: "1em" }}>
+                Enter Message
+              </Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -105,7 +125,8 @@ export default function Messages(props) {
                   }
                 }}
               />
-              <Button style={{marginTop: "0.5em", width: "-webkit-fill-available"}}
+              <Button
+                style={{ marginTop: "0.5em", width: "-webkit-fill-available" }}
                 className="msgBtn"
                 onClick={() => sendMessage()}
                 variant="primary"

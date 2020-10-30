@@ -16,7 +16,6 @@ export default function MyPotlucks(props) {
     axios
       .get(`http://localhost:3003/mypotlucks/${loggedUser.id}`)
       .then((result) => {
-        // console.log("this is result:", result.data);
         setPotlucksList(result.data);
         setLoading(false);
       });
@@ -32,7 +31,6 @@ export default function MyPotlucks(props) {
 
   const userPotlucks = potlucksList.map((potluck, i) => {
     if (potluck) {
-      console.log(potluck);
       return (
         <Card
           key={i}
