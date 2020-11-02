@@ -8,7 +8,7 @@ It allows the users to:
 - Invite guests, who can provide their availability
 - Add meals to a board, which can be picked by people to be brought
 - Search for recipes - through the Spoonacular API
-- Send messages to other partecipants and see the chat history
+- Send messages to other participants and see the chat history
 - See a list of meals brought to potlucks and all meals tasted, and add them as favorites
 
 This is the collaborative final project for the Lighthouse Labs July cohort.
