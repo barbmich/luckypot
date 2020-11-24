@@ -23,6 +23,8 @@ export default function Dashboard(props) {
   const [userPresent, setUserPresent] = useState(null);
   const [host, setHost] = useState({});
 
+  console.log(messages);
+
   function addMeal(item) {
     const input = {
       event_id: event.id,
@@ -49,8 +51,8 @@ export default function Dashboard(props) {
         setUsers(all[1].data);
       }
       setItems(all[2].data);
-      console.log("all0data0");
-      console.log(all[0].data[0]);
+      // console.log("all0data0");
+      // console.log(all[0].data[0]);
       setMessages(all[3].data);
       setLoading(false);
       setHost({
@@ -146,14 +148,14 @@ export default function Dashboard(props) {
           </Row>
         </Col>
         <Row>
-          {/* <Col sm={6}>
+          <Col sm={6}>
             <Messages
               messages={messages}
               users={users}
               loggedUser={loggedUser}
               event={event}
             />
-          </Col> */}
+          </Col>
         </Row>
       </Container>
     </div>

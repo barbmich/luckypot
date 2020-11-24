@@ -38,26 +38,23 @@ module.exports = (db) => {
     const values = [req.params.unique_key];
     db.query(
       `
-      SELECT DISTINCT 
-       users.id AS id,
-       users.first_name AS first_name, 
-       users.last_name AS last_name,
-       users.email AS email, 
-       users.avatar_url AS avatar_url,
-       guest_details.present AS present
-       FROM guest_details
-       JOIN events ON events.id = guest_details.event_id
-       JOIN items ON events.id = items.event_id
-       JOIN users ON users.id = guest_details.user_id
-       WHERE events.id IN(SELECT event_id
-       FROM guest_details
-       WHERE events.unique_key = $1);
+      SELECT
+        users.id AS id,
+        users.avatar_url AS avatar_url,
+        users.first_name AS first_name,
+        users.last_name AS last_name,
+        guest_details.present AS present
+      FROM events
+        JOIN guest_details ON events.id = guest_details.event_id
+        JOIN users ON users.id = guest_details.user_id
+      WHERE events.unique_key = $1;
     `,
       values
     )
       .then((data) => {
         const guests = data.rows;
-        // console.log(data.rows);
+        console.log("test");
+        console.log(data.rows);
         res.json(guests);
       })
       .catch((err) => {
@@ -107,7 +104,7 @@ module.exports = (db) => {
     )
       .then((data) => {
         const event_messages = data.rows;
-        // console.log(data.rows);
+        console.log(data.rows);
         res.json(event_messages);
       })
       .catch((err) => {

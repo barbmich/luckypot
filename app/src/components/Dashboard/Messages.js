@@ -8,7 +8,7 @@ import axios from "axios";
 export default function Messages(props) {
   const { messages, event, users, loggedUser } = props;
 
-  const [messageContent, setMessageContent] = useState();
+  const [messageContent, setMessageContent] = useState("");
   const [chatMessages, setChatMessages] = useState(messages);
   const ws = useRef(null);
 
@@ -21,6 +21,10 @@ export default function Messages(props) {
         console.log("from message:", msg.user_id);
         return user.id === msg.user_id;
       });
+      console.log("user here:", user);
+      if (user === "undefined") {
+        return;
+      }
       return (
         <Media key={i} as="li">
           <ProfilePic

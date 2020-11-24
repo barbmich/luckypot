@@ -58,7 +58,7 @@ INSERT INTO event_messages (event_id, user_id, message) VALUES
 (1, 1, 'Only a few days to this... I can''t wait!'),
 (1, 3, 'Hey Daniel! Same here, it''s going to be lit. Do you know if Michele is coming?'),
 (2, 2, 'This is MESSAGE 1 for EVENT 2 !'),
-(3, 3, 'This is MESSAGE 1 for EVENT 3 !');
+(3, 1, 'This is MESSAGE 1 for EVENT 3 !');
 
 INSERT INTO event_comments (event_id, user_id, message) VALUES
 (1, 1, 'This is a COMMENT for EVENT 1 !'),
