@@ -146,14 +146,14 @@ export default function Dashboard(props) {
           </Row>
         </Col>
         <Row>
-          <Col sm={6}>
+          {/* <Col sm={6}>
             <Messages
               messages={messages}
               users={users}
               loggedUser={loggedUser}
               event={event}
             />
-          </Col>
+          </Col> */}
         </Row>
       </Container>
     </div>

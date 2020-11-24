@@ -41,15 +41,15 @@ server.listen(PORT, () =>
   console.log(`Express server is running on port ${PORT}`)
 );
 
-const wss = new WebSocket.Server({ server });
+// const wss = new WebSocket.Server({ server });
 
-wss.on("connection", function connection(ws) {
-  ws.on("message", function incoming(data) {
-    // console.log("data incoming:", JSON.stringify(data));
-    wss.clients.forEach(function each(client) {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(data);
-      }
-    });
-  });
-});
+// wss.on("connection", function connection(ws) {
+//   ws.on("message", function incoming(data) {
+//     // console.log("data incoming:", JSON.stringify(data));
+//     wss.clients.forEach(function each(client) {
+//       if (client.readyState === WebSocket.OPEN) {
+//         client.send(data);
+//       }
+//     });
+//   });
+// });
