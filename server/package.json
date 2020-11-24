@@ -25,7 +25,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js | pino-colada",
+    "dev": "nodemon index.js | pino-colada",
+    "start": "node index.js",
     "db:reset": "node ./bin/resetdb.js"
   },
   "author": "",
