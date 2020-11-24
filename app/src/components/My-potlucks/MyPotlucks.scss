@@ -1,9 +1,13 @@
 .myPotlucks {
   margin: auto;
   width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .potluck-item {
   margin: 2em;
+  width: 50em;
   border: solid, black, 4px;
 }

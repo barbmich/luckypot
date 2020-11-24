@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import moment from "moment";
 import { Card, Button } from "react-bootstrap";
 import "./MyPotlucks.scss";
@@ -66,7 +66,16 @@ export default function MyPotlucks(props) {
   return (
     <div className="myPotlucks">
       <h1 className="pageTitle">My Potlucks</h1>
-      {userPotlucks}
+      {userPotlucks.length === 0 ? (
+        <div className="btnHome">
+          <Link className="link" to="/create">
+            <span className="noselect">Create your potluck</span>
+          </Link>
+          <div className="circle"></div>
+        </div>
+      ) : (
+        userPotlucks
+      )}
       {/* {userPotlucks.length > 0 ? userPotlucks : 
       <div style={{padding: "250px", textAlign: "center"}}><p>You're not host nor guest of any potluck</p>
       <Link to="/create" className="link-nav">
