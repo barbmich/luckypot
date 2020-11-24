@@ -104,7 +104,7 @@ export default function SignupForm(props) {
       {error && <p>{error}</p>}
       <Form className="form">
         <div id="sections-container">
-          <section class="">
+          <section>
             <Form.Group controlId="formBasicFirstName">
               <Form.Label>First Name</Form.Label>
               <Form.Control

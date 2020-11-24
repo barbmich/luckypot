@@ -90,9 +90,16 @@ export default function App() {
                 )
               }
             />
-            <Route path="/myfavorites">
-              <MyFavorites loggedUser={loggedUser} />
-            </Route>
+            <Route
+              path="/myfavorites"
+              component={() =>
+                auth ? (
+                  <MyFavorites loggedUser={loggedUser} />
+                ) : (
+                  <Redirect to="/signin" />
+                )
+              }
+            ></Route>
             <Route
               path="/create"
               component={() =>
