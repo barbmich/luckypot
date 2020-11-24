@@ -37,6 +37,10 @@ app.use("", itemsRoutes(db));
 app.use("", dashboardRoutes(db));
 app.use("", messagesRoutes(db));
 
+app.get("/test", (req, res) => {
+  res.send("you pinged the server!");
+});
+
 server.listen(PORT, () =>
   console.log(`Express server is running on port ${PORT}`)
 );
