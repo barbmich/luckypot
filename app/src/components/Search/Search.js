@@ -20,7 +20,7 @@ export default function Search(props) {
   const getSearchResults = () => {
     console.log("SEARCHED: ", searchInput); //Valid here
     axios
-      .get(`http://localhost:3003/recipes/search/${searchInput}`)
+      .get(`/recipes/search/${searchInput}`)
       .then((result) => {
         console.log(result.data.results);
         if (result.data.results.length === 0) {

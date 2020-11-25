@@ -13,7 +13,7 @@ export default function MealItem(props) {
 
   function removeYourself() {
     axios
-      .put(`http://localhost:3003/items/update`, {
+      .put(`/items/update`, {
         item: item.id,
         assigned: null,
       })
@@ -24,7 +24,7 @@ export default function MealItem(props) {
 
   function setAssigned() {
     axios
-      .put(`http://localhost:3003/items/update`, {
+      .put(`/items/update`, {
         item: item.id,
         assigned: loggedUser.id,
       })
@@ -45,7 +45,9 @@ export default function MealItem(props) {
             <ProfilePic avatar_url={userAssigned.avatar_url} />
             {userAssigned.id === loggedUser.id ? (
               <>
-                <Button onClick={() => removeYourself()}>Bring something else?</Button>
+                <Button onClick={() => removeYourself()}>
+                  Bring something else?
+                </Button>
                 <MealChosenNoRecipe item={item} />
               </>
             ) : null}

@@ -23,7 +23,7 @@ export default function Recipe(props) {
   const itemId = location.state ? location.state.itemId : null;
 
   function getRecipeDetails() {
-    axios.get(`http://localhost:3003/recipe/${recipe_id}`).then((result) => {
+    axios.get(`/recipe/${recipe_id}`).then((result) => {
       setRecipe(result.data);
       setLoading(false);
     });
@@ -31,7 +31,7 @@ export default function Recipe(props) {
   console.log("RECIPE: ", recipe);
   useEffect(() => {
     axios
-      .get(`http://localhost:3003/mypotlucks/${loggedUser.id}`)
+      .get(`/mypotlucks/${loggedUser.id}`)
       .then((result) => {
         // console.log("USE EFFECT", result.data);
         const potlucksList = result.data;
@@ -92,12 +92,10 @@ export default function Recipe(props) {
       };
       console.log("IF INPUT ~~~~");
       console.log(input);
-      axios
-        .put("http://localhost:3003/items/update_meal", input)
-        .then((response) => {
-          // console.log("IF RESPONSE ~~~~");
-          console.log("Result of Put:::", response.data);
-        });
+      axios.put("/items/update_meal", input).then((response) => {
+        // console.log("IF RESPONSE ~~~~");
+        console.log("Result of Put:::", response.data);
+      });
     } else {
       const input = {
         event_id: event_id,
@@ -110,12 +108,10 @@ export default function Recipe(props) {
       };
       // console.log("ELSE INPUT~~~~");
       // console.log(input);
-      axios
-        .post("http://localhost:3003/items/add_search", input)
-        .then((response) => {
-          // console.log("ELSE RESPONSE~~~~");
-          // console.log(response.data);
-        });
+      axios.post("/items/add_search", input).then((response) => {
+        // console.log("ELSE RESPONSE~~~~");
+        // console.log(response.data);
+      });
     }
   }
 

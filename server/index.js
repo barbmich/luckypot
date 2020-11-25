@@ -24,7 +24,11 @@ const messagesRoutes = require("./routes/messages");
 
 db.connect();
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://luckypot-app.herokuapp.com/",
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: false }));
 app.use(express.json({ limit: "50mb" }));
 app.use(pino);

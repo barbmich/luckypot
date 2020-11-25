@@ -15,12 +15,8 @@ export default function MyRecipes(props) {
 
   useEffect(() => {
     Promise.all([
-      Promise.resolve(
-        axios.get(`http://localhost:3003/myrecipes/${loggedUser.id}`)
-      ),
-      Promise.resolve(
-        axios.get(`http://localhost:3003/tastedrecipes/${loggedUser.id}`)
-      ),
+      Promise.resolve(axios.get(`/myrecipes/${loggedUser.id}`)),
+      Promise.resolve(axios.get(`/tastedrecipes/${loggedUser.id}`)),
     ]).then((all) => {
       const [myRecipes, tastedRecipes] = all;
       // console.log("MY RECIPES");
@@ -57,45 +53,43 @@ export default function MyRecipes(props) {
   const recipeListCards = recipeList.map((recipe, i) => {
     console.log("HHHHH RECIPE :::", recipe.meal_id);
     return (
-      <ul key={i} style={{paddingLeft:"0px"}}>
+      <ul key={i} style={{ paddingLeft: "0px" }}>
         <div className="scene">
           <Card className="meal-unchosen">
-          {/* <Card.Img variant="top" src={recipe.image_url} /> */}
-           <div className="face front">
-             <Card.Title>{recipe.name}</Card.Title>
+            {/* <Card.Img variant="top" src={recipe.image_url} /> */}
+            <div className="face front">
+              <Card.Title>{recipe.name}</Card.Title>
               {recipe.image_url && (
-             <Card.Img
-              style={{
-                height:"120px",
-                objectFit:"cover",
-          
-              }}
-              variant="top"
-              src={recipe.image_url}
-              />
+                <Card.Img
+                  style={{
+                    height: "120px",
+                    objectFit: "cover",
+                  }}
+                  variant="top"
+                  src={recipe.image_url}
+                />
               )}
-          
-          </div>
-          <div className="face back">
-            <Card.Title>{recipe.potluck_name}</Card.Title>
+            </div>
+            <div className="face back">
+              <Card.Title>{recipe.potluck_name}</Card.Title>
 
-            {recipe.url && (
-             <a href={recipe.url} target="_blank" >
-                <Button>View Full Recipe</Button>
-              </a>
-            )}
+              {recipe.url && (
+                <a href={recipe.url} target="_blank">
+                  <Button>View Full Recipe</Button>
+                </a>
+              )}
 
-            <Button
-             className="favBtn"
-              variant="secondary"
-            // onClick={() => addToFavorites(recipe.meal_id)}
-            >
-              <span role="img" aria-label="heart">
-                🖤
-              </span>
-            </Button>
-          </div>
-        </Card>
+              <Button
+                className="favBtn"
+                variant="secondary"
+                // onClick={() => addToFavorites(recipe.meal_id)}
+              >
+                <span role="img" aria-label="heart">
+                  🖤
+                </span>
+              </Button>
+            </div>
+          </Card>
         </div>
       </ul>
     );
@@ -103,33 +97,33 @@ export default function MyRecipes(props) {
 
   const tastedListCards = tastedList.map((recipe, i) => {
     return (
-      <ul key={i} style={{paddingLeft:"0px"}}>
+      <ul key={i} style={{ paddingLeft: "0px" }}>
         <div className="scene">
           <Card className="meal-unchosen">
             <div className="face front">
               <Card.Title>{recipe.name}</Card.Title>
             </div>
             <div className="face back">
-                <Card.Title>{recipe.potluck_name}</Card.Title>
-                <Card.Title style={{fontSize:"1rem"}}> 
-                  Provided by :{recipe.guest}
-                </Card.Title>
-                {/* <Card.Body>Provided by: {recipe.guest} */}
+              <Card.Title>{recipe.potluck_name}</Card.Title>
+              <Card.Title style={{ fontSize: "1rem" }}>
+                Provided by :{recipe.guest}
+              </Card.Title>
+              {/* <Card.Body>Provided by: {recipe.guest} */}
               {recipe.url && (
-              <a href={recipe.url} target="_blank">
-                <Button>View Full Recipe</Button>
-              </a>
-             )}
+                <a href={recipe.url} target="_blank">
+                  <Button>View Full Recipe</Button>
+                </a>
+              )}
               <Button
                 className="favBtn"
                 variant="secondary"
-            // onClick={() => addToFavorites(recipe.meal_id)}
-            >
-              <span role="img" aria-label="heart">
-                🖤
-              </span>
-             </Button>
-             {/* </Card.Body> */}
+                // onClick={() => addToFavorites(recipe.meal_id)}
+              >
+                <span role="img" aria-label="heart">
+                  🖤
+                </span>
+              </Button>
+              {/* </Card.Body> */}
             </div>
           </Card>
         </div>

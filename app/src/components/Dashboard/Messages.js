@@ -47,7 +47,7 @@ export default function Messages(props) {
     };
     // console.log("obj sent to ws:", eventMessage);
     axios
-      .post("http://localhost:3003/messages/add", eventMessage)
+      .post("/messages/add", eventMessage)
       .then((response) => {
         // console.log(typeof response);
         ws.current.send(JSON.stringify(response));

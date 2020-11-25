@@ -61,7 +61,7 @@ export default function CreatePotluck(props) {
     };
     // console.log(newPotluck);
     axios
-      .post("http://localhost:3003/mypotlucks/add", newPotluck)
+      .post("/mypotlucks/add", newPotluck)
       .then((result) => {
         const unique_key = result.data[0].unique_key;
         history.push(`/Dashboard/${unique_key}`);

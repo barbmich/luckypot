@@ -81,8 +81,9 @@ export default function SignupForm(props) {
     };
 
     axios
-      .post("http://localhost:3003/signup", user)
+      .post("/signup", user)
       .then((result) => {
+        console.log(user);
         if (
           result.data ===
           ("A user with this email already exists." ||

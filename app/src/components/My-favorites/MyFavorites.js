@@ -10,12 +10,10 @@ export default function MyFavorites(props) {
   const [favoritesList, setFavoritesList] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3003/favorites/${loggedUser.id}`)
-      .then((result) => {
-        setFavoritesList(result.data);
-        setLoading(false);
-      });
+    axios.get(`/favorites/${loggedUser.id}`).then((result) => {
+      setFavoritesList(result.data);
+      setLoading(false);
+    });
   }, []);
 
   if (isLoading) {

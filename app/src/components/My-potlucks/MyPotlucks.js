@@ -13,12 +13,10 @@ export default function MyPotlucks(props) {
   const [potlucksList, setPotlucksList] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3003/mypotlucks/${loggedUser.id}`)
-      .then((result) => {
-        setPotlucksList(result.data);
-        setLoading(false);
-      });
+    axios.get(`/mypotlucks/${loggedUser.id}`).then((result) => {
+      setPotlucksList(result.data);
+      setLoading(false);
+    });
   }, []);
 
   function visitPotluck(potluck) {

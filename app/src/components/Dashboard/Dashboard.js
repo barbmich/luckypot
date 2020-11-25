@@ -32,17 +32,17 @@ export default function Dashboard(props) {
       name: item,
     };
 
-    axios.post("http://localhost:3003/items/add", input).then((response) => {
+    axios.post("/items/add", input).then((response) => {
       setItems([...items, response.data]);
     });
   }
 
   useEffect(() => {
     Promise.all([
-      axios.get(`http://localhost:3003//dashboard/events/${unique_key}`),
-      axios.get(`http://localhost:3003//dashboard/guests/${unique_key}`),
-      axios.get(`http://localhost:3003//dashboard/items/${unique_key}`),
-      axios.get(`http://localhost:3003/dashboard/messages/${unique_key}`),
+      axios.get(`/dashboard/events/${unique_key}`),
+      axios.get(`/dashboard/guests/${unique_key}`),
+      axios.get(`/dashboard/items/${unique_key}`),
+      axios.get(`/dashboard/messages/${unique_key}`),
     ]).then((all) => {
       setEvent(all[0].data[0]);
       if (all[1].data.length === 0) {

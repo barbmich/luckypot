@@ -50,7 +50,7 @@ export default function SignInForm(props) {
       password,
     };
     axios
-      .post("http://localhost:3003/login", user)
+      .post(`/login`, user)
       .then((result) => {
         console.log(result);
         if (result.data === "Incorrect credentials.") {

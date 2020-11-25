@@ -1,4 +1,4 @@
-import  React , { useState } from "react";
+import React, { useState } from "react";
 import {
   Container,
   Row,
@@ -21,22 +21,22 @@ import MealChosenNoRecipe from "./MealChosenNoRecipe";
 // Card.Title
 // Card.Description
 export default function Card_test(props) {
-  const { item, name, user, loggedUser } = props
+  const { item, name, user, loggedUser } = props;
 
   const [userAssigned, setUserAssigned] = useState(user || null);
 
   const recipeBtn = {
-    marginTop:"5px",
+    marginTop: "5px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     height: "20px",
-    width:"12rem"
-  }
+    width: "12rem",
+  };
 
   function removeYourself() {
     axios
-      .put(`http://localhost:3003/items/update`, {
+      .put(`/items/update`, {
         item: item.id,
         assigned: null,
       })
@@ -47,7 +47,7 @@ export default function Card_test(props) {
 
   function setAssigned(user) {
     axios
-      .put(`http://localhost:3003/items/update`, {
+      .put(`/items/update`, {
         item: item.id,
         assigned: loggedUser.id,
       })
@@ -56,7 +56,6 @@ export default function Card_test(props) {
       });
   }
 
-  
   // function Card(props) {
   //   return <div className="card-meal">{props.children}</div>;
   // }
@@ -94,49 +93,52 @@ export default function Card_test(props) {
   // function Description(props) {
   //   return <p className="card-description">{props.text}</p>;
   // }
-const style = {
-  width: "20rem",
-  margin: "5px",
-  height: "35rem"
-  
-}
+  const style = {
+    width: "20rem",
+    margin: "5px",
+    height: "35rem",
+  };
 
-const cancelStyle = {
-  width: "20rem",
-  margin: "5px",
-  height: "35rem"
-}
+  const cancelStyle = {
+    width: "20rem",
+    margin: "5px",
+    height: "35rem",
+  };
 
-console.log("ITEM", item);
+  console.log("ITEM", item);
 
   return (
     <Card style={style}>
       <Card.Img
         style={{
-          height:"150px",
-          objectFit:"cover",
-
+          height: "150px",
+          objectFit: "cover",
         }}
         variant="top"
-        src={item.image_url ? item.image_url : 'https://i.ibb.co/VtKzBZt/unassigned14.png'}
+        src={
+          item.image_url
+            ? item.image_url
+            : "https://i.ibb.co/VtKzBZt/unassigned14.png"
+        }
       />
-            <Card.Title>
-              {item.name}
-            </Card.Title>
-        <div className="test"
-           style={{
-             display: "flex",
-             flexDirection: "column",
-             alignItems: "center",
-             
-           }}>
-              {userAssigned ? (
+      <Card.Title>{item.name}</Card.Title>
+      <div
+        className="test"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {userAssigned ? (
           <>
             <ProfilePic avatar_url={userAssigned.avatar_url} />
             {userAssigned.id === loggedUser.id ? (
               <>
                 <MealChosenNoRecipe item={item} />
-                <Button  style={recipeBtn} onClick={() => removeYourself()}>Cancel</Button>
+                <Button style={recipeBtn} onClick={() => removeYourself()}>
+                  Cancel
+                </Button>
               </>
             ) : null}
           </>

@@ -10,36 +10,30 @@ export default function PresentButton(props) {
   useEffect(() => {
     if (!userPresent) {
       axios
-        .get(
-          `http://localhost:3003/dashboard/present/${loggedUser.id}/${event.id}`
-        )
+        .get(`/dashboard/present/${loggedUser.id}/${event.id}`)
         .then((result) => {
-
-          if(result.data.length === 0){
+          if (result.data.length === 0) {
             const guest = {
               event_id: event.id,
               user_id: loggedUser.id,
             };
-            axios.post("http://localhost:3003/dashboard/addguest", guest)
-            .then((result) => {
-
+            axios.post("/dashboard/addguest", guest).then((result) => {
               setUserPresent(result.data[0].present);
             });
-          } else{
+          } else {
             setUserPresent(result.data[0].present);
           }
-
         })
-        .catch((err) =>{
+        .catch((err) => {
           console.log(err);
-        } )
+        });
     }
   }, []);
 
   // Put req to update whether user is attending //
   const updatePresentValue = (value) => {
     axios
-      .put(`http://localhost:3003/dashboard/present/`, {
+      .put(`/dashboard/present/`, {
         present: value,
         user_id: loggedUser.id,
         event_id: event.id,
