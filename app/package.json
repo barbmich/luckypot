@@ -30,10 +30,10 @@
     "react-is": "^16.13.1"
   },
   "scripts": {
+    "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "run-p server start",
-    "start": "serve -s build",
     "build": "react-scripts build",
     "heroku-postbuild": "npm run build"
   },
