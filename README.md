@@ -13,7 +13,7 @@ It allows the users to:
 
 This is the collaborative final project for the Lighthouse Labs July cohort.
 
-The project can be seen [here](http://luckypot-app.heroku.com)!
+The project can be seen [here](https://luckypot-app.herokuapp.com)!
 
 ### Tech stack
 
