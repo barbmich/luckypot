@@ -9,7 +9,7 @@ INSERT INTO users (first_name, last_name, password, email, avatar_url) VALUES
 
 
 INSERT INTO events (owner_id, name, date, address, post_code, city, province, tiny_url, unique_key) VALUES
-(1, 'Thanksgiving Feast','2020-10-11 11:30:00', '30 Some Road', 'M3F6D4', 'Toronto', 'Ontario', 'https://tinyurl.com/y6tnkqam', 'z3sfpr2xdd'),
+(1, 'Thanksgiving Feast','2020-10-11 11:30:00', '30 Some Road', 'M3F6D4', 'Toronto', 'Ontario', 'https://tinyurl.com/y6tnkqam', 'db'),
 (1, 'Christmas Party','2020-12-24 18:30:00', '54 Albert Street', 'H3Z7F7', 'Montreal', 'Quebec', 'https://tinyurl.com/y5azzfw6', '8tspr0msfq'),
 (3, 'Canada Day BBQ','2021-07-01 12:30:01', '15 Any Court', 'F3Z7D5', 'Ottawa', 'Ontario', 'https://tinyurl.com/y5qok3ag', '603zs7066p');
 
