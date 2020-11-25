@@ -25,7 +25,7 @@ const messagesRoutes = require("./routes/messages");
 db.connect();
 
 const corsOptions = {
-  origin: "https://luckypot-app.herokuapp.com",
+  origin: "http://luckypot-app.herokuapp.com",
 };
 
 app.use(cors(corsOptions));
