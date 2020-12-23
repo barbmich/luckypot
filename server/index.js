@@ -21,6 +21,7 @@ const potluckRoutes = require("./routes/potlucks");
 const itemsRoutes = require("./routes/items");
 const dashboardRoutes = require("./routes/dashboard");
 const messagesRoutes = require("./routes/messages");
+const resetDb = require("./routes/resetDb");
 
 db.connect();
 
@@ -40,6 +41,7 @@ app.use("", favoritesRoutes(db));
 app.use("", itemsRoutes(db));
 app.use("", dashboardRoutes(db));
 app.use("", messagesRoutes(db));
+app.use("", resetDb(db));
 
 app.get("/test", (req, res) => {
   res.send("you pinged the server!");
